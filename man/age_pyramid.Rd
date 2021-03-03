@@ -49,21 +49,21 @@ age_pyramid(
 
 \item{age_labels}{Label of the interval.}
 
-\item{percent}{If TRUE, x-axis is in percent form.
+\item{percent}{If \code{TRUE}, x-axis is in percent form.
 Otherwise in count form.}
 
 \item{x_breaks}{Length between each break on x-axis.}
 
-\item{x_breaks_end}{Break end, default for 100000. Works for all count
+\item{x_breaks_end}{Break end, default for 100,000. Works for all count
 values below that.}
 
-\item{title, subtitle}{Plot title/subtitle, NULL for no title.}
+\item{title, subtitle}{Plot title/subtitle, \code{NULL} for no title.}
 
 \item{title_size, subtitle_size}{Text size of title/subtitle in pt.}
 
 \item{title_margin}{Margin for title}
 
-\item{x_lab, y_lab}{X/Y-axis labels, use NULL for no label.}
+\item{x_lab, y_lab}{X/Y-axis labels, use \code{NULL} for no label.}
 
 \item{background_color}{Color of the panel background.}
 

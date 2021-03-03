@@ -7,28 +7,28 @@
 #'                           Recommended that `x_var` is in character in df.
 #' @param fill_var           Variable for the different colors in bars,
 #'                             use string name.
-#'                             Use NULL if only one color for bars.
-#' @param y_var              Variable for y axis, if NULL, count is used.
+#'                             Use `NULL` if only one color for bars.
+#' @param y_var              Variable for y axis, if `NULL`, count is used.
 #' @param style              3 different styles of bar plots,
 #'                            "stack", "fill", or "dodge".
-#'                            fill requires y_percent  TRUE.
+#'                            fill requires `y_percent = TRUE`.
 #' @param group_by_x_var     Only relevant for style dodge. Boolean indicating
-#'                             if percentages should be for x_var or fill_var.
-#' @param y_percent          If TRUE, y axis is in percent form.
+#'                             if percentages should be for `x_var` or `fill_var`.
+#' @param y_percent          If `TRUE`, y axis is in percent form.
 #'                             Otherwise in count form.
 #' @param percent_accuracy   Set accuracy for [scales::percent_format()].
 #' @param y_lim              Limit on y axis.
 #' @param x_breaks,y_breaks  Length between each break on x/y axis.
-#' @param y_breaks_end       Break end, default for 100000. Works for all count
+#' @param y_breaks_end       Break end, default for 100,000. Works for all count
 #'                           values below that.
-#' @param title              Plot title, NULL if no title.
-#' @param subtitle           Small text under title, NULL if no subtitle.
+#' @param title              Plot title, `NULL` if no title.
+#' @param subtitle           Small text under title, `NULL` if no subtitle.
 #' @param title_size         Text size of title in pt.
 #' @param subtitle_size      Text size of subtitle in pt.
 #' @param title_margin       Distance between subtitle and title in pt. If no
-#'                           subtitle, title_margin  0.5*title_size.
-#' @param y_lab              Y-axis label, use NULL for no label.
-#' @param x_lab              X-axis label, use NULL for no label.
+#'                           subtitle, `title_margin = 0.5 * title_size`.
+#' @param y_lab              Y-axis label, use `NULL` for no label.
+#' @param x_lab              X-axis label, use `NULL` for no label.
 #' @param background_color   Color of the panel background.
 #' @param panel_grid_color   Color of the panel grid lines.
 #' @param panel_grid_size    Size of the panel grid lines in plot, useful to
@@ -37,7 +37,7 @@
 #' @param axis_text_angle    Angle of the tick texts, 45 is recommended for
 #'                             many x levels.
 #' @param text_size          Size of the text in pt.
-#' @param fill_colors        Color of the different categories in fill_var.
+#' @param fill_colors        Color of the different categories in `fill_var`.
 #' @param legend_pos         Position of the legend in plot,
 #'                           if `c(1,1)`, `c(1,0)` etc, legend inside plot.
 #' @param legend_labels      Label for each legend key.
@@ -86,36 +86,36 @@
 bar_plot <-
   function(df,
            x_var,
-           fill_var = NULL,
-           y_var = NULL,
-           style = c("stack", "fill", "dodge")[1],
-           group_by_x_var = TRUE,
-           y_percent = TRUE,
-           percent_accuracy = 1,
-           y_lim = NULL,
-           y_breaks = 2000,
-           x_breaks = NULL,
-           y_breaks_end = 100000,
-           title = NULL,
-           subtitle = NULL,
-           title_size = 9,
-           subtitle_size = 8,
-           title_margin = 1,
-           y_lab = NULL,
-           x_lab = NULL,
-           background_color = "#E7F0F2",
-           panel_grid_color = "#ADAEAE",
-           panel_grid_size = 0.2,
-           axis_size = 0.2,
-           axis_text_angle = 0,
-           text_size = 7,
-           fill_colors = NULL,
-           legend_pos = "bottom",
-           legend_labels = ggplot2::waiver(),
-           label_breaks = ggplot2::waiver(),
+           fill_var          = NULL,
+           y_var             = NULL,
+           style             = c("stack", "fill", "dodge")[1],
+           group_by_x_var    = TRUE,
+           y_percent         = TRUE,
+           percent_accuracy  = 1,
+           y_lim             = NULL,
+           y_breaks          = 2000,
+           x_breaks          = NULL,
+           y_breaks_end      = 100000,
+           title             = NULL,
+           subtitle          = NULL,
+           title_size        = 9,
+           subtitle_size     = 8,
+           title_margin      = 1,
+           y_lab             = NULL,
+           x_lab             = NULL,
+           background_color  = "#E7F0F2",
+           panel_grid_color  = "#ADAEAE",
+           panel_grid_size   = 0.2,
+           axis_size         = 0.2,
+           axis_text_angle   = 0,
+           text_size         = 7,
+           fill_colors       = NULL,
+           legend_pos        = "bottom",
+           legend_labels     = ggplot2::waiver(),
+           label_breaks      = ggplot2::waiver(),
            legend_background = "transparent",
-           legend_row = NULL,
-           legend_col = NULL) {
+           legend_row        = NULL,
+           legend_col        = NULL) {
 
 
     # Fill colours ------------------------------------------------------------

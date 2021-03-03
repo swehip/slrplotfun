@@ -20,7 +20,7 @@
 #' @param year             X-axis years, character vector works.
 #'                           The year variables will be renamed as they appear
 #'                           in the data set.
-#' @param subset           Which plots should be generated, subset = 1
+#' @param subset           Which plots should be generated, `subset = 1`
 #'                           corresponds to the first plot in alphabetical order.
 #' @param text_size        Text size in pt.
 #' @param legend_labels    Labels for the legends in the plot.
@@ -34,7 +34,7 @@
 #' @param point_size       Point sizes in plot.
 #' @param legend_pos       Position of the legend in plot, matrix where each row
 #'                           corresponds to a legend position is recommended,
-#'                           if length(subset) > 1.
+#'                           if `length(subset) > 1`.
 #' @param n_row,n_col      Number of rows/columns for the three plots.
 #'
 #' @return List of several gtable objects where each gtable object is one clinic

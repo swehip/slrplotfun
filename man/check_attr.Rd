@@ -10,10 +10,10 @@ check_attr(x)
 \item{x}{Vector}
 }
 \value{
-TRUE or FALSE
+\code{TRUE} or \code{FALSE}
 }
 \description{
-Useful in mutate_if to be used with mutate_label
+Useful with \code{\link[dplyr:mutate_all]{dplyr::mutate_if()}}
 }
 \examples{
 df <- data.frame(cars = 1:3)

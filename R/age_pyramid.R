@@ -8,15 +8,15 @@
 #' @param man_level        Name of man level, probably "Man" or "Män".
 #' @param age_breaks       Each age observation in an interval.
 #' @param age_labels       Label of the interval.
-#' @param percent          If TRUE, x-axis is in percent form.
+#' @param percent          If `TRUE`, x-axis is in percent form.
 #'                           Otherwise in count form.
 #' @param x_breaks         Length between each break on x-axis.
-#' @param x_breaks_end     Break end, default for 100000. Works for all count
+#' @param x_breaks_end     Break end, default for 100,000. Works for all count
 #'                           values below that.
-#' @param title,subtitle   Plot title/subtitle, NULL for no title.
+#' @param title,subtitle   Plot title/subtitle, `NULL` for no title.
 #' @param title_size,subtitle_size Text size of title/subtitle in pt.
 #' @param title_margin     Margin for title
-#' @param x_lab,y_lab      X/Y-axis labels, use NULL for no label.
+#' @param x_lab,y_lab      X/Y-axis labels, use `NULL` for no label.
 #' @param background_color Color of the panel background.
 #' @param panel_grid_color Color of the panel grid lines.
 #' @param panel_grid_size  Size of the panel grid lines in plot and contour

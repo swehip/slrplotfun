@@ -1,8 +1,8 @@
 #' Check if object has attribute "map"
 #'
-#' Useful in mutate_if to be used with mutate_label
+#' Useful with [dplyr::mutate_if()]
 #' @param x Vector
-#' @return TRUE or FALSE
+#' @return `TRUE` or `FALSE`
 #' @examples
 #' df <- data.frame(cars = 1:3)
 #' attr(df$cars, "map") <-

@@ -1,7 +1,7 @@
 #' Trend plot function
 #'
 #' Simple function to show trend in percent (y_var) between different years
-#' (x_var) using \code{\link{geom_smooth}}.
+#' (x_var) using [ggplot2::geom_smooth()].
 #'
 #' @param df               Data frame.
 #' @param x_var,y_var      X and Y variable.
@@ -9,9 +9,9 @@
 #' @param y_lim            Limit on y-axis.
 #' @param percent_accuracy Set accuracy for [scales::percent_format()].
 #' @param x_breaks         Length between each break on x-axis.
-#' @param x_lab,y_lab      X and Y-axis labels, use NULL for no label.
-#' @param title            Plot title, NULL for no title.
-#' @param subtitle         Small text under title, NULL for no subtitle.
+#' @param x_lab,y_lab      X and Y-axis labels, use `NULL` for no label.
+#' @param title            Plot title, `NULL` for no title.
+#' @param subtitle         Small text under title, `NULL` for no subtitle.
 #' @param title_size       Text size of title in pt.
 #' @param subtitle_size    Text size of subtitle in pt.
 #' @param line_color       Color of the line.

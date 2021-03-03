@@ -2,14 +2,14 @@
 #'
 #' Kaplan-Meier plot using ggplot2.
 #'
-#' @param survfit_obj             Object returned from survfit function in
-#'                                  survival package. Also works with data frame
+#' @param survfit_obj             Object returned from [survival::survfit()].
+#'                                  Also works with data frame
 #'                                  if year and surv variable exist. lower
-#'                                  and upper variable needed if show_ci = TRUE.
+#'                                  and upper variable needed if `show_ci = TRUE`.
 #'                                  Specify strata variable needed
 #'                                  if several curves wanted.
-#' @param make_step               If TRUE, step data will be created.
-#' @param first_point             If make_step = TRUE, first_point for KM is
+#' @param make_step               If `TRUE`, step data will be created.
+#' @param first_point             If `make_step = TRUE`, `first_point` for KM is
 #'                                  1 and for competing risk 0.
 #' @param one_level               Boolean indicating if there is only one
 #'                                  level in the strata.
@@ -21,13 +21,12 @@
 #' @param n_points                Number of points to be plotted,
 #'                                  useful to change if file is
 #'                                  large because of too many points!
-#' @param title                   Plot title, NULL for no title.
-#' @param subtitle                Small text under title, NULL for no subtitle.
+#' @param title                   Plot title, `NULL` for no title.
+#' @param subtitle                Small text under title, `NULL` for no subtitle.
 #' @param title_size              Text size of title in pt.
 #' @param subtitle_size           Text size of subtitle in pt.
 #' @param title_margin            Space between title and subtitle in pt.
-#' @param y_lab                   Y-axis label.
-#' @param x_lab                   X-axis label.
+#' @param x_lab,y_lab             X- and Y-axis labels.
 #' @param background_color        Color of the panel background.
 #' @param panel_grid_color        Color of the panel grid lines.
 #' @param panel_grid_size         Size of the panel grid lines in plot,
@@ -36,12 +35,12 @@
 #'                                  useful to change if large dpi!
 #' @param text_size               Size of the text in pt.
 #' @param line_size               Size of the head lines.
-#' @param show_ci                 If TRUE, show confidence interval lines.
+#' @param show_ci                 If `TRUE`, show confidence interval lines.
 #' @param ci_line_size            Size of the confidence interval lines.
 #' @param line_colors             Color of the different curves.
 #' @param legend_pos              Position of the legend in plot.
 #' @param legend_labels           Label for each legend key, default order as
-#'                                they appear in names(survfit_obj$strata).
+#'                                they appear in `names(survfit_obj$strata)`.
 #' @param label_breaks            Order of the legend keys.
 #' @param legend_key_height_mult  Increase space between legend keys with a
 #'                                  multiple.

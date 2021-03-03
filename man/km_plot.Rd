@@ -41,16 +41,16 @@ km_plot(
 )
 }
 \arguments{
-\item{survfit_obj}{Object returned from survfit function in
-survival package. Also works with data frame
+\item{survfit_obj}{Object returned from \code{\link[survival:survfit]{survival::survfit()}}.
+Also works with data frame
 if year and surv variable exist. lower
-and upper variable needed if show_ci = TRUE.
+and upper variable needed if \code{show_ci = TRUE}.
 Specify strata variable needed
 if several curves wanted.}
 
-\item{make_step}{If TRUE, step data will be created.}
+\item{make_step}{If \code{TRUE}, step data will be created.}
 
-\item{first_point}{If make_step = TRUE, first_point for KM is
+\item{first_point}{If \code{make_step = TRUE}, \code{first_point} for KM is
 1 and for competing risk 0.}
 
 \item{one_level}{Boolean indicating if there is only one
@@ -72,9 +72,9 @@ large because of too many points!}
 
 \item{n_risk_break}{Minimum number at risk to include}
 
-\item{title}{Plot title, NULL for no title.}
+\item{title}{Plot title, \code{NULL} for no title.}
 
-\item{subtitle}{Small text under title, NULL for no subtitle.}
+\item{subtitle}{Small text under title, \code{NULL} for no subtitle.}
 
 \item{title_size}{Text size of title in pt.}
 
@@ -82,9 +82,7 @@ large because of too many points!}
 
 \item{title_margin}{Space between title and subtitle in pt.}
 
-\item{y_lab}{Y-axis label.}
-
-\item{x_lab}{X-axis label.}
+\item{x_lab, y_lab}{X- and Y-axis labels.}
 
 \item{background_color}{Color of the panel background.}
 
@@ -100,7 +98,7 @@ useful to change if large dpi!}
 
 \item{line_size}{Size of the head lines.}
 
-\item{show_ci}{If TRUE, show confidence interval lines.}
+\item{show_ci}{If \code{TRUE}, show confidence interval lines.}
 
 \item{ribbon_ci}{Show confidence interval}
 
@@ -113,7 +111,7 @@ useful to change if large dpi!}
 \item{legend_pos}{Position of the legend in plot.}
 
 \item{legend_labels}{Label for each legend key, default order as
-they appear in names(survfit_obj$strata).}
+they appear in \code{names(survfit_obj$strata)}.}
 
 \item{label_breaks}{Order of the legend keys.}
 

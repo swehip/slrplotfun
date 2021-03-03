@@ -63,7 +63,7 @@ usually named "Riket".}
 The year variables will be renamed as they appear
 in the data set.}
 
-\item{subset}{Which plots should be generated, subset = 1
+\item{subset}{Which plots should be generated, \code{subset = 1}
 corresponds to the first plot in alphabetical order.}
 
 \item{text_size}{Text size in pt.}
@@ -87,7 +87,7 @@ useful to change if large dpi!}
 
 \item{legend_pos}{Position of the legend in plot, matrix where each row
 corresponds to a legend position is recommended,
-if length(subset) > 1.}
+if \code{length(subset) > 1}.}
 
 \item{n_row, n_col}{Number of rows/columns for the three plots.}
 }

@@ -47,18 +47,18 @@ Recommended that \code{x_var} is in character in df.}
 
 \item{fill_var}{Variable for the different colors in bars,
 use string name.
-Use NULL if only one color for bars.}
+Use \code{NULL} if only one color for bars.}
 
-\item{y_var}{Variable for y axis, if NULL, count is used.}
+\item{y_var}{Variable for y axis, if \code{NULL}, count is used.}
 
 \item{style}{3 different styles of bar plots,
 "stack", "fill", or "dodge".
-fill requires y_percent  TRUE.}
+fill requires \code{y_percent = TRUE}.}
 
 \item{group_by_x_var}{Only relevant for style dodge. Boolean indicating
-if percentages should be for x_var or fill_var.}
+if percentages should be for \code{x_var} or \code{fill_var}.}
 
-\item{y_percent}{If TRUE, y axis is in percent form.
+\item{y_percent}{If \code{TRUE}, y axis is in percent form.
 Otherwise in count form.}
 
 \item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
@@ -67,23 +67,23 @@ Otherwise in count form.}
 
 \item{x_breaks, y_breaks}{Length between each break on x/y axis.}
 
-\item{y_breaks_end}{Break end, default for 100000. Works for all count
+\item{y_breaks_end}{Break end, default for 100,000. Works for all count
 values below that.}
 
-\item{title}{Plot title, NULL if no title.}
+\item{title}{Plot title, \code{NULL} if no title.}
 
-\item{subtitle}{Small text under title, NULL if no subtitle.}
+\item{subtitle}{Small text under title, \code{NULL} if no subtitle.}
 
 \item{title_size}{Text size of title in pt.}
 
 \item{subtitle_size}{Text size of subtitle in pt.}
 
 \item{title_margin}{Distance between subtitle and title in pt. If no
-subtitle, title_margin  0.5*title_size.}
+subtitle, \code{title_margin = 0.5 * title_size}.}
 
-\item{y_lab}{Y-axis label, use NULL for no label.}
+\item{y_lab}{Y-axis label, use \code{NULL} for no label.}
 
-\item{x_lab}{X-axis label, use NULL for no label.}
+\item{x_lab}{X-axis label, use \code{NULL} for no label.}
 
 \item{background_color}{Color of the panel background.}
 
@@ -99,7 +99,7 @@ many x levels.}
 
 \item{text_size}{Size of the text in pt.}
 
-\item{fill_colors}{Color of the different categories in fill_var.}
+\item{fill_colors}{Color of the different categories in \code{fill_var}.}
 
 \item{legend_pos}{Position of the legend in plot,
 if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}

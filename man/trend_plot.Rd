@@ -41,11 +41,11 @@ trend_plot(
 
 \item{x_breaks}{Length between each break on x-axis.}
 
-\item{x_lab, y_lab}{X and Y-axis labels, use NULL for no label.}
+\item{x_lab, y_lab}{X and Y-axis labels, use \code{NULL} for no label.}
 
-\item{title}{Plot title, NULL for no title.}
+\item{title}{Plot title, \code{NULL} for no title.}
 
-\item{subtitle}{Small text under title, NULL for no subtitle.}
+\item{subtitle}{Small text under title, \code{NULL} for no subtitle.}
 
 \item{title_size}{Text size of title in pt.}
 
@@ -81,7 +81,7 @@ levels.}
 }
 \description{
 Simple function to show trend in percent (y_var) between different years
-(x_var) using \code{\link{geom_smooth}}.
+(x_var) using \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}}.
 }
 \examples{
 

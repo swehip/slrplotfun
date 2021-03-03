@@ -7,26 +7,26 @@
 #'                           Recommended that x_var is
 #'                           in character in df (not necessary).
 #' @param color_var        Variable for the different colors in lines, use string
-#'                           name. Use NULL if only one color for lines.
-#' @param y_var            Variable for y axis, if NULL, count is used.
-#' @param group_by_x_var   Boolean indicating if percentages should be for x_var
-#'                           or color_var.
-#' @param y_percent        If TRUE, y-axis is in percent form. Otherwise in count
+#'                           name. Use `NULL` if only one color for lines.
+#' @param y_var            Variable for y axis, if `NULL`, count is used.
+#' @param group_by_x_var   Boolean indicating if percentages should be for `x_var`
+#'                           or `color_var`.
+#' @param y_percent        If `TRUE`, y-axis is in percent form. Otherwise in count
 #'                           form.
 #' @param percent_accuracy Set accuracy for [scales::percent_format()].
 #' @param y_lim            Limit on y-axis.
 #' @param y_breaks         Length between each break on y-axis.
-#' @param y_breaks_end     Break end, default for 100000. Works for all count
+#' @param y_breaks_end     Break end, default for 100,000. Works for all count
 #'                           values below that.
 #' @param line_size        Size of the lines.
-#' @param title            Plot title, NULL if no title.
-#' @param subtitle         Small text under title, NULL if no subtitle.
+#' @param title            Plot title, `NULL` if no title.
+#' @param subtitle         Small text under title, `NULL` if no subtitle.
 #' @param title_size       Text size of title in pt.
 #' @param subtitle_size    Text size of subtitle in pt.
 #' @param title_margin     Distance between subtitle and title in pt. If no
-#'                           subtitle, title_margin  0.5*title_size.
-#' @param y_lab            Y-axis label, use NULL for no label.
-#' @param x_lab            X-axis label, use NULL for no label.
+#'                           subtitle, `title_margin = 0.5 * title_size`.
+#' @param y_lab            Y-axis label, use `NULL` for no label.
+#' @param x_lab            X-axis label, use `NULL` for no label.
 #' @param background_color Color of the panel background.
 #' @param panel_grid_color Color of the panel grid lines.
 #' @param panel_grid_size  Size of the panel grid lines in plot, useful to
@@ -36,7 +36,7 @@
 #'                           levels.
 #' @param text_size        Size of the text in pt.
 #' @param fill_colors      Colors of the different categories in color_var.
-#' @param legend_pos       Position of the legend in plot, if c(1,1), c(1,0) etc,
+#' @param legend_pos       Position of the legend in plot, if `c(1,1), c(1,0)` etc,
 #'                           legend inside plot.
 #' @param legend_labels    Label for each legend key.
 #' @param label_breaks     Order of the legend keys.
