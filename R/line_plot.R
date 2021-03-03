@@ -176,34 +176,36 @@ line_plot <-
       ggplot2::xlab(x_lab) +
       ggplot2::ggtitle(title, subtitle = subtitle) +
       ggplot2::theme(
-        panel.background = ggplot2::element_rect(fill = background_color),
-        panel.grid.major.y = ggplot2::element_line(
-          colour = panel_grid_color, size = panel_grid_size),
-        axis.line  = ggplot2::element_line(size = axis_size),
-        axis.ticks.x = ggplot2::element_line(size = axis_size),
-        axis.ticks.y = ggplot2::element_blank(),
-        plot.title = ggplot2::element_text(
-          hjust = 0.5,
-          size = title_size,
-          colour = "black",
-          margin = ggplot2::margin(b = title_margin)
-        ),
-        plot.subtitle = ggplot2::element_text(
-          hjust = 0.5,
-          size = subtitle_size,
-          colour = "black",
-        ),
-        axis.text            =
-          ggplot2::element_text(colour = "black", size = text_size),
-        axis.text.x          = ggplot2::element_text(angle = axis_text_angle),
-        axis.title           = ggplot2::element_text(size = text_size),
-        legend.text          = ggplot2::element_text(size = text_size),
-        legend.background    = ggplot2::element_rect(fill = legend_background),
-        legend.title         = ggplot2::element_blank(),
-        legend.key.height    = ggplot2::unit(text_size, "pt"),
-        legend.key.width     = ggplot2::unit(text_size, "pt"),
-        legend.position      = legend_pos,
-        legend.justification = legend_pos
+        panel.background      = ggplot2::element_rect(fill = background_color),
+        panel.grid.major.y    = ggplot2::element_line(
+                                  colour = panel_grid_color,
+                                  size = panel_grid_size),
+        axis.line             = ggplot2::element_line(size = axis_size),
+        axis.ticks.x          = ggplot2::element_line(size = axis_size),
+        axis.ticks.y          = ggplot2::element_blank(),
+        plot.title            = ggplot2::element_text(
+                                  hjust = 0.5,
+                                  size = title_size,
+                                  colour = "black",
+                                  margin = ggplot2::margin(b = title_margin)
+                              ),
+        plot.subtitle         = ggplot2::element_text(
+                                  hjust = 0.5,
+                                  size = subtitle_size,
+                                  colour = "black",
+                              ),
+        axis.text             = ggplot2::element_text(
+                                  colour = "black",
+                                  size = text_size),
+        axis.text.x           = ggplot2::element_text(angle = axis_text_angle),
+        axis.title            = ggplot2::element_text(size = text_size),
+        legend.text           = ggplot2::element_text(size = text_size),
+        legend.background     = ggplot2::element_rect(fill = legend_background),
+        legend.title          = ggplot2::element_blank(),
+        legend.key.height     = ggplot2::unit(text_size, "pt"),
+        legend.key.width      = ggplot2::unit(text_size, "pt"),
+        legend.position       = legend_pos,
+        legend.justification  = legend_pos
       )
 
     if (y_percent) {

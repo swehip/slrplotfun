@@ -292,8 +292,8 @@ km_plot <-
                                   colour = panel_grid_color,
                                   size   = panel_grid_size),
         axis.line             = ggplot2::element_line(size = axis_size),
-        axis.ticks.x = ggplot2::element_line(size = axis_size),
-        axis.ticks.y = ggplot2::element_blank(),
+        axis.ticks.x          = ggplot2::element_line(size = axis_size),
+        axis.ticks.y          = ggplot2::element_blank(),
         plot.title            = ggplot2::element_text(
                                   hjust = 0.5,
                                   size = title_size,

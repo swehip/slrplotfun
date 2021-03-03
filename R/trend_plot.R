@@ -73,35 +73,40 @@ trend_plot <-
     ) +
     ggplot2::scale_x_continuous(breaks = seq(1900, 2100, by = x_breaks)) +
     ggplot2::ggtitle(title, subtitle = subtitle) +
-    ggplot2::geom_smooth(method = "loess",
-                         colour = line_color,
-                         size = line_size,
-                         fill = fill_color,
-                         alpha = 0.9) +
+    ggplot2::geom_smooth(
+      method = "loess",
+      colour = line_color,
+      size   = line_size,
+      fill   = fill_color,
+      alpha  = 0.9
+    ) +
     ggplot2::geom_point(size = point_size) +
     ggplot2::theme(
-      panel.background   = ggplot2::element_rect(fill = background_color),
-      panel.grid.major.y = ggplot2::element_line(size = panel_grid_size, color =
-                                          panel_grid_color),
-      axis.line    = ggplot2::element_line(size = axis_size),
-      axis.ticks.x = ggplot2::element_line(size = axis_size),
-      axis.ticks.y = ggplot2::element_blank(),
-      axis.title   = ggplot2::element_text(size = text_size, color = "black"),
-      plot.title   = ggplot2::element_text(
-        hjust = 0.5,
-        size = title_size,
-        color = "black"
-      ),
-      plot.subtitle = ggplot2::element_text(
-        hjust = 0.5,
-        size = subtitle_size,
-        color = "black"
-      ),
-      axis.text.x = ggplot2::element_text(
-        color = "black",
-        size = text_size,
-        angle = axis_text_angle
-      ),
-      axis.text.y = ggplot2::element_text(color = "black", size = text_size)
+      panel.background    = ggplot2::element_rect(fill = background_color),
+      panel.grid.major.y  = ggplot2::element_line(
+                              size  = panel_grid_size,
+                              color = panel_grid_color),
+      axis.line           = ggplot2::element_line(size = axis_size),
+      axis.ticks.x        = ggplot2::element_line(size = axis_size),
+      axis.ticks.y        = ggplot2::element_blank(),
+      axis.title          = ggplot2::element_text(size = text_size, color = "black"),
+      plot.title          = ggplot2::element_text(
+                              hjust = 0.5,
+                              size = title_size,
+                              color = "black"
+                            ),
+      plot.subtitle       = ggplot2::element_text(
+                              hjust = 0.5,
+                              size = subtitle_size,
+                              color = "black"
+                            ),
+      axis.text.x         = ggplot2::element_text(
+                              color = "black",
+                              size = text_size,
+                              angle = axis_text_angle
+                            ),
+      axis.text.y         = ggplot2::element_text(
+                              color = "black",
+                              size = text_size)
     )
 }
