@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slrplotfun</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
@@ -167,20 +167,20 @@ in character in df (not necessary).</p></td>
     <tr>
       <th>color_var</th>
       <td><p>Variable for the different colors in lines, use string
-name. Use NULL if only one color for lines.</p></td>
+name. Use <code>NULL</code> if only one color for lines.</p></td>
     </tr>
     <tr>
       <th>y_var</th>
-      <td><p>Variable for y axis, if NULL, count is used.</p></td>
+      <td><p>Variable for y axis, if <code>NULL</code>, count is used.</p></td>
     </tr>
     <tr>
       <th>group_by_x_var</th>
-      <td><p>Boolean indicating if percentages should be for x_var
-or color_var.</p></td>
+      <td><p>Boolean indicating if percentages should be for <code>x_var</code>
+or <code>color_var</code>.</p></td>
     </tr>
     <tr>
       <th>y_percent</th>
-      <td><p>If TRUE, y-axis is in percent form. Otherwise in count
+      <td><p>If <code>TRUE</code>, y-axis is in percent form. Otherwise in count
 form.</p></td>
     </tr>
     <tr>
@@ -197,7 +197,7 @@ form.</p></td>
     </tr>
     <tr>
       <th>y_breaks_end</th>
-      <td><p>Break end, default for 100000. Works for all count
+      <td><p>Break end, default for 100,000. Works for all count
 values below that.</p></td>
     </tr>
     <tr>
@@ -206,11 +206,11 @@ values below that.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Plot title, NULL if no title.</p></td>
+      <td><p>Plot title, <code>NULL</code> if no title.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>Small text under title, NULL if no subtitle.</p></td>
+      <td><p>Small text under title, <code>NULL</code> if no subtitle.</p></td>
     </tr>
     <tr>
       <th>title_size</th>
@@ -223,15 +223,15 @@ values below that.</p></td>
     <tr>
       <th>title_margin</th>
       <td><p>Distance between subtitle and title in pt. If no
-subtitle, title_margin  0.5*title_size.</p></td>
+subtitle, <code>title_margin = 0.5 * title_size</code>.</p></td>
     </tr>
     <tr>
       <th>y_lab</th>
-      <td><p>Y-axis label, use NULL for no label.</p></td>
+      <td><p>Y-axis label, use <code>NULL</code> for no label.</p></td>
     </tr>
     <tr>
       <th>x_lab</th>
-      <td><p>X-axis label, use NULL for no label.</p></td>
+      <td><p>X-axis label, use <code>NULL</code> for no label.</p></td>
     </tr>
     <tr>
       <th>background_color</th>
@@ -265,7 +265,7 @@ levels.</p></td>
     </tr>
     <tr>
       <th>legend_pos</th>
-      <td><p>Position of the legend in plot, if c(1,1), c(1,0) etc,
+      <td><p>Position of the legend in plot, if <code>c(1,1), c(1,0)</code> etc,
 legend inside plot.</p></td>
     </tr>
     <tr>

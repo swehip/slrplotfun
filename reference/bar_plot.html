@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slrplotfun</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
@@ -168,26 +168,26 @@ Recommended that <code>x_var</code> is in character in df.</p></td>
       <th>fill_var</th>
       <td><p>Variable for the different colors in bars,
 use string name.
-Use NULL if only one color for bars.</p></td>
+Use <code>NULL</code> if only one color for bars.</p></td>
     </tr>
     <tr>
       <th>y_var</th>
-      <td><p>Variable for y axis, if NULL, count is used.</p></td>
+      <td><p>Variable for y axis, if <code>NULL</code>, count is used.</p></td>
     </tr>
     <tr>
       <th>style</th>
       <td><p>3 different styles of bar plots,
 "stack", "fill", or "dodge".
-fill requires y_percent  TRUE.</p></td>
+fill requires <code>y_percent = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>group_by_x_var</th>
       <td><p>Only relevant for style dodge. Boolean indicating
-if percentages should be for x_var or fill_var.</p></td>
+if percentages should be for <code>x_var</code> or <code>fill_var</code>.</p></td>
     </tr>
     <tr>
       <th>y_percent</th>
-      <td><p>If TRUE, y axis is in percent form.
+      <td><p>If <code>TRUE</code>, y axis is in percent form.
 Otherwise in count form.</p></td>
     </tr>
     <tr>
@@ -204,16 +204,16 @@ Otherwise in count form.</p></td>
     </tr>
     <tr>
       <th>y_breaks_end</th>
-      <td><p>Break end, default for 100000. Works for all count
+      <td><p>Break end, default for 100,000. Works for all count
 values below that.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Plot title, NULL if no title.</p></td>
+      <td><p>Plot title, <code>NULL</code> if no title.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>Small text under title, NULL if no subtitle.</p></td>
+      <td><p>Small text under title, <code>NULL</code> if no subtitle.</p></td>
     </tr>
     <tr>
       <th>title_size</th>
@@ -226,15 +226,15 @@ values below that.</p></td>
     <tr>
       <th>title_margin</th>
       <td><p>Distance between subtitle and title in pt. If no
-subtitle, title_margin  0.5*title_size.</p></td>
+subtitle, <code>title_margin = 0.5 * title_size</code>.</p></td>
     </tr>
     <tr>
       <th>y_lab</th>
-      <td><p>Y-axis label, use NULL for no label.</p></td>
+      <td><p>Y-axis label, use <code>NULL</code> for no label.</p></td>
     </tr>
     <tr>
       <th>x_lab</th>
-      <td><p>X-axis label, use NULL for no label.</p></td>
+      <td><p>X-axis label, use <code>NULL</code> for no label.</p></td>
     </tr>
     <tr>
       <th>background_color</th>
@@ -264,7 +264,7 @@ many x levels.</p></td>
     </tr>
     <tr>
       <th>fill_colors</th>
-      <td><p>Color of the different categories in fill_var.</p></td>
+      <td><p>Color of the different categories in <code>fill_var</code>.</p></td>
     </tr>
     <tr>
       <th>legend_pos</th>

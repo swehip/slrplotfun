@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slrplotfun</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
@@ -158,20 +158,20 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>survfit_obj</th>
-      <td><p>Object returned from survfit function in
-survival package. Also works with data frame
+      <td><p>Object returned from <code><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survival::survfit()</a></code>.
+Also works with data frame
 if year and surv variable exist. lower
-and upper variable needed if show_ci = TRUE.
+and upper variable needed if <code>show_ci = TRUE</code>.
 Specify strata variable needed
 if several curves wanted.</p></td>
     </tr>
     <tr>
       <th>make_step</th>
-      <td><p>If TRUE, step data will be created.</p></td>
+      <td><p>If <code>TRUE</code>, step data will be created.</p></td>
     </tr>
     <tr>
       <th>first_point</th>
-      <td><p>If make_step = TRUE, first_point for KM is
+      <td><p>If <code>make_step = TRUE</code>, <code>first_point</code> for KM is
 1 and for competing risk 0.</p></td>
     </tr>
     <tr>
@@ -211,11 +211,11 @@ large because of too many points!</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Plot title, NULL for no title.</p></td>
+      <td><p>Plot title, <code>NULL</code> for no title.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>Small text under title, NULL for no subtitle.</p></td>
+      <td><p>Small text under title, <code>NULL</code> for no subtitle.</p></td>
     </tr>
     <tr>
       <th>title_size</th>
@@ -230,12 +230,8 @@ large because of too many points!</p></td>
       <td><p>Space between title and subtitle in pt.</p></td>
     </tr>
     <tr>
-      <th>y_lab</th>
-      <td><p>Y-axis label.</p></td>
-    </tr>
-    <tr>
-      <th>x_lab</th>
-      <td><p>X-axis label.</p></td>
+      <th>x_lab, y_lab</th>
+      <td><p>X- and Y-axis labels.</p></td>
     </tr>
     <tr>
       <th>background_color</th>
@@ -265,7 +261,7 @@ useful to change if large dpi!</p></td>
     </tr>
     <tr>
       <th>show_ci</th>
-      <td><p>If TRUE, show confidence interval lines.</p></td>
+      <td><p>If <code>TRUE</code>, show confidence interval lines.</p></td>
     </tr>
     <tr>
       <th>ribbon_ci</th>
@@ -290,7 +286,7 @@ useful to change if large dpi!</p></td>
     <tr>
       <th>legend_labels</th>
       <td><p>Label for each legend key, default order as
-they appear in names(survfit_obj$strata).</p></td>
+they appear in <code><a href='https://rdrr.io/r/base/names.html'>names(survfit_obj$strata)</a></code>.</p></td>
     </tr>
     <tr>
       <th>label_breaks</th>

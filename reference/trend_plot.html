@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Trend plot function — trend_plot" />
 <meta property="og:description" content="Simple function to show trend in percent (y_var) between different years
-(x_var) using geom_smooth." />
+(x_var) using ggplot2::geom_smooth()." />
 
 
 
@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slrplotfun</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
@@ -116,7 +116,7 @@
 
     <div class="ref-description">
     <p>Simple function to show trend in percent (y_var) between different years
-(x_var) using <code>geom_smooth</code>.</p>
+(x_var) using <code><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>ggplot2::geom_smooth()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>trend_plot</span><span class='op'>(</span>
@@ -170,15 +170,15 @@
     </tr>
     <tr>
       <th>x_lab, y_lab</th>
-      <td><p>X and Y-axis labels, use NULL for no label.</p></td>
+      <td><p>X and Y-axis labels, use <code>NULL</code> for no label.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Plot title, NULL for no title.</p></td>
+      <td><p>Plot title, <code>NULL</code> for no title.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>Small text under title, NULL for no subtitle.</p></td>
+      <td><p>Small text under title, <code>NULL</code> for no subtitle.</p></td>
     </tr>
     <tr>
       <th>title_size</th>
