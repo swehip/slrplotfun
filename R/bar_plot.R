@@ -56,7 +56,7 @@
 #' fill_var = 'cut', y_percent = FALSE, y_breaks = 2000)
 #'
 #' # Style stack with y variable included
-#' df <- ggplot2::diamonds %>% dplyr::group_by_('color', 'cut') %>%
+#' df <- ggplot2::diamonds %>% dplyr::group_by(color, cut) %>%
 #'   dplyr::summarise(y = dplyr::n())
 #' bar_plot(df = df, x_var = 'color',
 #'   fill_var = 'cut', y_var = 'y', y_breaks = 2)
@@ -161,14 +161,14 @@ bar_plot <-
         if (group_by_x_var) {
           df <-
             df %>%
-            dplyr::group_by_(x_var) %>%
-            dplyr::mutate_(y2 = ~sum(y))
+            dplyr::group_by(.data[[x_var]]) %>%
+            dplyr::mutate(y2 = sum(.data$y))
 
         } else{
           df <-
             df %>%
-            dplyr::group_by_(fill_var) %>%
-            dplyr::mutate_(y2 = ~sum(y))
+            dplyr::group_by(.data[[fill_var]]) %>%
+            dplyr::mutate(y2 = sum(.data$y))
 
         }
       }
@@ -181,8 +181,8 @@ bar_plot <-
         show_legend <- FALSE
         df <-
           df %>%
-          dplyr::group_by_(x_var) %>%
-          dplyr::summarise_(y = ~dplyr::n())
+          dplyr::group_by(.data[[x_var]]) %>%
+          dplyr::summarise(y = dplyr::n())
         df$y2 <- 1
       } else{
         # Data transformations -------------------------------------------------
@@ -190,18 +190,18 @@ bar_plot <-
         if (group_by_x_var) {
           df <-
             df %>%
-            dplyr::group_by_(x_var, fill_var) %>%
-            dplyr::summarise_(y = ~dplyr::n()) %>%
-            dplyr::group_by_(x_var) %>%
-            dplyr::mutate_(y2 = ~sum(y))
+            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
+            dplyr::summarise(y = dplyr::n()) %>%
+            dplyr::group_by(.data[[x_var]]) %>%
+            dplyr::mutate(y2 = sum(.data$y))
 
         } else{
           df <-
             df %>%
-            dplyr::group_by_(x_var, fill_var) %>%
-            dplyr::summarise_(y = ~dplyr::n()) %>%
-            dplyr::group_by_(fill_var) %>%
-            dplyr::mutate_(y2 = ~sum(y))
+            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
+            dplyr::summarise(y = dplyr::n()) %>%
+            dplyr::group_by(.data[[fill_var]]) %>%
+            dplyr::mutate(y2 = sum(.data$y))
         }
 
       }
@@ -270,7 +270,7 @@ bar_plot <-
           bars +
           ggplot2::geom_bar(
             width = 0.5,
-            mapping = ggplot2::aes_string(x = x_var, y = "y/y2", fill = fill_var),
+            mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / .data$y2, fill = .data[[fill_var]]),
             stat = "identity",
             show.legend = show_legend,
             position = ggplot2::position_dodge(width = 0.5)
@@ -286,7 +286,7 @@ bar_plot <-
           bars +
           ggplot2::geom_bar(
             width = 0.5,
-            mapping = ggplot2::aes_string(x = x_var, y = "y/sum(y)", fill = fill_var),
+            mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
             stat = "identity",
             show.legend = show_legend,
             position = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
@@ -301,7 +301,7 @@ bar_plot <-
           bars +
           ggplot2::geom_bar(
             width       = 0.5,
-            mapping     = ggplot2::aes_string(x = x_var, y = "y/sum(y)", fill = fill_var),
+            mapping     = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
             stat        = "identity",
             show.legend = show_legend,
             position    = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
@@ -319,7 +319,12 @@ bar_plot <-
         bars +
         ggplot2::geom_bar(
           width       = 0.5,
-          mapping     = ggplot2::aes_string(x = x_var, y = "y", fill = fill_var),
+          mapping     = ggplot2::aes(
+            x = .data[[x_var]],
+            y = .data$y,
+            fill = if (utils::hasName(bars$data, fill_var))
+              .data[[fill_var]] else fill_var
+          ),
           stat        = "identity",
           show.legend = show_legend,
           position    = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
@@ -332,7 +337,12 @@ bar_plot <-
         bars +
         ggplot2::geom_bar(
           width = 0.5,
-          mapping = ggplot2::aes_string(x = x_var, y = "y", fill = fill_var),
+          mapping = ggplot2::aes(
+            x = .data[[x_var]],
+            y = .data$y,
+            fill = if (utils::hasName(bars$data, fill_var))
+              .data[[fill_var]] else fill_var
+          ),
           stat = "identity",
           show.legend = show_legend,
           position = ggplot2::position_dodge(width = 0.5)
@@ -346,7 +356,12 @@ bar_plot <-
         bars +
         ggplot2::geom_bar(
           width = 0.5,
-          mapping = ggplot2::aes_string(x = x_var, y = "y", fill = fill_var),
+          mapping = ggplot2::aes(
+            x = .data[[x_var]],
+            y = .data$y,
+            fill = if (utils::hasName(bars$data, fill_var))
+              .data[[fill_var]] else fill_var
+          ),
           stat = "identity",
           show.legend = show_legend,
           position = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)

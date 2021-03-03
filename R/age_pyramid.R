@@ -87,8 +87,8 @@ age_pyramid <-
 
   df <-
     df %>%
-    dplyr::group_by_(gender_var, age_var) %>%
-    dplyr::summarise_(Population = ~dplyr::n())
+    dplyr::group_by(.data[[gender_var]], .data[[age_var]]) %>%
+    dplyr::summarise(Population = dplyr::n())
 
   df      <- stats::na.omit(df)
   n_man   <- sum(df$Population[df[, gender_var] == man_level])
@@ -120,7 +120,7 @@ age_pyramid <-
   }
 
   ggplot2::ggplot(df,
-    ggplot2::aes_string(age_var, "Population", fill = gender_var)
+    ggplot2::aes(.data[[age_var]], .data$Population, fill = .data[[gender_var]])
   ) +
 
   ggplot2::geom_bar(

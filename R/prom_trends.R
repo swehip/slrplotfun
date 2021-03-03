@@ -149,12 +149,12 @@ prom_trends <-
     }
 
      for (i in subset) {
-      eq_vas_data <- dplyr::filter_(
-          eq_vas, ~hospital == hospitals[i] | hospital == riket_name)
-      pain_data <- dplyr::filter_(
-          pain, ~hospital == hospitals[i] | hospital == riket_name)
-      satis_data <- dplyr::filter_(
-          satis, ~hospital == hospitals[i] | hospital == riket_name)
+      eq_vas_data <- dplyr::filter(
+          eq_vas, .data$hospital == hospitals[i] | .data$hospital == riket_name)
+      pain_data <- dplyr::filter(
+          pain, .data$hospital == hospitals[i] | .data$hospital == riket_name)
+      satis_data <- dplyr::filter(
+          satis, .data$hospital == hospitals[i] | .data$hospital == riket_name)
 
       ylim_eq <- get_ylim(eq_vas_data$y, y_breaks[1])
       ylim_sm <- get_ylim(pain_data$y, y_breaks[2])
@@ -163,7 +163,7 @@ prom_trends <-
       eq_vas_plot <-
         ggplot2::ggplot(
           eq_vas_data,
-          ggplot2::aes_( ~years, ~y, color = ~sheet, group = ~sheet)
+          ggplot2::aes(.data$years, .data$y, color = .data$sheet, group = .data$sheet)
         ) +
         ggplot2::scale_y_continuous(
           breaks = seq(ylim_eq[1], ylim_eq[2], by = y_breaks[1]),
@@ -202,7 +202,7 @@ prom_trends <-
 
       pain_plot <-
         ggplot2::ggplot(pain_data,
-               ggplot2::aes_(~years, ~y, color = ~sheet, group = ~sheet)) +
+               ggplot2::aes(.data$years, .data$y, color = .data$sheet, group = .data$sheet)) +
         ggplot2::scale_y_continuous(
           breaks = seq(ylim_sm[1], ylim_sm[2], by = y_breaks[2]),
           limits = ylim_sm) +
@@ -232,7 +232,7 @@ prom_trends <-
 
       satis_plot <-
         ggplot2::ggplot(satis_data,
-               ggplot2::aes_(~years, ~y, color = ~sheet, group = ~sheet)) +
+               ggplot2::aes(.data$years, .data$y, color = .data$sheet, group = .data$sheet)) +
         ggplot2::scale_y_continuous(
           breaks = seq(ylim_tf[1], ylim_tf[2], by = y_breaks[3]),
           limits = ylim_tf) +

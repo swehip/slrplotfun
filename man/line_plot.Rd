@@ -128,7 +128,7 @@ line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color',
 y_percent = FALSE, y_breaks = 2000)
 
 # y variable included
-df <- ggplot2::diamonds \%>\% dplyr::group_by_('color', 'cut') \%>\%
+df <- ggplot2::diamonds \%>\% dplyr::group_by(color, cut) \%>\%
   dplyr::summarise(y = dplyr::n())
 line_plot(df = df, x_var = 'cut', color_var = 'color', y_var = 'y',
 y_percent = FALSE, y_breaks = 2000)

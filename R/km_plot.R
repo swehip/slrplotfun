@@ -184,9 +184,9 @@ km_plot <-
             n.risk  = sf$n.risk,
             n.event = sf$n.event
           ) %>%
-          dplyr::filter_(~n.risk >= n_risk_break) %>%
+          dplyr::filter(.data$n.risk >= n_risk_break) %>%
           dplyr::group_by(strata) %>%
-          dplyr::filter_(~n.event != 0 | n.risk == min(n.risk) | year == 0) %>%
+          dplyr::filter(.data$n.event != 0 | .data$n.risk == min(.data$n.risk) | .data$year == 0) %>%
           dplyr::ungroup()
 
       } else{
@@ -204,10 +204,10 @@ km_plot <-
             n.risk  = sf$n.risk
           ) %>%
           # removes points where number at risk are less than break
-          dplyr::filter_(~n.risk >= n_risk_break) %>%
+          dplyr::filter(.data$n.risk >= n_risk_break) %>%
           dplyr::group_by(strata) %>%
           # removes all points where there are no events
-          dplyr::filter_(~n.event != 0 | n.risk == min(n.risk) | year == 0) %>%
+          dplyr::filter(.data$n.event != 0 | .data$n.risk == min(.data$n.risk) | .data$year == 0) %>%
           # but adds the last point for each curve
           dplyr::ungroup()
 
@@ -217,13 +217,13 @@ km_plot <-
       # with all the next values in year
       df2 <-
         dplyr::group_by(df, strata) %>%
-        dplyr::mutate_(year = ~dplyr::lead(year)) %>%
+        dplyr::mutate(year = dplyr::lead(.data$year)) %>%
         dplyr::ungroup() %>%
-        dplyr::filter_(~!is.na(year))
+        dplyr::filter(!is.na(.data$year))
 
       df <- rbind(df, df2) %>%
         # bind together with original data
-        dplyr::arrange_(~strata, ~year, ~dplyr::desc(surv), ~dplyr::desc(n.risk))
+        dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv), dplyr::desc(.data$n.risk))
 
       # remove ugly strata=level and only keep level in legend
 
@@ -250,21 +250,21 @@ km_plot <-
 
         df <-
           dplyr::bind_rows(df, df2) %>%
-          dplyr::arrange_(~strata, ~year, ~dplyr::desc(surv))
+          dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
 
         df2 <- dplyr::group_by(df, strata) %>%
-          dplyr::mutate_(year = ~dplyr::lead(year)) %>%
+          dplyr::mutate(year = dplyr::lead(.data$year)) %>%
           dplyr::ungroup() %>%
-          dplyr::filter_(~!is.na(year))
+          dplyr::filter(!is.na(.data$year))
 
         if (first_point == 1) {
           df <- rbind(df, df2) %>%
             # bind together with original data
-            dplyr::arrange_(~strata, ~year, ~dplyr::desc(surv))
+            dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
         } else{
           df <- rbind(df, df2) %>%
             # bind together with original data
-            dplyr::arrange_(~strata, ~year, ~surv)
+            dplyr::arrange(.data$strata, .data$year, .data$surv)
         }
       }
     }
@@ -281,7 +281,7 @@ km_plot <-
       y_lim <- y_lim / 100
     }
 
-    km <- ggplot2::ggplot(df, ggplot2::aes_(x = ~year, y = ~surv)) +
+    km <- ggplot2::ggplot(df, ggplot2::aes(x = .data$year, y = .data$surv)) +
       ggplot2::theme_classic() +
       ggplot2::scale_colour_manual(
         values = line_colors,
@@ -339,11 +339,11 @@ km_plot <-
         km <-
           km +
           ggplot2::geom_ribbon(
-            ggplot2::aes_(
-              ymin  = ~lower,
-              ymax  = ~upper,
-              fill  = ~strata,
-              group = ~strata
+            ggplot2::aes(
+              ymin  = .data$lower,
+              ymax  = .data$upper,
+              fill  = .data$strata,
+              group = .data$strata
             ),
             alpha = ribbon_alpha
           ) +
@@ -357,18 +357,18 @@ km_plot <-
         km <-
           km +
           ggplot2::geom_line(
-            ggplot2::aes_(
-              y      = ~upper,
-              colour = ~strata,
-              group  = ~strata
+            ggplot2::aes(
+              y      = .data$upper,
+              colour = .data$strata,
+              group  = .data$strata
             ),
             size = ci_line_size
           ) +
           ggplot2::geom_line(
-            ggplot2::aes_(
-              y      = ~lower,
-              colour = ~strata,
-              group  = ~strata
+            ggplot2::aes(
+              y      = .data$lower,
+              colour = .data$strata,
+              group  = .data$strata
             ),
             size = ci_line_size
           )

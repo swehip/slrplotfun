@@ -56,7 +56,7 @@
 #' y_percent = FALSE, y_breaks = 2000)
 #'
 #' # y variable included
-#' df <- ggplot2::diamonds %>% dplyr::group_by_('color', 'cut') %>%
+#' df <- ggplot2::diamonds %>% dplyr::group_by(color, cut) %>%
 #'   dplyr::summarise(y = dplyr::n())
 #' line_plot(df = df, x_var = 'cut', color_var = 'color', y_var = 'y',
 #' y_percent = FALSE, y_breaks = 2000)
@@ -148,27 +148,27 @@ line_plot <-
         show_legend <- FALSE
         df <-
           df %>%
-          dplyr::group_by_(x_var) %>%
-          dplyr::summarise_(y = ~dplyr::n()) %>%
-          dplyr::mutate_(y2 = ~sum(y))
+          dplyr::group_by(.data[[x_var]]) %>%
+          dplyr::summarise(y = dplyr::n()) %>%
+          dplyr::mutate(y2 = sum(.data$y))
       } else{
     # Data transformations ----------------------------------------------------
 
         if (group_by_x_var) {
           df <-
             df %>%
-            dplyr::group_by_(x_var, color_var) %>%
-            dplyr::summarise_(y = ~dplyr::n()) %>%
-            dplyr::group_by_(x_var) %>%
-            dplyr::mutate_(y2 = ~sum(y))
+            dplyr::group_by(.data[[x_var]], .data[[color_var]]) %>%
+            dplyr::summarise(y = dplyr::n()) %>%
+            dplyr::group_by(.data[[x_var]]) %>%
+            dplyr::mutate(y2 = sum(.data$y))
 
         } else{
           df <-
             df %>%
-            dplyr::group_by_(x_var, color_var) %>%
-            dplyr::summarise_(y = ~dplyr::n()) %>%
-            dplyr::group_by_(color_var) %>%
-            dplyr::mutate_(y2 = ~sum(y))
+            dplyr::group_by(.data[[x_var]], .data[[color_var]]) %>%
+            dplyr::summarise(y = dplyr::n()) %>%
+            dplyr::group_by(.data[[color_var]]) %>%
+            dplyr::mutate(y2 = sum(.data$y))
         }
       }
     }
@@ -231,11 +231,13 @@ line_plot <-
 
       lines <-
         lines + ggplot2::geom_line(
-          mapping = ggplot2::aes_string(
-            x = x_var,
-            y = "y/y2",
-            color = color_var,
-            group = color_var
+          mapping = ggplot2::aes(
+            x = .data[[x_var]],
+            y = .data$y / .data$y2,
+            color = if (utils::hasName(lines$data, color_var))
+            .data[[color_var]] else color_var,
+            group = if (utils::hasName(lines$data, color_var))
+            .data[[color_var]] else color_var
           ),
           show.legend = show_legend,
           size = line_size
@@ -249,11 +251,13 @@ line_plot <-
     } else{
       lines <-
         lines + ggplot2::geom_line(
-          mapping = ggplot2::aes_string(
-            x = x_var,
-            y = "y",
-            color = color_var,
-            group = color_var
+          mapping = ggplot2::aes(
+            x = .data[[x_var]],
+            y = .data$y,
+            color = if (utils::hasName(lines$data, color_var))
+              .data[[color_var]] else color_var,
+            group = if (utils::hasName(lines$data, color_var))
+            .data[[color_var]] else color_var
           ),
           show.legend = show_legend,
           size = line_size

@@ -71,7 +71,7 @@ trend_plot <-
       y_lim <- y_lim / 100
     }
 
-  ggplot2::ggplot(df, ggplot2::aes_string(x = x_var, y = y_var)) +
+  ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_var]], y = .data[[y_var]])) +
     ggplot2::theme_classic() +
     ggplot2::xlab(x_lab) +
     ggplot2::ylab(y_lab) +
