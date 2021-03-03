@@ -35,6 +35,7 @@ Here are some example plots but please see the individual manual pages for a com
 
 ```{r example}
 library(slrplotfun)
+set.seed(123)
 
 # Create some data
 df <- data.frame(age = rpois(100000, 65),
@@ -53,6 +54,7 @@ survfit_obj <-
   survival::survfit(survival::Surv(time/365.24, status) ~ sex,
   data = survival::colon
 )
+km_plot(survfit_obj, y_lim = c(40,100), y_breaks = 10, x_lim = c(0,9))
 
 # Line plot
 line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks = 2)

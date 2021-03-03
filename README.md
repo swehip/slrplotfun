@@ -31,6 +31,7 @@ for a comprehensive list.
 
 ``` r
 library(slrplotfun)
+set.seed(123)
 
 # Create some data
 df <- data.frame(age = rpois(100000, 65),
@@ -39,11 +40,6 @@ df <- data.frame(age = rpois(100000, 65),
 # Age pyramid
 age_pyramid(df, age_var = 'age', gender_var = 'gender',
   man_level = 'Man', title = "This is an age pyramid")
-#> Warning: `summarise_()` was deprecated in dplyr 0.7.0.
-#> Please use `summarise()` instead.
-#> Warning: `group_by_()` was deprecated in dplyr 0.7.0.
-#> Please use `group_by()` instead.
-#> See vignette('programming') for more help
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
@@ -52,9 +48,6 @@ age_pyramid(df, age_var = 'age', gender_var = 'gender',
 # Bar plot
 bar_plot(df = ggplot2::diamonds, x_var = 'color',
 fill_var = 'cut', y_breaks = 2)
-#> Warning: `mutate_()` was deprecated in dplyr 0.7.0.
-#> Please use `mutate()` instead.
-#> See vignette('programming') for more help
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />
@@ -65,9 +58,14 @@ survfit_obj <-
   survival::survfit(survival::Surv(time/365.24, status) ~ sex,
   data = survival::colon
 )
+km_plot(survfit_obj, y_lim = c(40,100), y_breaks = 10, x_lim = c(0,9))
+```
 
+<img src="man/figures/README-example-3.png" width="100%" />
+
+``` r
 # Line plot
 line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks = 2)
 ```
 
-<img src="man/figures/README-example-3.png" width="100%" />
+<img src="man/figures/README-example-4.png" width="100%" />
