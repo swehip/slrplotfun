@@ -14,7 +14,7 @@
 #' @param one_level               Boolean indicating if there is only one
 #'                                  level in the strata.
 #' @param y_lim                   Limit on y-axis.
-#' @param percent_accuracy        Set accuracy for \code{\link{percent_format}}.
+#' @param percent_accuracy        Set accuracy for [scales::percent_format()].
 #' @param y_breaks                Length between each break on y-axis.
 #' @param x_lim                   Limit on x-axis.
 #' @param x_breaks                Length between each break on x-axis.
@@ -106,11 +106,11 @@ km_plot <-
 
     # Data suitable for ggplot ------------------------------------------------
 
-    if (is.null(line_colors)){
+    if (is.null(line_colors)) {
       if (length(unique(as.character(survfit_obj$strata))) <= 2) {
         line_colors <- c("#3E92AA", #Blue
                          "#FFC655") #Grey
-      } else if (length(unique(as.character(survfit_obj$strata))) <= 4){
+      } else if (length(unique(as.character(survfit_obj$strata))) <= 4) {
         line_colors <- c("#FFC655", #Yellow
                          "#63BA97", #Green
                          "#000000", #Black
@@ -217,7 +217,7 @@ km_plot <-
       # with all the next values in year
       df2 <-
         dplyr::group_by(df, strata) %>%
-        dplyr::mutate_(year = ~lead(year)) %>%
+        dplyr::mutate_(year = ~dplyr::lead(year)) %>%
         dplyr::ungroup() %>%
         dplyr::filter_(~!is.na(year))
 
@@ -310,7 +310,7 @@ km_plot <-
                                   size   = panel_grid_size),
         axis.line             = ggplot2::element_line(size = axis_size),
         axis.ticks.x = ggplot2::element_line(size = axis_size),
-        axis.ticks.y = element_blank(),
+        axis.ticks.y = ggplot2::element_blank(),
         plot.title            = ggplot2::element_text(
                                   hjust = 0.5,
                                   size = title_size,

@@ -82,15 +82,13 @@ levels.}
 \item{fill_colors}{Colors of the genders.}
 
 \item{legend_pos}{Position of the legend in plot,
-if c(1,1), c(1,0) etc, legend inside plot.}
+if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 
 \item{legend_labels}{Label for each legend key.}
 
 \item{label_breaks}{Order of the legend keys.}
 
 \item{legend_row, legend_col}{How many rows/columns for the legends.}
-
-\item{contour_line_size}{Passed to argument "size" to \code{\link{geom_bar}}}
 }
 \value{
 \preformatted{           ggplot object containing age pyramid plot.

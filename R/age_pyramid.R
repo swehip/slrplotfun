@@ -27,11 +27,10 @@
 #' @param text_size        Size of the text in pt.
 #' @param fill_colors      Colors of the genders.
 #' @param legend_pos       Position of the legend in plot,
-#'                           if c(1,1), c(1,0) etc, legend inside plot.
+#'                           if `c(1,1)`, `c(1,0)` etc, legend inside plot.
 #' @param legend_labels    Label for each legend key.
 #' @param label_breaks     Order of the legend keys.
 #' @param legend_row,legend_col How many rows/columns for the legends.
-#' @param contour_line_size Passed to argument "size" to \code{\link{geom_bar}}
 #'
 #' @return                ggplot object containing age pyramid plot.
 #' @examples
@@ -155,8 +154,8 @@ age_pyramid <-
                              colour = panel_grid_color,
                              size = panel_grid_size),
     axis.line            = ggplot2::element_line(size = axis_size),
-    axis.ticks.x = ggplot2::element_line(size = axis_size),
-    axis.ticks.y = element_blank(),
+    axis.ticks.x         = ggplot2::element_line(size = axis_size),
+    axis.ticks.y         = ggplot2::element_blank(),
     plot.title           = ggplot2::element_text(hjust = 0.5, size = title_size,
                              colour = "black",
                              margin = ggplot2::margin(b = title_margin)),

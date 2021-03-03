@@ -58,7 +58,7 @@ level in the strata.}
 
 \item{y_lim}{Limit on y-axis.}
 
-\item{percent_accuracy}{Set accuracy for \code{\link{percent_format}}.}
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
 
 \item{y_breaks}{Length between each break on y-axis.}
 

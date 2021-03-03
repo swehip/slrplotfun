@@ -61,7 +61,7 @@ if percentages should be for x_var or fill_var.}
 \item{y_percent}{If TRUE, y axis is in percent form.
 Otherwise in count form.}
 
-\item{percent_accuracy}{Set accuracy for \code{\link{percent_format}}.}
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
 
 \item{y_lim}{Limit on y axis.}
 
@@ -102,7 +102,7 @@ many x levels.}
 \item{fill_colors}{Color of the different categories in fill_var.}
 
 \item{legend_pos}{Position of the legend in plot,
-if c(1,1), c(1,0) etc, legend inside plot.}
+if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 
 \item{legend_labels}{Label for each legend key.}
 

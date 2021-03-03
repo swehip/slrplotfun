@@ -7,7 +7,8 @@
 #' @param x_var,y_var      X and Y variable.
 #' @param y_breaks         Length between each break on y-axis.
 #' @param y_lim            Limit on y-axis.
-#' @param percent_accuracy Set accuracy for \code{\link{percent_format}}.
+#' @inheritParams
+#' @param percent_accuracy Set accuracy for [scales::percent_format()].
 #' @param x_breaks         Length between each break on x-axis.
 #' @param x_lab,y_lab      X and Y-axis labels, use NULL for no label.
 #' @param title            Plot title, NULL for no title.
@@ -15,6 +16,7 @@
 #' @param title_size       Text size of title in pt.
 #' @param subtitle_size    Text size of subtitle in pt.
 #' @param line_color       Color of the line.
+#' @param fill_color       Fill color
 #' @param line_size        Size of the line.
 #' @param point_size       Size of the points.
 #' @param background_color Color of the panel background.
@@ -90,11 +92,11 @@ trend_plot <-
       panel.background   = ggplot2::element_rect(fill = background_color),
       panel.grid.major.y = ggplot2::element_line(size = panel_grid_size, color =
                                           panel_grid_color),
-      axis.line  = ggplot2::element_line(size = axis_size),
+      axis.line    = ggplot2::element_line(size = axis_size),
       axis.ticks.x = ggplot2::element_line(size = axis_size),
-      axis.ticks.y = element_blank(),
-      axis.title = ggplot2::element_text(size = text_size, color = "black"),
-      plot.title = ggplot2::element_text(
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.title   = ggplot2::element_text(size = text_size, color = "black"),
+      plot.title   = ggplot2::element_text(
         hjust = 0.5,
         size = title_size,
         color = "black"

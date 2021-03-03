@@ -13,7 +13,7 @@
 #'                           or color_var.
 #' @param y_percent        If TRUE, y-axis is in percent form. Otherwise in count
 #'                           form.
-#' @param percent_accuracy Set accuracy for \code{\link{percent_format}}.
+#' @param percent_accuracy Set accuracy for [scales::percent_format()].
 #' @param y_lim            Limit on y-axis.
 #' @param y_breaks         Length between each break on y-axis.
 #' @param y_breaks_end     Break end, default for 100000. Works for all count
@@ -98,14 +98,14 @@ line_plot <-
     legend_col        = NULL
   ) {
 
-    
+
     # Fill colours ------------------------------------------------------------
     # Different colours depending on number of categories.
-    if (is.null(fill_colors) & !is.null(color_var)){
-      if (length(unique(df[,color_var])) <= 2) {
+    if (is.null(fill_colors) & !is.null(color_var)) {
+      if (length(unique(df[[color_var]])) <= 2) {
         fill_colors <- c("#3E92AA", #Blue
                          "#FFC655") #Grey
-      } else if (length(unique(df[,color_var])) <= 4){
+      } else if (length(unique(df[[color_var]])) <= 4) {
         fill_colors <- c("#FFC655", #Yellow
                          "#63BA97", #Green
                          "#000000", #Black
@@ -121,12 +121,12 @@ line_plot <-
                          "#F290A9", #Pink
                          "#CCCCCC") #Grey
       }
-      
-    } else if (is.null(fill_colors) & is.null(color_var)){
+
+    } else if (is.null(fill_colors) & is.null(color_var)) {
       fill_colors <- "#3E92AA"
     }
-    
-    
+
+
     # If y_var != NULL, no summarise is needed. -------------------------------
 
     show_legend <- TRUE
@@ -197,7 +197,7 @@ line_plot <-
           colour = panel_grid_color, size = panel_grid_size),
         axis.line  = ggplot2::element_line(size = axis_size),
         axis.ticks.x = ggplot2::element_line(size = axis_size),
-        axis.ticks.y = element_blank(),
+        axis.ticks.y = ggplot2::element_blank(),
         plot.title = ggplot2::element_text(
           hjust = 0.5,
           size = title_size,
@@ -207,7 +207,7 @@ line_plot <-
         plot.subtitle = ggplot2::element_text(
           hjust = 0.5,
           size = subtitle_size,
-          colour = "black", 
+          colour = "black",
         ),
         axis.text            =
           ggplot2::element_text(colour = "black", size = text_size),

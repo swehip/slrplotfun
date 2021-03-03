@@ -53,6 +53,8 @@ trend_plot(
 
 \item{line_color}{Color of the line.}
 
+\item{fill_color}{Fill color}
+
 \item{line_size}{Size of the line.}
 
 \item{point_size}{Size of the points.}
@@ -71,7 +73,7 @@ levels.}
 
 \item{text_size}{Size of the text in pt.}
 
-\item{percent_accuracy}{Set accuracy for \code{\link{percent_format}}.}
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
 }
 \value{
 \preformatted{            ggplot object containg trend plot.
