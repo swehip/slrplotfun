@@ -131,7 +131,7 @@ fill_var = 'cut', y_percent = FALSE, y_breaks = 2000)
 
 # Style stack with y variable included
 df <- ggplot2::diamonds \%>\% dplyr::group_by(color, cut) \%>\%
-  dplyr::summarise(y = dplyr::n())
+  dplyr::summarise(y = dplyr::n(), .groups = "drop_last")
 bar_plot(df = df, x_var = 'color',
   fill_var = 'cut', y_var = 'y', y_breaks = 2)
 

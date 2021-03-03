@@ -7,7 +7,6 @@
 #' @param x_var,y_var      X and Y variable.
 #' @param y_breaks         Length between each break on y-axis.
 #' @param y_lim            Limit on y-axis.
-#' @inheritParams
 #' @param percent_accuracy Set accuracy for [scales::percent_format()].
 #' @param x_breaks         Length between each break on x-axis.
 #' @param x_lab,y_lab      X and Y-axis labels, use NULL for no label.

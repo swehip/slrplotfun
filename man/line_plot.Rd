@@ -129,7 +129,7 @@ y_percent = FALSE, y_breaks = 2000)
 
 # y variable included
 df <- ggplot2::diamonds \%>\% dplyr::group_by(color, cut) \%>\%
-  dplyr::summarise(y = dplyr::n())
+  dplyr::summarise(y = dplyr::n(), .groups = "drop_last")
 line_plot(df = df, x_var = 'cut', color_var = 'color', y_var = 'y',
 y_percent = FALSE, y_breaks = 2000)
 line_plot(df = df[df$color == 'D',], x_var = 'cut', y_var = 'y',
