@@ -1,25 +1,21 @@
 
-[![R-CMD-check](https://github.com/swehip/slrplotfun/workflows/R-CMD-check/badge.svg)](https://github.com/swehip/slrplotfun/actions)
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # slrplotfun
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/swehip/slrplotfun/workflows/R-CMD-check/badge.svg)](https://github.com/swehip/slrplotfun/actions)
 <!-- badges: end -->
 
-The goal of slrplotfun is to …
+The goal of slrplotfun is to implement the design used by the Swedish
+Arthroplasty Register with figures produced by ggplot2. Functions are
+used for the annual report and more.
 
 ## Installation
 
-You can install the released version of slrplotfun from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("slrplotfun")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -28,36 +24,48 @@ devtools::install_github("swehip/slrplotfun")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Here are some example plots but please see the individual manual pages
+for a comprehensive list.
 
 ``` r
 library(slrplotfun)
-## basic example code
+
+# Create some data
+df <- data.frame(age = rpois(100000, 65),
+  gender = sample(c('Woman', 'Woman', 'Man'), 100000, replace = TRUE))
+
+# Age pyramid
+age_pyramid(df, age_var = 'age', gender_var = 'gender',
+  man_level = 'Man', title = "This is an age pyramid")
+#> Warning: `summarise_()` was deprecated in dplyr 0.7.0.
+#> Please use `summarise()` instead.
+#> Warning: `group_by_()` was deprecated in dplyr 0.7.0.
+#> Please use `group_by()` instead.
+#> See vignette('programming') for more help
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+<img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+# Bar plot
+bar_plot(df = ggplot2::diamonds, x_var = 'color',
+fill_var = 'cut', y_breaks = 2)
+#> Warning: `mutate_()` was deprecated in dplyr 0.7.0.
+#> Please use `mutate()` instead.
+#> See vignette('programming') for more help
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
+<img src="man/figures/README-example-2.png" width="100%" />
 
-You can also embed plots, for example:
+``` r
+# KM-plot with 2 levels
+survfit_obj <-
+  survival::survfit(survival::Surv(time/365.24, status) ~ sex,
+  data = survival::colon
+)
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+# Line plot
+line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks = 2)
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-example-3.png" width="100%" />
