@@ -27,15 +27,7 @@
 #'   levels.
 #' @param text_size        Size of the text in pt.
 #' @return                 ggplot object containg trend plot.
-#' @examples
-#'
-#' # Creating data
-#'
-#' df <- data.frame(year = 2000:2017, prob = rnorm(18, 0.5, 0.02))
-#'
-#' # Trend
-#'
-#' trend_plot(df, 'year', 'prob', y_breaks = 2, y_lim = range(df$prob) * 100)
+#' @example                man/examples/trend_plot.R
 #' @export
 trend_plot <-
   function(

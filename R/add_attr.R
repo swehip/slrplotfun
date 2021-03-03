@@ -4,13 +4,7 @@
 #' @param df1 Data frame to receive attributes.
 #' @param df2 Data frame to give attributes.
 #' @return Data frame.
-#' @examples
-#' df1 <- data.frame(cars = 1:3)
-#' df2 <- data.frame(cars = 1:3)
-#' attr(df2$cars, "map") <- data.frame(levels = 1:3,
-#' labels = c("Volvo", "Saab", "Opel"))
-#' df1 <- add_attr(df1, df2)
-#' df1$cars
+#' @example man/examples/add_attr.R
 #' @export
 add_attr <- function(df1, df2) {
   for (i in names(df1)) {

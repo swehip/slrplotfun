@@ -111,5 +111,4 @@ age_pyramid(df, age_var = 'age', gender_var = 'gender',
 age_pyramid(df, age_var = 'age', gender_var = 'gender',
   man_level = 'Man', percent = FALSE, x_breaks = 5000,
   title = "This is an age pyramid")
-
 }

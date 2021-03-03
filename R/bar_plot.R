@@ -47,41 +47,7 @@
 #' @param legend_col         How many columns for the legends.
 #'
 #' @return                   ggplot object containing bar plot.
-#' @examples
-#'
-#' # Style stack
-#' bar_plot(df = ggplot2::diamonds, x_var = 'color',
-#' fill_var = 'cut', y_breaks = 2)
-#' bar_plot(df = ggplot2::diamonds, x_var = 'color',
-#' fill_var = 'cut', y_percent = FALSE, y_breaks = 2000)
-#'
-#' # Style stack with y variable included
-#' df <- ggplot2::diamonds %>% dplyr::group_by(color, cut) %>%
-#'   dplyr::summarise(y = dplyr::n(), .groups = "drop_last")
-#' bar_plot(df = df, x_var = 'color',
-#'   fill_var = 'cut', y_var = 'y', y_breaks = 2)
-#'
-#' # Style fill
-#' bar_plot(df = ggplot2::diamonds, x_var = 'color', fill_var = 'cut',
-#' y_breaks = 10, style = 'fill')
-#'
-#' # Style dodge grouped by x_var (color in this case)
-#' bar_plot(df = ggplot2::diamonds, x_var = 'color', fill_var = 'cut',
-#' style = 'dodge', y_breaks = 10)
-#' bar_plot(df = ggplot2::diamonds, x_var = 'color', fill_var = 'cut',
-#' style = 'dodge', y_percent = FALSE, y_breaks = 2000)
-#'
-#' # Style dodge grouped by fill_var (cut in this case)
-#' bar_plot(df = ggplot2::diamonds, x_var = 'color', fill_var = 'cut',
-#' style = 'dodge', group_by_x_var = FALSE, y_breaks = 10)
-#'
-#' # Since bar_plot() returns ggplot object, it is possible to add more features
-#' # Here we zoom the plot using coord_cartesian():
-#' df <- dplyr::filter(ggplot2::diamonds, clarity %in% c('SI1', 'SI2', 'VS2'))
-#' bar_plot(df = df, x_var = 'clarity',
-#' style = 'dodge', y_percent = FALSE, y_breaks = 2000) +
-#'   ggplot2::coord_cartesian(ylim = c(8000, 14000))
-#'
+#' @example                  man/examples/bar_plot.R
 #' @export
 bar_plot <-
   function(df,

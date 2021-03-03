@@ -1,0 +1,5 @@
+table(ggplot2::diamonds$cut)
+in_size_order <- size_order(ggplot2::diamonds$cut)
+table(in_size_order)
+in_size_order <- size_order(ggplot2::diamonds$cut, 2, "Others")
+table(in_size_order)

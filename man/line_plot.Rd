@@ -112,26 +112,28 @@ legend inside plot.}
 \item{legend_col}{How many columns for the legends.}
 }
 \value{
-Ggplot object containing line-plot.
+\preformatted{            Ggplot object containing line-plot.
+}
 }
 \description{
 Standard line plot using ggplot2. Y-variable not necessary.
 }
 \examples{
+# Example data
+df <- ggplot2::diamonds
+
 # y_percent = TRUE
-line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks = 2)
-line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color',
-group_by_x_var = FALSE, y_breaks = 2)
+line_plot(df, 'cut', 'color', y_breaks = 2)
+line_plot(df, 'cut', 'color', group_by_x_var = FALSE, y_breaks = 2)
 
 # y_percent = FALSE
-line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color',
-y_percent = FALSE, y_breaks = 2000)
+line_plot(df, 'cut', 'color', y_percent = FALSE, y_breaks = 2000)
 
 # y variable included
-df <- ggplot2::diamonds \%>\% dplyr::group_by(color, cut) \%>\%
+df2 <- dplyr::group_by(df, color, cut) \%>\%
   dplyr::summarise(y = dplyr::n(), .groups = "drop_last")
-line_plot(df = df, x_var = 'cut', color_var = 'color', y_var = 'y',
-y_percent = FALSE, y_breaks = 2000)
-line_plot(df = df[df$color == 'D',], x_var = 'cut', y_var = 'y',
-y_percent = FALSE, y_breaks = 500)
+
+line_plot(df2, 'cut', 'color', y_var = 'y', y_percent = FALSE, y_breaks = 2000)
+line_plot(df2[df2$color == 'D', ], 'cut', y_var = 'y', y_percent = FALSE,
+          y_breaks = 500)
 }

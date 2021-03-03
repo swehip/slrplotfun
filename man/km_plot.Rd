@@ -119,26 +119,21 @@ they appear in \code{names(survfit_obj$strata)}.}
 multiple.}
 }
 \value{
-ggplot object containing Kaplan-Meier plot.
+\preformatted{                   ggplot object containing Kaplan-Meier plot.
+}
 }
 \description{
 Kaplan-Meier plot using ggplot2.
 }
 \examples{
+library(survival)
 
 # KM-plot with 2 levels
-survfit_obj <-
-  survival::survfit(survival::Surv(time/365.24, status) ~ sex,
-  data = survival::colon
-)
-km_plot(survfit_obj, y_lim = c(40,100), y_breaks = 10, x_lim = c(0,9))
+survfit_obj <- survfit(Surv(time / 365.24, status) ~ sex, survival::colon)
+km_plot(survfit_obj, y_lim = c(40, 100), y_breaks = 10, x_lim = c(0, 9))
 
 # KM-plot with 6 levels
-survfit_obj <-
-  survival::survfit(survival::Surv(time/365.24, status) ~ sex + differ,
-  data = survival::colon
-)
-km_plot(survfit_obj, y_lim = c(30,100), y_breaks = 10,
-x_lim = c(0,9), line_colors =
-  c('dodgerblue', 'red', 'green', 'black', 'yellow', 'chocolate'))
+survfit_obj <- update(survfit_obj, . ~ . + differ)
+km_plot(survfit_obj, y_lim = c(30,100), y_breaks = 10, x_lim = c(0,9),
+  line_colors = c('dodgerblue', 'red', 'green', 'black', 'yellow', 'chocolate'))
 }

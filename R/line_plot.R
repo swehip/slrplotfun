@@ -44,24 +44,8 @@
 #' @param legend_row       How many rows for the legends.
 #' @param legend_col       How many columns for the legends.
 #'
-#' @return Ggplot object containing line-plot.
-#' @examples
-#' # y_percent = TRUE
-#' line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks = 2)
-#' line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color',
-#' group_by_x_var = FALSE, y_breaks = 2)
-#'
-#' # y_percent = FALSE
-#' line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color',
-#' y_percent = FALSE, y_breaks = 2000)
-#'
-#' # y variable included
-#' df <- ggplot2::diamonds %>% dplyr::group_by(color, cut) %>%
-#'   dplyr::summarise(y = dplyr::n(), .groups = "drop_last")
-#' line_plot(df = df, x_var = 'cut', color_var = 'color', y_var = 'y',
-#' y_percent = FALSE, y_breaks = 2000)
-#' line_plot(df = df[df$color == 'D',], x_var = 'cut', y_var = 'y',
-#' y_percent = FALSE, y_breaks = 500)
+#' @return                 Ggplot object containing line-plot.
+#' @example                man/examples/line_plot.R
 #' @export
 line_plot <-
   function(

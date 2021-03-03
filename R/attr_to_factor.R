@@ -3,11 +3,7 @@
 #' Used to extract texts from a variable containing numeric values.
 #' @param x Object with "map" attributes, where levels and labels exist
 #' @return Factor
-#' @examples
-#' df <- data.frame(cars = 1:3)
-#' attr(df$cars, "map") <-
-#'   data.frame(levels = 1:3, labels = c("Volvo", "Saab", "Opel"))
-#' attr_to_factor(df$cars)
+#' @example man/examples/attr_to_factor.R
 #' @export
 attr_to_factor <- function(x) {
   factor(x, attr(x, "map")$levels, attr(x, "map")$labels)
