@@ -18,5 +18,8 @@ Imports:
   ggplot2,
   gridExtra,
   scales,
-  survival,
   magrittr
+Suggests:
+  survival
+URL: https://github.com/swehip/slrplotfun
+BugReports: https://github.com/swehip/slrplotfun/issues
