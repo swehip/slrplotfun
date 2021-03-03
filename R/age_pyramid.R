@@ -35,6 +35,7 @@
 #' @return                ggplot object containing age pyramid plot.
 #' @examples
 #' # Creating data
+#' set.seed(123)
 #' df <- data.frame(age = rpois(100000, 65),
 #'   gender = sample(c('Woman', 'Woman', 'Man'), 100000, replace = TRUE))
 #'

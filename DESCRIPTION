@@ -1,6 +1,6 @@
 Package: slrplotfun
 Title: Plot functions for the Swedish Arthroplasty Register
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Jonatan",
            family = "Nåtman",
