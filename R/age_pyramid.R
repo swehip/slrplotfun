@@ -42,7 +42,7 @@ age_pyramid <-
            subtitle          = NULL,
            y_lab             = NULL,
            x_lab             = NULL,
-           fill_colors       = c("#FFC655", "#3E92AA"),
+           fill_colors       = slr_colors(2),
            legend.position   = c(0, 0),
            legend_labels     = ggplot2::waiver(),
            label_breaks      = ggplot2::waiver(),

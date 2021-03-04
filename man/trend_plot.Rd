@@ -15,7 +15,7 @@ trend_plot(
   x_lab = "år",
   title = NULL,
   subtitle = NULL,
-  line_color = "#3E92AA",
+  line_color = slr_colors(1),
   fill_color = "#CADBD5",
   line_size = 1,
   point_size = 1,

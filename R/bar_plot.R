@@ -61,229 +61,208 @@ bar_plot <-
            ) {
 
 
-    # Fill colours ------------------------------------------------------------
-    # Different colours depending on number of categories.
-    if (is.null(fill_colors) & !is.null(fill_var)) {
-      if (length(unique(df[[fill_var]])) <= 2) {
-        fill_colors <- c("#3E92AA", #Blue
-                         "#FFC655") #Grey
-      } else if (length(unique(df[[fill_var]])) <= 4) {
-        fill_colors <- c("#FFC655", #Yellow
-                         "#63BA97", #Green
-                         "#000000", #Black
-                         "#3E92AA") #Blue
-      } else {
-        fill_colors <- c("#FFC655", #Yellow
-                         "#3E92AA", #Blue
-                         "#000000", #Black
-                         "#965C96", #Purple
-                         "#F0863C", #Orange
-                         "#63BA97", #Green
-                         "#C90327", #Red
-                         "#F290A9", #Pink
-                         "#CCCCCC") #Grey
-      }
+  # Fill colors ------------------------------------------------------------
+  if (is.null(fill_colors)) {
+    n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
+    fill_colors <- slr_colors(n)
+  }
+  # If y_var != NULL, no summarise is needed. -------------------------------
 
-    } else if (is.null(fill_colors) & is.null(fill_var)) {
-      fill_colors <- "#3E92AA"
-    }
-    # If y_var != NULL, no summarise is needed. -------------------------------
+  show_legend <- TRUE
 
-    show_legend <- TRUE
+  if (is.character(y_var)) {
+    names(df)[names(df) == y_var] <- 'y'
 
-    if (is.character(y_var)) {
-      names(df)[names(df) == y_var] <- 'y'
-
-      if (!is.character(fill_var)) {
-        df$y2 <- 1
-        fill_var <- "fill_var"
-        show_legend <- FALSE
-      } else{
-        # y2 used for style dodge ----------------------------------------------
-
-        if (group_by_x_var) {
-          df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]]) %>%
-            dplyr::mutate(y2 = sum(.data$y))
-
-        } else{
-          df <-
-            df %>%
-            dplyr::group_by(.data[[fill_var]]) %>%
-            dplyr::mutate(y2 = sum(.data$y))
-        }
-      }
-
+    if (!is.character(fill_var)) {
+      df$y2 <- 1
+      fill_var <- "fill_var"
+      show_legend <- FALSE
     } else{
-      # Only one fill variabel used means no legend needed  --------------------
+      # y2 used for style dodge ----------------------------------------------
 
-      if (!is.character(fill_var)) {
-        fill_var <- "fill_var"
-        show_legend <- FALSE
+      if (group_by_x_var) {
         df <-
           df %>%
           dplyr::group_by(.data[[x_var]]) %>%
-          dplyr::summarise(y = dplyr::n())
-        df$y2 <- 1
+          dplyr::mutate(y2 = sum(.data$y))
+
       } else{
-        # Data transformations -------------------------------------------------
-
-        if (group_by_x_var) {
-          df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
-            dplyr::summarise(y = dplyr::n()) %>%
-            dplyr::group_by(.data[[x_var]]) %>%
-            dplyr::mutate(y2 = sum(.data$y))
-
-        } else{
-          df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
-            dplyr::summarise(y = dplyr::n()) %>%
-            dplyr::group_by(.data[[fill_var]]) %>%
-            dplyr::mutate(y2 = sum(.data$y))
-        }
+        df <-
+          df %>%
+          dplyr::group_by(.data[[fill_var]]) %>%
+          dplyr::mutate(y2 = sum(.data$y))
       }
     }
 
-    # y2 used for style dodge
+  } else{
+    # Only one fill variabel used means no legend needed  --------------------
 
-    # Ggplot ------------------------------------------------------------------
+    if (!is.character(fill_var)) {
+      fill_var <- "fill_var"
+      show_legend <- FALSE
+      df <-
+        df %>%
+        dplyr::group_by(.data[[x_var]]) %>%
+        dplyr::summarise(y = dplyr::n())
+      df$y2 <- 1
+    } else{
+      # Data transformations -------------------------------------------------
 
-    bars <- ggplot2::ggplot(data = df) +
-      ggplot2::scale_fill_manual(
-        values = fill_colors,
-        labels = legend_labels,
-        breaks = label_breaks,
-        guide  = ggplot2::guide_legend(nrow = legend_row, ncol = legend_col)
-      ) +
-      ggplot2::ylab(y_lab) +
-      ggplot2::xlab(x_lab) +
-      ggplot2::ggtitle(title, subtitle = subtitle) +
-      theme_slr(subtitle = !is.null(subtitle))
+      if (group_by_x_var) {
+        df <-
+          df %>%
+          dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
+          dplyr::summarise(y = dplyr::n()) %>%
+          dplyr::group_by(.data[[x_var]]) %>%
+          dplyr::mutate(y2 = sum(.data$y))
 
-    if (y_percent) {
-      y_breaks <- y_breaks / 100
-
-      if (is.vector(y_lim)) {
-        y_lim <- y_lim / 100
-      }
-
-      if (style == "dodge") {
-        bars <-
-          bars +
-          ggplot2::geom_bar(
-            width = 0.5,
-            mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / .data$y2, fill = .data[[fill_var]]),
-            stat = "identity",
-            show.legend = show_legend,
-            position = ggplot2::position_dodge(width = 0.5)
-          ) +
-          ggplot2::scale_y_continuous(
-            labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
-            breaks = seq(0, 1, by = y_breaks),
-            limits = y_lim
-          )
-
-      } else if (style == "fill") {
-        bars <-
-          bars +
-          ggplot2::geom_bar(
-            width = 0.5,
-            mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
-            stat = "identity",
-            show.legend = show_legend,
-            position = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
-          ) +
-          ggplot2::scale_y_continuous(
-            labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
-            breaks = seq(0, 1, by = y_breaks),
-            limits = y_lim
-          )
       } else{
-        bars <-
-          bars +
-          ggplot2::geom_bar(
-            width       = 0.5,
-            mapping     = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
-            stat        = "identity",
-            show.legend = show_legend,
-            position    = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
-          ) +
-          ggplot2::scale_y_continuous(
-            labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
-            breaks = seq(0, 1, by = y_breaks),
-            limits = y_lim
-          )
-
+        df <-
+          df %>%
+          dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
+          dplyr::summarise(y = dplyr::n()) %>%
+          dplyr::group_by(.data[[fill_var]]) %>%
+          dplyr::mutate(y2 = sum(.data$y))
       }
+    }
+  }
+
+  # y2 used for style dodge
+
+  # Ggplot ------------------------------------------------------------------
+
+  bars <- ggplot2::ggplot(data = df) +
+    ggplot2::scale_fill_manual(
+      values = fill_colors,
+      labels = legend_labels,
+      breaks = label_breaks,
+      guide  = ggplot2::guide_legend(nrow = legend_row, ncol = legend_col)
+    ) +
+    ggplot2::ylab(y_lab) +
+    ggplot2::xlab(x_lab) +
+    ggplot2::ggtitle(title, subtitle = subtitle) +
+    theme_slr(subtitle = !is.null(subtitle))
+
+  if (y_percent) {
+    y_breaks <- y_breaks / 100
+
+    if (is.vector(y_lim)) {
+      y_lim <- y_lim / 100
+    }
+
+    if (style == "dodge") {
+      bars <-
+        bars +
+        ggplot2::geom_bar(
+          width = 0.5,
+          mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / .data$y2, fill = .data[[fill_var]]),
+          stat = "identity",
+          show.legend = show_legend,
+          position = ggplot2::position_dodge(width = 0.5)
+        ) +
+        ggplot2::scale_y_continuous(
+          labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
+          breaks = seq(0, 1, by = y_breaks),
+          limits = y_lim
+        )
 
     } else if (style == "fill") {
       bars <-
         bars +
         ggplot2::geom_bar(
-          width       = 0.5,
-          mapping     = ggplot2::aes(
-            x = .data[[x_var]],
-            y = .data$y,
-            fill = if (utils::hasName(bars$data, fill_var))
-              .data[[fill_var]] else fill_var
-          ),
-          stat        = "identity",
-          show.legend = show_legend,
-          position    = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
-        ) +
-        ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
-                           limits = y_lim)
-
-    } else if (style == "dodge") {
-      bars <-
-        bars +
-        ggplot2::geom_bar(
           width = 0.5,
-          mapping = ggplot2::aes(
-            x = .data[[x_var]],
-            y = .data$y,
-            fill = if (utils::hasName(bars$data, fill_var))
-              .data[[fill_var]] else fill_var
-          ),
+          mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
           stat = "identity",
           show.legend = show_legend,
-          position = ggplot2::position_dodge(width = 0.5)
+          position = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
         ) +
-        ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
-                           limits = y_lim)
-
-
+        ggplot2::scale_y_continuous(
+          labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
+          breaks = seq(0, 1, by = y_breaks),
+          limits = y_lim
+        )
     } else{
       bars <-
         bars +
         ggplot2::geom_bar(
-          width = 0.5,
-          mapping = ggplot2::aes(
-            x = .data[[x_var]],
-            y = .data$y,
-            fill = if (utils::hasName(bars$data, fill_var))
-              .data[[fill_var]] else fill_var
-          ),
-          stat = "identity",
+          width       = 0.5,
+          mapping     = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
+          stat        = "identity",
           show.legend = show_legend,
-          position = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
+          position    = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
         ) +
-        ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
-                           limits = y_lim)
+        ggplot2::scale_y_continuous(
+          labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
+          breaks = seq(0, 1, by = y_breaks),
+          limits = y_lim
+        )
+
     }
 
-    if (is.numeric(df[[x_var]]) & !is.null(x_breaks)) {
-      bars <-
-        bars +
-        ggplot2::scale_x_continuous(
-          breaks = seq(floor(min(df[[x_var]])),
-                       ceiling(max(df[[x_var]])),
-                       by = x_breaks)
-          )
-    }
-    bars
+  } else if (style == "fill") {
+    bars <-
+      bars +
+      ggplot2::geom_bar(
+        width       = 0.5,
+        mapping     = ggplot2::aes(
+          x = .data[[x_var]],
+          y = .data$y,
+          fill = if (utils::hasName(bars$data, fill_var))
+            .data[[fill_var]] else fill_var
+        ),
+        stat        = "identity",
+        show.legend = show_legend,
+        position    = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
+      ) +
+      ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
+                         limits = y_lim)
+
+  } else if (style == "dodge") {
+    bars <-
+      bars +
+      ggplot2::geom_bar(
+        width = 0.5,
+        mapping = ggplot2::aes(
+          x = .data[[x_var]],
+          y = .data$y,
+          fill = if (utils::hasName(bars$data, fill_var))
+            .data[[fill_var]] else fill_var
+        ),
+        stat = "identity",
+        show.legend = show_legend,
+        position = ggplot2::position_dodge(width = 0.5)
+      ) +
+      ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
+                         limits = y_lim)
+
+
+  } else{
+    bars <-
+      bars +
+      ggplot2::geom_bar(
+        width = 0.5,
+        mapping = ggplot2::aes(
+          x = .data[[x_var]],
+          y = .data$y,
+          fill = if (utils::hasName(bars$data, fill_var))
+            .data[[fill_var]] else fill_var
+        ),
+        stat = "identity",
+        show.legend = show_legend,
+        position = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
+      ) +
+      ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
+                         limits = y_lim)
+  }
+
+  if (is.numeric(df[[x_var]]) & !is.null(x_breaks)) {
+    bars <-
+      bars +
+      ggplot2::scale_x_continuous(
+        breaks = seq(floor(min(df[[x_var]])),
+                     ceiling(max(df[[x_var]])),
+                     by = x_breaks)
+        )
+  }
+  bars
 }

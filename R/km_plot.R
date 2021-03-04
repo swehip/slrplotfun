@@ -69,247 +69,220 @@ km_plot <- function(
                    ...
                    ) {
 
-    # Data suitable for ggplot ------------------------------------------------
+  # Data suitable for ggplot ------------------------------------------------
 
-    if (is.null(line_colors)) {
-      if (length(unique(as.character(survfit_obj$strata))) <= 2) {
-        line_colors <- c("#3E92AA", #Blue
-                         "#FFC655") #Grey
-      } else if (length(unique(as.character(survfit_obj$strata))) <= 4) {
-        line_colors <- c("#FFC655", #Yellow
-                         "#63BA97", #Green
-                         "#000000", #Black
-                         "#3E92AA") #Blue
-      } else {
-        line_colors <- c("#FFC655", #Yellow
-                         "#3E92AA", #Blue
-                         "#000000", #Black
-                         "#965C96", #Purple
-                         "#F0863C", #Orange
-                         "#63BA97", #Green
-                         "#C90327", #Red
-                         "#F290A9", #Pink
-                         "#CCCCCC") #Grey
-      }
+  if (is.null(line_colors))
+    line_colors <- slr_colors(dplyr::n_distinct(survfit_obj$strata))
+
+  if (!is.data.frame(survfit_obj)) {
+    if (is.null(x_lim)) {
+      # range of x axis, used if n_points is specified
+      time_range <- c(0, max(survfit_obj$time))
+      ret_times  <- c(0, survfit_obj$time)
+
+    } else{
+      time_range <- c(0, x_lim[2])
+      ret_times <- c(0, survfit_obj$time[survfit_obj$time < x_lim[2]], x_lim[2])
     }
-
-
-
-    if (!is.data.frame(survfit_obj)) {
-      if (is.null(x_lim)) {
-        time_range <-
-          # range of x axis, used if n_points is specified
-          c(0, max(survfit_obj$time))
-
-        ret_times <- c(0, survfit_obj$time)
-
-      } else{
-        time_range <- c(0, x_lim[2])
-
-        ret_times <-
-          c(0, survfit_obj$time[survfit_obj$time < x_lim[2]], x_lim[2])
-
-      }
-      # For one level strata, strata is created otherwise rest of
-      # code does not work
-      if (one_level) {
-        strata <- "1"
-      } else{
-        if (is.numeric(n_points)) {
-          # if n_points specified, time range is used
-          strata <-
-            summary(
-              survfit_obj,
-              times = seq(time_range[1], time_range[2], length.out = n_points),
-              extend = TRUE
-            )$strata
-
-        } else{
-          # otherwise all points are used, included the censored points
-          strata <-
-            summary(survfit_obj, times = ret_times, extend = TRUE)$strata
-        }
-      }
-
+    # For one level strata, strata is created otherwise rest of
+    # code does not work
+    if (one_level) {
+      strata <- "1"
+    } else{
       if (is.numeric(n_points)) {
-        sf <-
+        # if n_points specified, time range is used
+        strata <-
           summary(
             survfit_obj,
             times = seq(time_range[1], time_range[2], length.out = n_points),
             extend = TRUE
-          )
-
-        df <-
-          data.frame(
-            surv    = sf$surv,
-            year    = sf$time,
-            lower   = sf$lower,
-            upper   = sf$upper,
-            strata  = strata,
-            n.risk  = sf$n.risk,
-            n.event = sf$n.event
-          ) %>%
-          dplyr::filter(.data$n.risk >= n_risk_break) %>%
-          dplyr::group_by(strata) %>%
-          dplyr::filter(.data$n.event != 0 | .data$n.risk == min(.data$n.risk) | .data$year == 0) %>%
-          dplyr::ungroup()
+          )$strata
 
       } else{
-        # Creates data frame for ggplot
-
-        sf <- summary(survfit_obj, times = ret_times, extend = TRUE)
-        df <-
-          data.frame(
-            surv    = sf$surv,
-            year    = sf$time,
-            lower   = sf$lower,
-            upper   = sf$upper,
-            strata  = strata,
-            n.event = sf$n.event,
-            n.risk  = sf$n.risk
-          ) %>%
-          # removes points where number at risk are less than break
-          dplyr::filter(.data$n.risk >= n_risk_break) %>%
-          dplyr::group_by(strata) %>%
-          # removes all points where there are no events
-          dplyr::filter(.data$n.event != 0 | .data$n.risk == min(.data$n.risk) | .data$year == 0) %>%
-          # but adds the last point for each curve
-          dplyr::ungroup()
-
+        # otherwise all points are used, included the censored points
+        strata <- summary(survfit_obj, times = ret_times, extend = TRUE)$strata
       }
+    }
 
-      # make step function data by adding all points from data but
-      # with all the next values in year
-      df2 <-
-        dplyr::group_by(df, strata) %>%
+    if (is.numeric(n_points)) {
+      sf <-
+        summary(
+          survfit_obj,
+          times = seq(time_range[1], time_range[2], length.out = n_points),
+          extend = TRUE
+        )
+
+      df <-
+        data.frame(
+          surv    = sf$surv,
+          year    = sf$time,
+          lower   = sf$lower,
+          upper   = sf$upper,
+          strata  = strata,
+          n.risk  = sf$n.risk,
+          n.event = sf$n.event
+        ) %>%
+        dplyr::filter(.data$n.risk >= n_risk_break) %>%
+        dplyr::group_by(strata) %>%
+        dplyr::filter(.data$n.event != 0 | .data$n.risk == min(.data$n.risk) | .data$year == 0) %>%
+        dplyr::ungroup()
+
+    } else{
+      # Creates data frame for ggplot
+
+      sf <- summary(survfit_obj, times = ret_times, extend = TRUE)
+      df <-
+        data.frame(
+          surv    = sf$surv,
+          year    = sf$time,
+          lower   = sf$lower,
+          upper   = sf$upper,
+          strata  = strata,
+          n.event = sf$n.event,
+          n.risk  = sf$n.risk
+        ) %>%
+        # removes points where number at risk are less than break
+        dplyr::filter(.data$n.risk >= n_risk_break) %>%
+        dplyr::group_by(strata) %>%
+        # removes all points where there are no events
+        dplyr::filter(.data$n.event != 0 | .data$n.risk == min(.data$n.risk) | .data$year == 0) %>%
+        # but adds the last point for each curve
+        dplyr::ungroup()
+
+    }
+
+    # make step function data by adding all points from data but
+    # with all the next values in year
+    df2 <-
+      dplyr::group_by(df, strata) %>%
+      dplyr::mutate(year = dplyr::lead(.data$year)) %>%
+      dplyr::ungroup() %>%
+      dplyr::filter(!is.na(.data$year))
+
+    df <- rbind(df, df2) %>%
+      # bind together with original data
+      dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv), dplyr::desc(.data$n.risk))
+
+    # remove ugly strata=level and only keep level in legend
+
+    strata <- strsplit(levels(df$strata), ", ") %>%
+      lapply(gsub, pattern = ".*=", replacement = "") %>%
+      lapply(paste0, collapse = ", ")
+
+    df$strata <-
+      factor(df$strata,
+             levels = levels(df$strata),
+             labels = strata)
+
+  } else{
+    df <- survfit_obj
+    if (one_level) {df$strata <- "1"}
+    if (make_step) {
+      df2 <- data.frame(
+        year   = 0,
+        surv   = first_point,
+        lower  = first_point,
+        upper  = first_point,
+        strata = unique(df$strata)
+      )
+
+      df <-
+        dplyr::bind_rows(df, df2) %>%
+        dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
+
+      df2 <- dplyr::group_by(df, strata) %>%
         dplyr::mutate(year = dplyr::lead(.data$year)) %>%
         dplyr::ungroup() %>%
         dplyr::filter(!is.na(.data$year))
 
-      df <- rbind(df, df2) %>%
-        # bind together with original data
-        dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv), dplyr::desc(.data$n.risk))
+      if (first_point == 1) {
+        df <- rbind(df, df2) %>%
+          # bind together with original data
+          dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
+      } else{
+        df <- rbind(df, df2) %>%
+          # bind together with original data
+          dplyr::arrange(.data$strata, .data$year, .data$surv)
+      }
+    }
+  }
 
-      # remove ugly strata=level and only keep level in legend
+  # Ggplot ------------------------------------------------------------------
 
-      strata <- strsplit(levels(df$strata), ", ") %>%
-        lapply(gsub, pattern = ".*=", replacement = "") %>%
-        lapply(paste0, collapse = ", ")
+  y_breaks <- y_breaks / 100
 
-      df$strata <-
-        factor(df$strata,
-               levels = levels(df$strata),
-               labels = strata)
+  if (is.null(x_lim)) {x_lim <- range(df$year)}
+  if (is.null(y_lim)) {
+    y_lim <- c(min(df$surv) - min(df$surv) %% y_breaks, 1)
+  } else{
+    y_lim <- y_lim / 100
+  }
 
-    } else{
-      df <- survfit_obj
-      if (one_level) {df$strata <- "1"}
-      if (make_step) {
-        df2 <- data.frame(
-          year   = 0,
-          surv   = first_point,
-          lower  = first_point,
-          upper  = first_point,
-          strata = unique(df$strata)
+  km <- ggplot2::ggplot(df, ggplot2::aes(x = .data$year, y = .data$surv)) +
+    ggplot2::scale_colour_manual(
+      values = line_colors,
+      labels = legend_labels,
+      breaks = label_breaks
+    ) +
+    ggplot2::scale_y_continuous(
+      breaks = seq(y_lim[1], y_lim[2], by = y_breaks),
+      limits = y_lim,
+      labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
+    ) +
+    ggplot2::scale_x_continuous(
+      breaks = seq(x_lim[1], x_lim[2], by = x_breaks),
+      limits = x_lim
+    ) +
+    ggplot2::geom_line(
+      ggplot2::aes(colour = strata, group = strata), size = line_size
+    ) +
+    ggplot2::ggtitle(title, subtitle = subtitle) +
+    ggplot2::xlab(x_lab) +
+    ggplot2::ylab(y_lab) +
+    theme_slr(
+      legend.position       = legend.position,
+      legend.justification  = legend.position
+    )
+
+  if (show_ci) {
+    if (ribbon_ci) {
+      km <-
+        km +
+        ggplot2::geom_ribbon(
+          ggplot2::aes(
+            ymin  = .data$lower,
+            ymax  = .data$upper,
+            fill  = .data$strata,
+            group = .data$strata
+          ),
+          alpha = ribbon_alpha
+        ) +
+        ggplot2::scale_fill_manual(
+          values = line_colors,
+          labels = legend_labels,
+          breaks = label_breaks
         )
 
-        df <-
-          dplyr::bind_rows(df, df2) %>%
-          dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
-
-        df2 <- dplyr::group_by(df, strata) %>%
-          dplyr::mutate(year = dplyr::lead(.data$year)) %>%
-          dplyr::ungroup() %>%
-          dplyr::filter(!is.na(.data$year))
-
-        if (first_point == 1) {
-          df <- rbind(df, df2) %>%
-            # bind together with original data
-            dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
-        } else{
-          df <- rbind(df, df2) %>%
-            # bind together with original data
-            dplyr::arrange(.data$strata, .data$year, .data$surv)
-        }
-      }
-    }
-
-    # Ggplot ------------------------------------------------------------------
-
-    y_breaks <- y_breaks / 100
-
-    if (is.null(x_lim)) {x_lim <- range(df$year)}
-    if (is.null(y_lim)) {
-      y_lim <- c(min(df$surv) - min(df$surv) %% y_breaks, 1)
     } else{
-      y_lim <- y_lim / 100
+      km <-
+        km +
+        ggplot2::geom_line(
+          ggplot2::aes(
+            y      = .data$upper,
+            colour = .data$strata,
+            group  = .data$strata
+          ),
+          size = ci_line_size
+        ) +
+        ggplot2::geom_line(
+          ggplot2::aes(
+            y      = .data$lower,
+            colour = .data$strata,
+            group  = .data$strata
+          ),
+          size = ci_line_size
+        )
     }
-
-    km <- ggplot2::ggplot(df, ggplot2::aes(x = .data$year, y = .data$surv)) +
-      ggplot2::scale_colour_manual(
-        values = line_colors,
-        labels = legend_labels,
-        breaks = label_breaks
-      ) +
-      ggplot2::scale_y_continuous(
-        breaks = seq(y_lim[1], y_lim[2], by = y_breaks),
-        limits = y_lim,
-        labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
-      ) +
-      ggplot2::scale_x_continuous(
-        breaks = seq(x_lim[1], x_lim[2], by = x_breaks),
-        limits = x_lim
-      ) +
-      ggplot2::geom_line(
-        ggplot2::aes(colour = strata, group = strata), size = line_size
-      ) +
-      ggplot2::ggtitle(title, subtitle = subtitle) +
-      ggplot2::xlab(x_lab) +
-      ggplot2::ylab(y_lab) +
-      theme_slr(
-        legend.position       = legend.position,
-        legend.justification  = legend.position
-      )
-
-    if (show_ci) {
-      if (ribbon_ci) {
-        km <-
-          km +
-          ggplot2::geom_ribbon(
-            ggplot2::aes(
-              ymin  = .data$lower,
-              ymax  = .data$upper,
-              fill  = .data$strata,
-              group = .data$strata
-            ),
-            alpha = ribbon_alpha
-          ) +
-          ggplot2::scale_fill_manual(
-            values = line_colors,
-            labels = legend_labels,
-            breaks = label_breaks
-          )
-
-      } else{
-        km <-
-          km +
-          ggplot2::geom_line(
-            ggplot2::aes(
-              y      = .data$upper,
-              colour = .data$strata,
-              group  = .data$strata
-            ),
-            size = ci_line_size
-          ) +
-          ggplot2::geom_line(
-            ggplot2::aes(
-              y      = .data$lower,
-              colour = .data$strata,
-              group  = .data$strata
-            ),
-            size = ci_line_size
-          )
-      }
-    }
+  }
   km
 }
