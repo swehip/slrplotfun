@@ -22,20 +22,15 @@
 #'                           in the data set.
 #' @param subset           Which plots should be generated, `subset = 1`
 #'                           corresponds to the first plot in alphabetical order.
-#' @param text_size        Text size in pt.
 #' @param legend_labels    Labels for the legends in the plot.
 #' @param line_colors      Colors of the lines.
-#' @param background_color Color of the panel background.
-#' @param panel_grid_color Color of the panel grid lines.
-#' @param panel_grid_size  Size of the panel grid lines in plot,
-#'                           useful to change if large dpi!
-#' @param axis_size        Size of the axis lines, useful to change if large dpi
 #' @param line_size        Line thickness of the lines in plot.
 #' @param point_size       Point sizes in plot.
-#' @param legend_pos       Position of the legend in plot, matrix where each row
+#' @param legend.position       Position of the legend in plot, matrix where each row
 #'                           corresponds to a legend position is recommended,
 #'                           if `length(subset) > 1`.
 #' @param n_row,n_col      Number of rows/columns for the three plots.
+#' @param ...              arguments passed to [theme_slr()]
 #'
 #' @return List of several gtable objects where each gtable object is one clinic
 #' @example man/examples/prom_trends.R
@@ -56,18 +51,15 @@ prom_trends <-
            y_breaks         = c(5, 5, 5),
            year             = c('2008/09', '2010/11', '2012/13', '2014/15'),
            subset           = 1,
-           text_size        = 7,
            legend_labels    = c("F\u00F6rv\u00E4ntat", "Observerat", "Riket"),
            line_colors      = c("#3E92AA", "#C90327", "black"),
-           background_color = "#E7F0F2",
-           panel_grid_color = "#ADAEAE",
-           panel_grid_size  = 0.2,
-           axis_size        = 0.2,
            line_size        = 0.5,
            point_size       = 1.5,
-           legend_pos       = c(0, 0),
+           legend.position  = c(0, 0),
            n_row            = 1,
-           n_col            = 3) {
+           n_col            = 3,
+           ...
+           ) {
 
     # Transforming data to be suitable for ggplot -----------------------------
 
@@ -119,9 +111,7 @@ prom_trends <-
                       2 - y_break) %/% y_break) * y_break
 
       }
-
       return(c(bottom, top))
-
     }
 
     # Ggplots -----------------------------------------------------------------
@@ -130,10 +120,9 @@ prom_trends <-
 
     count <- 1
 
-    if (is.vector(legend_pos)) {
-      legend_pos <-
-        matrix(rep(legend_pos, length(subset)), nrow = length(subset))
-
+    if (is.vector(legend.position)) {
+      legend.position <-
+        matrix(rep(legend.position, length(subset)), nrow = length(subset))
     }
 
      for (i in subset) {
@@ -157,35 +146,20 @@ prom_trends <-
           breaks = seq(ylim_eq[1], ylim_eq[2], by = y_breaks[1]),
           limits = ylim_eq) +
         ggplot2::scale_colour_manual(values = line_colors) +
-        ggplot2::theme_classic() +
         ggplot2::geom_line(size = line_size, show.legend = TRUE) +
         ggplot2::geom_point(shape = 18,
                    size = point_size,
                    show.legend = TRUE) +
         ggplot2::ylab(y_labs[1]) +
         ggplot2::ggtitle(hospitals[i]) +
+        theme_slr(
+          title_hjust = 0,
+          legend.position      = legend.position[count, ],
+          legend.justification = legend.position[count, ]
+        ) +
         ggplot2::theme(
-          legend.text          = ggplot2::element_text(size = text_size),
-          panel.grid.major.y   = ggplot2::element_line(
-                                   colour = panel_grid_color,
-                                   size = panel_grid_size),
-          axis.line            = ggplot2::element_line(size = axis_size),
-          axis.ticks           = ggplot2::element_line(size = axis_size),
-          panel.background     = ggplot2::element_rect(fill = background_color),
-          legend.title         = ggplot2::element_blank(),
-          axis.text            = ggplot2::element_text(
-                                   colour = "black", size = text_size),
-          axis.title.x         = ggplot2::element_blank(),
-          axis.title.y         = ggplot2::element_text(size = text_size),
-          plot.title           = ggplot2::element_text(
-                                   hjust = 0, size = text_size),
-          legend.position      = legend_pos[count, ],
-          legend.justification = legend_pos[count, ],
-          legend.background    = ggplot2::element_rect(fill = "transparent"),
-          legend.key.height    = ggplot2::unit(text_size, "pt"),
           legend.margin        = ggplot2::margin(0, 0, 0, 0, unit = "mm"),
           legend.box.margin    = ggplot2::margin(0, 0, 0, 0, unit = "mm"),
-          plot.margin          = ggplot2::margin(0.2, 0.4, 0.2, 0.4, unit = "cm")
         )
 
       pain_plot <-
@@ -195,28 +169,13 @@ prom_trends <-
           breaks = seq(ylim_sm[1], ylim_sm[2], by = y_breaks[2]),
           limits = ylim_sm) +
         ggplot2::scale_colour_manual(values = line_colors) +
-        ggplot2::theme_classic() +
         ggplot2::geom_line(size = line_size, show.legend = FALSE) +
         ggplot2::geom_point(shape = 18,
                    size = point_size,
                    show.legend = FALSE) +
         ggplot2::ggtitle("") +
         ggplot2::ylab(y_labs[2]) +
-        ggplot2::theme(
-          legend.text        = ggplot2::element_text(size = text_size),
-          panel.grid.major.y = ggplot2::element_line(
-                                 colour = panel_grid_color,
-                                 size = panel_grid_size),
-          axis.line          = ggplot2::element_line(size = axis_size),
-          axis.ticks         = ggplot2::element_line(size = axis_size),
-          panel.background   = ggplot2::element_rect(fill = background_color),
-          legend.title       = ggplot2::element_blank(),
-          axis.text          = ggplot2::element_text(
-                                 colour = "black", size = text_size),
-          axis.title.y       = ggplot2::element_text(size = text_size),
-          axis.title.x       = ggplot2::element_blank(),
-          plot.margin        = ggplot2::margin(0.2, 0.4, 0.2, 0.4, unit = "cm")
-        )
+        theme_slr()
 
       satis_plot <-
         ggplot2::ggplot(satis_data,
@@ -225,28 +184,13 @@ prom_trends <-
           breaks = seq(ylim_tf[1], ylim_tf[2], by = y_breaks[3]),
           limits = ylim_tf) +
         ggplot2::scale_colour_manual(values = line_colors) +
-        ggplot2::theme_classic() +
         ggplot2::geom_line(size = line_size, show.legend = FALSE) +
         ggplot2::geom_point(shape = 18,
                    size = point_size,
                    show.legend = FALSE) +
         ggplot2::ggtitle("") +
         ggplot2::ylab(y_labs[3]) +
-        ggplot2::theme(
-          legend.text        = ggplot2::element_text(size = text_size),
-          panel.grid.major.y = ggplot2::element_line(
-                                 colour = panel_grid_color,
-                                 size = panel_grid_size),
-          axis.line          = ggplot2::element_line(size = axis_size),
-          axis.ticks         = ggplot2::element_line(size = axis_size),
-          panel.background   = ggplot2::element_rect(fill = background_color),
-          legend.title       = ggplot2::element_blank(),
-          axis.text          = ggplot2::element_text(
-                                 colour = "black", size = text_size),
-          axis.title.x       = ggplot2::element_blank(),
-          axis.title.y       = ggplot2::element_text(size = text_size),
-          plot.margin        = ggplot2::margin(0.2, 0.4, 0.2, 0.4, unit = "cm")
-        )
+        theme_slr()
 
       plot_list[[count]] <-
         gridExtra::arrangeGrob(

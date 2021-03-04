@@ -15,18 +15,10 @@ trend_plot(
   x_lab = "år",
   title = NULL,
   subtitle = NULL,
-  title_size = 9,
-  subtitle_size = 8,
-  line_color = "#3E92AA",
+  line_color = slr_colors(1),
   fill_color = "#CADBD5",
   line_size = 1,
   point_size = 1,
-  background_color = "#E7F0F2",
-  panel_grid_color = "#ADAEAE",
-  panel_grid_size = 0.2,
-  axis_size = 0.2,
-  axis_text_angle = 0,
-  text_size = 7,
   percent_accuracy = 1
 )
 }
@@ -47,10 +39,6 @@ trend_plot(
 
 \item{subtitle}{Small text under title, \code{NULL} for no subtitle.}
 
-\item{title_size}{Text size of title in pt.}
-
-\item{subtitle_size}{Text size of subtitle in pt.}
-
 \item{line_color}{Color of the line.}
 
 \item{fill_color}{Fill color}
@@ -59,24 +47,10 @@ trend_plot(
 
 \item{point_size}{Size of the points.}
 
-\item{background_color}{Color of the panel background.}
-
-\item{panel_grid_color}{Color of the panel grid lines.}
-
-\item{panel_grid_size}{Size of the panel grid lines in plot and contour
-lines around bars, useful to change if large dpi!}
-
-\item{axis_size}{Size of the axis lines.}
-
-\item{axis_text_angle}{Angle of the tick texts, 45 is recommended for many x
-levels.}
-
-\item{text_size}{Size of the text in pt.}
-
 \item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
 }
 \value{
-\preformatted{            ggplot object containg trend plot.
+\preformatted{            ggplot object containing trend plot.
 }
 }
 \description{

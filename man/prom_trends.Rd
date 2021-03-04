@@ -19,18 +19,14 @@ prom_trends(
   y_breaks = c(5, 5, 5),
   year = c("2008/09", "2010/11", "2012/13", "2014/15"),
   subset = 1,
-  text_size = 7,
   legend_labels = c("Förväntat", "Observerat", "Riket"),
   line_colors = c("#3E92AA", "#C90327", "black"),
-  background_color = "#E7F0F2",
-  panel_grid_color = "#ADAEAE",
-  panel_grid_size = 0.2,
-  axis_size = 0.2,
   line_size = 0.5,
   point_size = 1.5,
-  legend_pos = c(0, 0),
+  legend.position = c(0, 0),
   n_row = 1,
-  n_col = 3
+  n_col = 3,
+  ...
 )
 }
 \arguments{
@@ -66,30 +62,21 @@ in the data set.}
 \item{subset}{Which plots should be generated, \code{subset = 1}
 corresponds to the first plot in alphabetical order.}
 
-\item{text_size}{Text size in pt.}
-
 \item{legend_labels}{Labels for the legends in the plot.}
 
 \item{line_colors}{Colors of the lines.}
-
-\item{background_color}{Color of the panel background.}
-
-\item{panel_grid_color}{Color of the panel grid lines.}
-
-\item{panel_grid_size}{Size of the panel grid lines in plot,
-useful to change if large dpi!}
-
-\item{axis_size}{Size of the axis lines, useful to change if large dpi}
 
 \item{line_size}{Line thickness of the lines in plot.}
 
 \item{point_size}{Point sizes in plot.}
 
-\item{legend_pos}{Position of the legend in plot, matrix where each row
+\item{legend.position}{Position of the legend in plot, matrix where each row
 corresponds to a legend position is recommended,
 if \code{length(subset) > 1}.}
 
 \item{n_row, n_col}{Number of rows/columns for the three plots.}
+
+\item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
 }
 \value{
 List of several gtable objects where each gtable object is one clinic
@@ -99,14 +86,21 @@ Visualizing PROM-trends for each clinic using ggplot2.
 }
 \examples{
 # Create trend plot for SU/Mölndal
-# Look at the 9 data sets to see the required structure.
-# Data sets are included in the package.
-if (FALSE) { # See Issue # 2!
-  example_plot <- prom_trends(
-    eq_vas_exp, eq_vas_obs, eq_vas_riket, pain_exp,
-    pain_obs, pain_riket, satis_exp, satis_obs, satis_riket,
-    y_breaks = c(5, 0.1, 0.1), subset = 49)
+# Look at 9 data sets to see the required structure.
+p <-
+  prom_trends(
+  shprplotfun::eq_vas_exp,
+  shprplotfun::eq_vas_obs,
+  shprplotfun::eq_vas_riket,
+  shprplotfun::pain_exp,
+  shprplotfun::pain_obs,
+  shprplotfun::pain_riket,
+  shprplotfun::satis_exp,
+  shprplotfun::satis_obs,
+  shprplotfun::satis_riket,
+  y_breaks = c(5, 0.1, 0.1),
+  subset = 49
+)
 
-  plot(example_plot)
-}
+plot(p)
 }

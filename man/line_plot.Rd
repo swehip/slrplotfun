@@ -18,24 +18,14 @@ line_plot(
   line_size = 1,
   title = NULL,
   subtitle = NULL,
-  title_size = 9,
-  subtitle_size = 8,
-  title_margin = 1,
   y_lab = NULL,
   x_lab = NULL,
-  background_color = "#E7F0F2",
-  panel_grid_color = "#ADAEAE",
-  panel_grid_size = 0.2,
-  axis_size = 0.2,
-  axis_text_angle = 0,
-  text_size = 7,
   fill_colors = NULL,
-  legend_pos = "bottom",
   legend_labels = ggplot2::waiver(),
   label_breaks = ggplot2::waiver(),
-  legend_background = "transparent",
   legend_row = NULL,
-  legend_col = NULL
+  legend_col = NULL,
+  ...
 )
 }
 \arguments{
@@ -71,45 +61,21 @@ values below that.}
 
 \item{subtitle}{Small text under title, \code{NULL} if no subtitle.}
 
-\item{title_size}{Text size of title in pt.}
-
-\item{subtitle_size}{Text size of subtitle in pt.}
-
-\item{title_margin}{Distance between subtitle and title in pt. If no
-subtitle, \code{title_margin = 0.5 * title_size}.}
-
 \item{y_lab}{Y-axis label, use \code{NULL} for no label.}
 
 \item{x_lab}{X-axis label, use \code{NULL} for no label.}
 
-\item{background_color}{Color of the panel background.}
-
-\item{panel_grid_color}{Color of the panel grid lines.}
-
-\item{panel_grid_size}{Size of the panel grid lines in plot, useful to
-change if large dpi!}
-
-\item{axis_size}{Size of the axis lines.}
-
-\item{axis_text_angle}{Angle of the tick texts, 45 is recommended for many x
-levels.}
-
-\item{text_size}{Size of the text in pt.}
-
 \item{fill_colors}{Colors of the different categories in color_var.}
-
-\item{legend_pos}{Position of the legend in plot, if \verb{c(1,1), c(1,0)} etc,
-legend inside plot.}
 
 \item{legend_labels}{Label for each legend key.}
 
 \item{label_breaks}{Order of the legend keys.}
 
-\item{legend_background}{Color of the legend background.}
-
 \item{legend_row}{How many rows for the legends.}
 
 \item{legend_col}{How many columns for the legends.}
+
+\item{...}{Arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
 }
 \value{
 \preformatted{            Ggplot object containing line-plot.

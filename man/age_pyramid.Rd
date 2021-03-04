@@ -17,23 +17,15 @@ age_pyramid(
   x_breaks_end = x_breaks * 1e+05,
   title = "",
   subtitle = NULL,
-  title_size = 9,
-  subtitle_size = 8,
-  title_margin = 1,
   y_lab = NULL,
   x_lab = NULL,
-  background_color = "#E7F0F2",
-  panel_grid_color = "#ADAEAE",
-  panel_grid_size = 0.2,
-  axis_size = 0.2,
-  axis_text_angle = 0,
-  text_size = 7,
-  fill_colors = c("#FFC655", "#3E92AA"),
-  legend_pos = c(0, 0),
+  fill_colors = slr_colors(2),
+  legend.position = c(0, 0),
   legend_labels = ggplot2::waiver(),
   label_breaks = ggplot2::waiver(),
   legend_row = NULL,
-  legend_col = NULL
+  legend_col = NULL,
+  ...
 )
 }
 \arguments{
@@ -59,29 +51,11 @@ values below that.}
 
 \item{title, subtitle}{Plot title/subtitle, \code{NULL} for no title.}
 
-\item{title_size, subtitle_size}{Text size of title/subtitle in pt.}
-
-\item{title_margin}{Margin for title}
-
 \item{x_lab, y_lab}{X/Y-axis labels, use \code{NULL} for no label.}
-
-\item{background_color}{Color of the panel background.}
-
-\item{panel_grid_color}{Color of the panel grid lines.}
-
-\item{panel_grid_size}{Size of the panel grid lines in plot and contour
-lines around bars, useful to change if large dpi!}
-
-\item{axis_size}{Size of the axis lines.}
-
-\item{axis_text_angle}{Angle of the tick texts, 45 is recommended for many x
-levels.}
-
-\item{text_size}{Size of the text in pt.}
 
 \item{fill_colors}{Colors of the genders.}
 
-\item{legend_pos}{Position of the legend in plot,
+\item{legend.position}{Position of the legend in plot,
 if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 
 \item{legend_labels}{Label for each legend key.}
@@ -89,6 +63,8 @@ if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 \item{label_breaks}{Order of the legend keys.}
 
 \item{legend_row, legend_col}{How many rows/columns for the legends.}
+
+\item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
 }
 \value{
 \preformatted{           ggplot object containing age pyramid plot.
