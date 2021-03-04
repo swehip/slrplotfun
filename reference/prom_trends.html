@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">slrplotfun</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -132,18 +132,14 @@
   y_breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span>,
   year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"2008/09"</span>, <span class='st'>"2010/11"</span>, <span class='st'>"2012/13"</span>, <span class='st'>"2014/15"</span><span class='op'>)</span>,
   subset <span class='op'>=</span> <span class='fl'>1</span>,
-  text_size <span class='op'>=</span> <span class='fl'>7</span>,
   legend_labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Förväntat"</span>, <span class='st'>"Observerat"</span>, <span class='st'>"Riket"</span><span class='op'>)</span>,
   line_colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#3E92AA"</span>, <span class='st'>"#C90327"</span>, <span class='st'>"black"</span><span class='op'>)</span>,
-  background_color <span class='op'>=</span> <span class='st'>"#E7F0F2"</span>,
-  panel_grid_color <span class='op'>=</span> <span class='st'>"#ADAEAE"</span>,
-  panel_grid_size <span class='op'>=</span> <span class='fl'>0.2</span>,
-  axis_size <span class='op'>=</span> <span class='fl'>0.2</span>,
   line_size <span class='op'>=</span> <span class='fl'>0.5</span>,
   point_size <span class='op'>=</span> <span class='fl'>1.5</span>,
-  legend_pos <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>,
+  legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span>,
   n_row <span class='op'>=</span> <span class='fl'>1</span>,
-  n_col <span class='op'>=</span> <span class='fl'>3</span>
+  n_col <span class='op'>=</span> <span class='fl'>3</span>,
+  <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -210,33 +206,12 @@ in the data set.</p></td>
 corresponds to the first plot in alphabetical order.</p></td>
     </tr>
     <tr>
-      <th>text_size</th>
-      <td><p>Text size in pt.</p></td>
-    </tr>
-    <tr>
       <th>legend_labels</th>
       <td><p>Labels for the legends in the plot.</p></td>
     </tr>
     <tr>
       <th>line_colors</th>
       <td><p>Colors of the lines.</p></td>
-    </tr>
-    <tr>
-      <th>background_color</th>
-      <td><p>Color of the panel background.</p></td>
-    </tr>
-    <tr>
-      <th>panel_grid_color</th>
-      <td><p>Color of the panel grid lines.</p></td>
-    </tr>
-    <tr>
-      <th>panel_grid_size</th>
-      <td><p>Size of the panel grid lines in plot,
-useful to change if large dpi!</p></td>
-    </tr>
-    <tr>
-      <th>axis_size</th>
-      <td><p>Size of the axis lines, useful to change if large dpi</p></td>
     </tr>
     <tr>
       <th>line_size</th>
@@ -247,7 +222,7 @@ useful to change if large dpi!</p></td>
       <td><p>Point sizes in plot.</p></td>
     </tr>
     <tr>
-      <th>legend_pos</th>
+      <th>legend.position</th>
       <td><p>Position of the legend in plot, matrix where each row
 corresponds to a legend position is recommended,
 if <code>length(subset) &gt; 1</code>.</p></td>
@@ -255,6 +230,10 @@ if <code>length(subset) &gt; 1</code>.</p></td>
     <tr>
       <th>n_row, n_col</th>
       <td><p>Number of rows/columns for the three plots.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments passed to <code><a href='theme_slr.html'>theme_slr()</a></code></p></td>
     </tr>
     </table>
 
@@ -264,17 +243,25 @@ if <code>length(subset) &gt; 1</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create trend plot for SU/Mölndal</span>
-<span class='co'># Look at the 9 data sets to see the required structure.</span>
-<span class='co'># Data sets are included in the package.</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> <span class='co'># See Issue # 2!</span>
-  <span class='va'>example_plot</span> <span class='op'>&lt;-</span> <span class='fu'>prom_trends</span><span class='op'>(</span>
-    <span class='va'>eq_vas_exp</span>, <span class='va'>eq_vas_obs</span>, <span class='va'>eq_vas_riket</span>, <span class='va'>pain_exp</span>,
-    <span class='va'>pain_obs</span>, <span class='va'>pain_riket</span>, <span class='va'>satis_exp</span>, <span class='va'>satis_obs</span>, <span class='va'>satis_riket</span>,
-    y_breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>0.1</span>, <span class='fl'>0.1</span><span class='op'>)</span>, subset <span class='op'>=</span> <span class='fl'>49</span><span class='op'>)</span>
-
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>example_plot</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+<span class='co'># Look at 9 data sets to see the required structure.</span>
+<span class='va'>p</span> <span class='op'>&lt;-</span>
+  <span class='fu'>prom_trends</span><span class='op'>(</span>
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/eq_vas_exp.html'>eq_vas_exp</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/eq_vas_obs.html'>eq_vas_obs</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/eq_vas_riket.html'>eq_vas_riket</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/pain_exp.html'>pain_exp</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/pain_obs.html'>pain_obs</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/pain_riket.html'>pain_riket</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/satis_exp.html'>satis_exp</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/satis_obs.html'>satis_obs</a></span>,
+  <span class='fu'>shprplotfun</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/shprplotfun/man/satis_riket.html'>satis_riket</a></span>,
+  y_breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>0.1</span>, <span class='fl'>0.1</span><span class='op'>)</span>,
+  subset <span class='op'>=</span> <span class='fl'>49</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Package 'extrafont' not installed!</span>
+#&gt; <span class='warning'>            This might cause problems with fonts if you export figures to PNG!</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+</div><div class='img'><img src='prom_trends-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
