@@ -23,69 +23,51 @@
 #'                                  large because of too many points!
 #' @param title                   Plot title, `NULL` for no title.
 #' @param subtitle                Small text under title, `NULL` for no subtitle.
-#' @param title_size              Text size of title in pt.
-#' @param subtitle_size           Text size of subtitle in pt.
-#' @param title_margin            Space between title and subtitle in pt.
 #' @param x_lab,y_lab             X- and Y-axis labels.
-#' @param background_color        Color of the panel background.
-#' @param panel_grid_color        Color of the panel grid lines.
-#' @param panel_grid_size         Size of the panel grid lines in plot,
-#'                                  useful to change if large dpi!
-#' @param axis_size               Size of the axis lines,
-#'                                  useful to change if large dpi!
-#' @param text_size               Size of the text in pt.
 #' @param line_size               Size of the head lines.
 #' @param show_ci                 If `TRUE`, show confidence interval lines.
 #' @param ci_line_size            Size of the confidence interval lines.
 #' @param line_colors             Color of the different curves.
-#' @param legend_pos              Position of the legend in plot.
+#' @param legend.position              Position of the legend in plot.
 #' @param legend_labels           Label for each legend key, default order as
 #'                                they appear in `names(survfit_obj$strata)`.
 #' @param label_breaks            Order of the legend keys.
-#' @param legend_key_height_mult  Increase space between legend keys with a
-#'                                  multiple.
 #' @param n_risk_break            Minimum number at risk to include
 #' @param ribbon_ci               Show confidence interval
 #' @param ribbon_alpha            Degree of transparency for confidence interval
+#' @param ...                     arguments passed to [theme_slr()]
 #'
 #' @return                        ggplot object containing Kaplan-Meier plot.
 #'
 #' @example                       man/examples/km_plot.R
 #' @export
-km_plot <-
-  function(survfit_obj,
-           make_step              = NULL,
-           first_point            = 1,
-           one_level              = FALSE,
-           y_lim                  = NULL,
-           percent_accuracy       = 1,
-           y_breaks               = 5,
-           x_lim                  = NULL,
-           x_breaks               = 1,
-           n_points               = NULL,
-           n_risk_break           = 50,
-           title                  = NULL,
-           subtitle               = NULL,
-           title_size             = 9,
-           subtitle_size          = 8,
-           title_margin           = 1,
-           y_lab                  = NULL,
-           x_lab                  = NULL,
-           background_color       = "#E7F0F2",
-           panel_grid_color       = "#ADAEAE",
-           panel_grid_size        = 0.2,
-           axis_size              = 0.2,
-           text_size              = 7,
-           line_size              = 0.5,
-           show_ci                = TRUE,
-           ribbon_ci              = TRUE,
-           ribbon_alpha           = 0.5,
-           ci_line_size           = 0.2,
-           line_colors            = NULL,
-           legend_pos             = c(0, 1),
-           legend_labels          = ggplot2::waiver(),
-           label_breaks           = ggplot2::waiver(),
-           legend_key_height_mult = 1) {
+km_plot <- function(
+                   survfit_obj,
+                   make_step              = NULL,
+                   first_point            = 1,
+                   one_level              = FALSE,
+                   y_lim                  = NULL,
+                   percent_accuracy       = 1,
+                   y_breaks               = 5,
+                   x_lim                  = NULL,
+                   x_breaks               = 1,
+                   n_points               = NULL,
+                   n_risk_break           = 50,
+                   title                  = NULL,
+                   subtitle               = NULL,
+                   y_lab                  = NULL,
+                   x_lab                  = NULL,
+                   line_size              = 0.5,
+                   show_ci                = TRUE,
+                   ribbon_ci              = TRUE,
+                   ribbon_alpha           = 0.5,
+                   ci_line_size           = 0.2,
+                   line_colors            = NULL,
+                   legend.position        = c(0, 1),
+                   legend_labels          = ggplot2::waiver(),
+                   label_breaks           = ggplot2::waiver(),
+                   ...
+                   ) {
 
     # Data suitable for ggplot ------------------------------------------------
 
@@ -256,7 +238,6 @@ km_plot <-
 
     y_breaks <- y_breaks / 100
 
-    if (!is.character(subtitle)) {title_margin <- 0.5 * title_size}
     if (is.null(x_lim)) {x_lim <- range(df$year)}
     if (is.null(y_lim)) {
       y_lim <- c(min(df$surv) - min(df$surv) %% y_breaks, 1)
@@ -265,7 +246,6 @@ km_plot <-
     }
 
     km <- ggplot2::ggplot(df, ggplot2::aes(x = .data$year, y = .data$surv)) +
-      ggplot2::theme_classic() +
       ggplot2::scale_colour_manual(
         values = line_colors,
         labels = legend_labels,
@@ -286,35 +266,9 @@ km_plot <-
       ggplot2::ggtitle(title, subtitle = subtitle) +
       ggplot2::xlab(x_lab) +
       ggplot2::ylab(y_lab) +
-      ggplot2::theme(
-        panel.background      = ggplot2::element_rect(fill = background_color),
-        panel.grid.major.y    = ggplot2::element_line(
-                                  colour = panel_grid_color,
-                                  size   = panel_grid_size),
-        axis.line             = ggplot2::element_line(size = axis_size),
-        axis.ticks.x          = ggplot2::element_line(size = axis_size),
-        axis.ticks.y          = ggplot2::element_blank(),
-        plot.title            = ggplot2::element_text(
-                                  hjust = 0.5,
-                                  size = title_size,
-                                  colour = "black",
-                                  margin = ggplot2::margin(b = title_margin)
-                                ),
-        plot.subtitle         = ggplot2::element_text(
-                                  hjust = 0.5,
-                                  size = subtitle_size,
-                                  colour = "black"
-                                ),
-        axis.text             = ggplot2::element_text(
-                                   colour = "black", size = text_size),
-        axis.title            = ggplot2::element_text(size = text_size),
-        legend.text           = ggplot2::element_text(size = text_size),
-        legend.position       = legend_pos,
-        legend.justification  = legend_pos,
-        legend.background     = ggplot2::element_rect(fill = "transparent"),
-        legend.title          = ggplot2::element_blank(),
-        legend.key.height     = ggplot2::unit(
-                                 text_size * legend_key_height_mult, "pt")
+      theme_slr(
+        legend.position       = legend.position,
+        legend.justification  = legend.position
       )
 
     if (show_ci) {

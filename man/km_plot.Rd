@@ -18,26 +18,18 @@ km_plot(
   n_risk_break = 50,
   title = NULL,
   subtitle = NULL,
-  title_size = 9,
-  subtitle_size = 8,
-  title_margin = 1,
   y_lab = NULL,
   x_lab = NULL,
-  background_color = "#E7F0F2",
-  panel_grid_color = "#ADAEAE",
-  panel_grid_size = 0.2,
-  axis_size = 0.2,
-  text_size = 7,
   line_size = 0.5,
   show_ci = TRUE,
   ribbon_ci = TRUE,
   ribbon_alpha = 0.5,
   ci_line_size = 0.2,
   line_colors = NULL,
-  legend_pos = c(0, 1),
+  legend.position = c(0, 1),
   legend_labels = ggplot2::waiver(),
   label_breaks = ggplot2::waiver(),
-  legend_key_height_mult = 1
+  ...
 )
 }
 \arguments{
@@ -76,25 +68,7 @@ large because of too many points!}
 
 \item{subtitle}{Small text under title, \code{NULL} for no subtitle.}
 
-\item{title_size}{Text size of title in pt.}
-
-\item{subtitle_size}{Text size of subtitle in pt.}
-
-\item{title_margin}{Space between title and subtitle in pt.}
-
 \item{x_lab, y_lab}{X- and Y-axis labels.}
-
-\item{background_color}{Color of the panel background.}
-
-\item{panel_grid_color}{Color of the panel grid lines.}
-
-\item{panel_grid_size}{Size of the panel grid lines in plot,
-useful to change if large dpi!}
-
-\item{axis_size}{Size of the axis lines,
-useful to change if large dpi!}
-
-\item{text_size}{Size of the text in pt.}
 
 \item{line_size}{Size of the head lines.}
 
@@ -108,15 +82,14 @@ useful to change if large dpi!}
 
 \item{line_colors}{Color of the different curves.}
 
-\item{legend_pos}{Position of the legend in plot.}
+\item{legend.position}{Position of the legend in plot.}
 
 \item{legend_labels}{Label for each legend key, default order as
 they appear in \code{names(survfit_obj$strata)}.}
 
 \item{label_breaks}{Order of the legend keys.}
 
-\item{legend_key_height_mult}{Increase space between legend keys with a
-multiple.}
+\item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
 }
 \value{
 \preformatted{                   ggplot object containing Kaplan-Meier plot.
