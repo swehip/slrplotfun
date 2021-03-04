@@ -34,7 +34,7 @@ age_pyramid <-
            age_breaks        = c(0, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, Inf),
            age_labels        = c("0-39", "40-44", "45-49", "50-54", "55-59",
                                  "60-64", "65-69", "70-74", "75-79", "80-84",
-                                 "85+" ),
+                                 "85+"),
            percent           = TRUE,
            x_breaks          = 5,
            x_breaks_end      = x_breaks * 1e5,
@@ -51,67 +51,59 @@ age_pyramid <-
            ...
            ) {
 
+  # Breaks and labels for x-axis (which is currently y-axis before coordflip)
+
+  br       <- seq(0, x_breaks_end, x_breaks)
+  x_breaks <- unique(c(-br, 0, br))
+  x_labels <- abs(x_breaks)
+  n        <- nrow(df)
 
   # Data transformation -----------------------------------------------------
 
-  df[, age_var] <- cut(df[, age_var], breaks = age_breaks, labels = age_labels)
-
   df <-
     df %>%
+    dplyr::mutate(
+      {{age_var}} :=
+        cut(.data[[age_var]], breaks = age_breaks, labels = age_labels)
+    ) %>%
     dplyr::group_by(.data[[gender_var]], .data[[age_var]]) %>%
-    dplyr::summarise(Population = dplyr::n())
-
-  df      <- stats::na.omit(df)
-  n_man   <- sum(df$Population[df[, gender_var] == man_level])
-  n_woman <- sum(df$Population[df[, gender_var] != man_level])
-  x_lim   <- max(df$Population)
-
-  df$Population[df[, gender_var] == man_level] <-
-    -1 * df$Population[df[, gender_var] == man_level]
-
-  # Breaks and labels for x-axis (which is currently y-axis before coordflip)
-  br <- seq(0, x_breaks_end, x_breaks)
-  x_breaks <- unique(c(-br, 0, br))
-  x_labels <- abs(x_breaks)
+    dplyr::summarise(Population = dplyr::n()) %>%
+    stats::na.omit(df) %>%
+    dplyr::add_tally(.data$Population) %>%
+    dplyr::mutate(
+      Population = replace(
+        .data$Population,
+        .data[[gender_var]] == man_level,
+        -.data$Population),
+      percent = .data$Population / n * 100
+    )
 
   if (percent) {
-    df$Population[df[, gender_var] == man_level] <-
-      df$Population[df[, gender_var] == man_level] / n_man * 100
-    df$Population[df[, gender_var] != man_level] <-
-      df$Population[df[, gender_var] != man_level] / n_woman * 100
-
-    x_lim <- max(abs(df$Population))
+    df       <- dplyr::mutate(df, Population = .data$percent)
     x_labels <- paste0(x_labels, " %")
   }
 
-  # Ggplot ------------------------------------------------------------------
+  # ggplot ------------------------------------------------------------------
 
   ggplot2::ggplot(df,
     ggplot2::aes(.data[[age_var]], .data$Population, fill = .data[[gender_var]])
   ) +
-
-  ggplot2::geom_bar(
-    stat = "identity"
-  ) +
-
+  ggplot2::geom_bar(stat = "identity") +
   ggplot2::xlab(x_lab) +
   ggplot2::ylab(y_lab) +
   ggplot2::ggtitle(title, subtitle = subtitle) +
-
   ggplot2::scale_y_continuous(
     breaks = x_breaks,
     labels = x_labels,
-    limits = c(-x_lim, x_lim)
+    limits = c(-max(abs(df$Population)), max(abs(df$Population)))
   ) +
-
   ggplot2::scale_fill_manual(
-    paste0("n = ", as.character(n_woman + n_man)),
+    paste("n =", n),
     values = fill_colors,
     labels = legend_labels,
     breaks = label_breaks,
     guide  = ggplot2::guide_legend(nrow = legend_row, ncol = legend_col)
   ) +
-
   ggplot2::coord_flip() +
   theme_slr(
     legend.position = legend.position,
