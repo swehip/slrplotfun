@@ -18,6 +18,7 @@
 #' @param y_breaks         Length between each break on y-axis.
 #' @param y_breaks_end     Break end, default for 100,000. Works for all count
 #'                           values below that.
+#' @param expand           If `TRUE`, the margins around the data are kept.
 #' @param line_size        Size of the lines.
 #' @param title            Plot title, `NULL` if no title.
 #' @param subtitle         Small text under title, `NULL` if no subtitle.
@@ -55,6 +56,7 @@ line_plot <-
     label_breaks      = ggplot2::waiver(),
     legend_row        = NULL,
     legend_col        = NULL,
+    expand            = TRUE,
     ...
   ) {
 
@@ -148,7 +150,8 @@ line_plot <-
       ggplot2::scale_y_continuous(
         labels = scales::percent_format(accuracy = percent_accuracy),
         breaks = seq(0, 1, by = y_breaks),
-        limits = y_lim
+        limits = y_lim,
+        expand = if(expand) waiver() else c(0,0)
       )
 
   } else{
@@ -167,8 +170,10 @@ line_plot <-
       ) +
       ggplot2::scale_y_continuous(
         breaks = seq(0, y_breaks_end, by = y_breaks),
-        limits = y_lim
+        limits = y_lim,
+        expand = if(expand) waiver() else c(0,0)
       )
   }
   lines
 }
+
