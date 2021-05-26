@@ -85,7 +85,7 @@ List of several gtable objects where each gtable object is one clinic
 Visualizing PROM-trends for each clinic using ggplot2.
 }
 \examples{
-# Create trend plot for SU/Mölndal
+# Create trend plot for SU/MÃ¶lndal
 # Look at 9 data sets to see the required structure.
 p <-
   prom_trends(

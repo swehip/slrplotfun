@@ -26,6 +26,7 @@ bar_plot(
   label_breaks = ggplot2::waiver(),
   legend_row = NULL,
   legend_col = NULL,
+  expand = FALSE,
   ...
 )
 }
@@ -77,6 +78,8 @@ values below that.}
 \item{legend_row}{How many rows for the legends.}
 
 \item{legend_col}{How many columns for the legends.}
+
+\item{expand}{If \code{TRUE}, the margins around the data are kept.}
 
 \item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
 }
