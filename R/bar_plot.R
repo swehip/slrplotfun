@@ -21,6 +21,7 @@
 #' @param x_breaks,y_breaks  Length between each break on x/y axis.
 #' @param y_breaks_end       Break end, default for 100,000. Works for all count
 #'                           values below that.
+#' @param expand             If `TRUE`, the margins around the data are kept.
 #' @param title              Plot title, `NULL` if no title.
 #' @param subtitle           Small text under title, `NULL` if no subtitle.
 #' @param y_lab              Y-axis label, use `NULL` for no label.
@@ -57,6 +58,7 @@ bar_plot <-
            label_breaks      = ggplot2::waiver(),
            legend_row        = NULL,
            legend_col        = NULL,
+           expand            = FALSE,
            ...
            ) {
 
@@ -163,7 +165,8 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
           breaks = seq(0, 1, by = y_breaks),
-          limits = y_lim
+          limits = y_lim,
+          expand = if(expand) waiver() else c(0,0)
         )
 
     } else if (style == "fill") {
@@ -179,7 +182,8 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
           breaks = seq(0, 1, by = y_breaks),
-          limits = y_lim
+          limits = y_lim,
+          expand = if(expand) waiver() else c(0,0)
         )
     } else{
       bars <-
@@ -194,7 +198,8 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
           breaks = seq(0, 1, by = y_breaks),
-          limits = y_lim
+          limits = y_lim,
+          expand = if(expand) waiver() else c(0,0)
         )
 
     }
@@ -214,8 +219,11 @@ bar_plot <-
         show.legend = show_legend,
         position    = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
       ) +
-      ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
-                         limits = y_lim)
+      ggplot2::scale_y_continuous(
+        breaks = seq(0, y_breaks_end, by = y_breaks),
+        limits = y_lim,
+        expand = if(expand) waiver() else c(0,0)
+      )
 
   } else if (style == "dodge") {
     bars <-
@@ -232,8 +240,11 @@ bar_plot <-
         show.legend = show_legend,
         position = ggplot2::position_dodge(width = 0.5)
       ) +
-      ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
-                         limits = y_lim)
+      ggplot2::scale_y_continuous(
+        breaks = seq(0, y_breaks_end, by = y_breaks),
+        limits = y_lim,
+        expand = if(expand) waiver() else c(0,0)
+      )
 
 
   } else{
@@ -251,8 +262,11 @@ bar_plot <-
         show.legend = show_legend,
         position = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
       ) +
-      ggplot2::scale_y_continuous(breaks = seq(0, y_breaks_end, by = y_breaks),
-                         limits = y_lim)
+      ggplot2::scale_y_continuous(
+        breaks = seq(0, y_breaks_end, by = y_breaks),
+        limits = y_lim,
+        expand = if(expand) waiver() else c(0,0)
+      )
   }
 
   if (is.numeric(df[[x_var]]) & !is.null(x_breaks)) {
