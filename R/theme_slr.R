@@ -10,6 +10,7 @@
 #' @param axis_text_angle passed to
 #'   `axis.text.x = element_text(angle = axis_text_angle)`
 #' @param text_size,title_size,subtitle_size Text size for most text, title and subtitle
+#' @param x_lab_exists Indicator if x label should be blank or not
 #' @return Modified version of [theme_classic()]
 #' @export
 #' @import ggplot2
@@ -23,6 +24,7 @@ theme_slr <- function(
                       title_size           = 9,
                       title_hjust          = 0.5,
                       subtitle             = FALSE,
+                      x_lab_exists         = FALSE,
                       title_margin         = if (subtitle) 1 else title_size / 2
                       ) {
 
@@ -40,7 +42,9 @@ theme_slr <- function(
     axis.text.x           = element_text(angle = axis_text_angle),
     axis.ticks.x          = element_line(size = 0.2),
     axis.ticks.y          = element_blank(),
-    axis.title.x          = element_blank(),
+    axis.title.x          = if(x_lab_exists) {
+      element_text(size = rel(1))
+    } else {element_blank()},
 
 
 # Legend ------------------------------------------------------------------

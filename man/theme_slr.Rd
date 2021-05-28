@@ -14,6 +14,7 @@ theme_slr(
   title_size = 9,
   title_hjust = 0.5,
   subtitle = FALSE,
+  x_lab_exists = FALSE,
   title_margin = if (subtitle) 1 else title_size/2
 )
 }
@@ -36,6 +37,8 @@ the plot area when positioned outside the plot}
 \verb{plot.title = element_text(hjust = title_hjust, margin = margin(b = title_margin)}}
 
 \item{subtitle}{is a subtitle used in the figure (boolean)?}
+
+\item{x_lab_exists}{Indicator if x label should be blank or not}
 }
 \value{
 Modified version of \code{\link[=theme_classic]{theme_classic()}}

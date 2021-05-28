@@ -140,10 +140,10 @@ bar_plot <-
       breaks = label_breaks,
       guide  = ggplot2::guide_legend(nrow = legend_row, ncol = legend_col)
     ) +
-    ggplot2::ylab(y_lab) +
-    ggplot2::xlab(x_lab) +
     ggplot2::ggtitle(title, subtitle = subtitle) +
-    theme_slr(subtitle = !is.null(subtitle))
+    ggplot2::labs(x = x_lab, y = y_lab) +
+    theme_slr(subtitle = !is.null(subtitle),
+              x_lab_exists = !is.null(x_lab))
 
   if (y_percent) {
     y_breaks <- y_breaks / 100
@@ -166,7 +166,7 @@ bar_plot <-
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
           breaks = seq(0, 1, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) waiver() else c(0,0)
+          expand = if(expand) ggplot2::waiver() else c(0,0)
         )
 
     } else if (style == "fill") {
@@ -177,13 +177,13 @@ bar_plot <-
           mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
           stat = "identity",
           show.legend = show_legend,
-          position = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
+          position = ggplot2::position_fill(vjust = 0, reverse = TRUE)
         ) +
         ggplot2::scale_y_continuous(
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
           breaks = seq(0, 1, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) waiver() else c(0,0)
+          expand = if(expand) ggplot2::waiver() else c(0,0)
         )
     } else{
       bars <-
@@ -193,13 +193,13 @@ bar_plot <-
           mapping     = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
           stat        = "identity",
           show.legend = show_legend,
-          position    = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
+          position    = ggplot2::position_stack(vjust = 0, reverse = TRUE)
         ) +
         ggplot2::scale_y_continuous(
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
           breaks = seq(0, 1, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) waiver() else c(0,0)
+          expand = if(expand) ggplot2::waiver() else c(0,0)
         )
 
     }
@@ -217,12 +217,12 @@ bar_plot <-
         ),
         stat        = "identity",
         show.legend = show_legend,
-        position    = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
+        position    = ggplot2::position_fill(vjust = 0, reverse = TRUE)
       ) +
       ggplot2::scale_y_continuous(
         breaks = seq(0, y_breaks_end, by = y_breaks),
         limits = y_lim,
-        expand = if(expand) waiver() else c(0,0)
+        expand = if(expand) ggplot2::waiver() else c(0,0)
       )
 
   } else if (style == "dodge") {
@@ -243,7 +243,7 @@ bar_plot <-
       ggplot2::scale_y_continuous(
         breaks = seq(0, y_breaks_end, by = y_breaks),
         limits = y_lim,
-        expand = if(expand) waiver() else c(0,0)
+        expand = if(expand) ggplot2::waiver() else c(0,0)
       )
 
 
@@ -260,12 +260,12 @@ bar_plot <-
         ),
         stat = "identity",
         show.legend = show_legend,
-        position = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
+        position = ggplot2::position_stack(vjust = 0, reverse = TRUE)
       ) +
       ggplot2::scale_y_continuous(
         breaks = seq(0, y_breaks_end, by = y_breaks),
         limits = y_lim,
-        expand = if(expand) waiver() else c(0,0)
+        expand = if(expand) ggplot2::waiver() else c(0,0)
       )
   }
 
