@@ -177,7 +177,7 @@ bar_plot <-
           mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
           stat = "identity",
           show.legend = show_legend,
-          position = ggplot2::position_fill(vjust = 0, reverse = TRUE)
+          position = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
         ) +
         ggplot2::scale_y_continuous(
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
@@ -193,7 +193,7 @@ bar_plot <-
           mapping     = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
           stat        = "identity",
           show.legend = show_legend,
-          position    = ggplot2::position_stack(vjust = 0, reverse = TRUE)
+          position    = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
         ) +
         ggplot2::scale_y_continuous(
           labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
@@ -217,7 +217,7 @@ bar_plot <-
         ),
         stat        = "identity",
         show.legend = show_legend,
-        position    = ggplot2::position_fill(vjust = 0, reverse = TRUE)
+        position    = ggplot2::position_fill(vjust = 0.5, reverse = TRUE)
       ) +
       ggplot2::scale_y_continuous(
         breaks = seq(0, y_breaks_end, by = y_breaks),
@@ -260,7 +260,7 @@ bar_plot <-
         ),
         stat = "identity",
         show.legend = show_legend,
-        position = ggplot2::position_stack(vjust = 0, reverse = TRUE)
+        position = ggplot2::position_stack(vjust = 0.5, reverse = TRUE)
       ) +
       ggplot2::scale_y_continuous(
         breaks = seq(0, y_breaks_end, by = y_breaks),
