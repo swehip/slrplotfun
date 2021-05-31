@@ -1,6 +1,6 @@
-#' Kaplan-Meier plot function
+#' Kaplan-Meier plot function using ggplot2.
 #'
-#' Kaplan-Meier plot using ggplot2.
+#' By default it plots 1-KM. Set cum_inc = `FALSE` to plot the survival function.
 #'
 #' @param survfit_obj             Object returned from [survival::survfit()].
 #'                                  Also works with data frame
@@ -8,6 +8,7 @@
 #'                                  and upper variable needed if `show_ci = TRUE`.
 #'                                  Specify strata variable needed
 #'                                  if several curves wanted.
+#' @param cum_inc                 If `TRUE`, 1-KM is plotted.
 #' @param make_step               If `TRUE`, step data will be created.
 #' @param first_point             If `make_step = TRUE`, `first_point` for KM is
 #'                                  1 and for competing risk 0.
@@ -44,6 +45,7 @@
 km_plot <- function(
                    survfit_obj,
                    make_step              = NULL,
+                   cum_inc                = TRUE, 
                    first_point            = 1,
                    one_level              = FALSE,
                    y_lim                  = NULL,
@@ -150,6 +152,9 @@ km_plot <- function(
         dplyr::ungroup()
 
     }
+    
+    
+
 
     # make step function data by adding all points from data but
     # with all the next values in year
@@ -207,6 +212,17 @@ km_plot <- function(
     }
   }
 
+  
+  # If cumulative incidence = TRUE: 1-KM
+  if (cum_inc) {
+    
+    dfxx <- df
+    
+    df$surv <- 1 - dfxx$surv
+    df$lower <- 1 - dfxx$upper
+    df$upper <- 1 - dfxx$lower
+    
+  }
   # Ggplot ------------------------------------------------------------------
 
   y_breaks <- y_breaks / 100

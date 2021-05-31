@@ -62,7 +62,7 @@ theme_slr <- function(
 
 # Panel -------------------------------------------------------------------
 
-    panel.background      = element_rect(fill = "#E7F0F2"),
+    panel.background      = element_rect(fill = "white"),
     panel.grid.major.y    = element_line(colour = "#ADAEAE", size = 0.2),
 
 
