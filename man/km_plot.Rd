@@ -2,11 +2,12 @@
 % Please edit documentation in R/km_plot.R
 \name{km_plot}
 \alias{km_plot}
-\title{Kaplan-Meier plot function}
+\title{Kaplan-Meier plot function using ggplot2.}
 \usage{
 km_plot(
   survfit_obj,
   make_step = NULL,
+  cum_inc = TRUE,
   first_point = 1,
   one_level = FALSE,
   y_lim = NULL,
@@ -41,6 +42,8 @@ Specify strata variable needed
 if several curves wanted.}
 
 \item{make_step}{If \code{TRUE}, step data will be created.}
+
+\item{cum_inc}{If \code{TRUE}, 1-KM is plotted.}
 
 \item{first_point}{If \code{make_step = TRUE}, \code{first_point} for KM is
 1 and for competing risk 0.}
@@ -96,7 +99,7 @@ they appear in \code{names(survfit_obj$strata)}.}
 }
 }
 \description{
-Kaplan-Meier plot using ggplot2.
+By default it plots 1-KM. Set cum_inc = \code{FALSE} to plot the survival function.
 }
 \examples{
 library(survival)
