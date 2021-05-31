@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kaplan-Meier plot function — km_plot • slrplotfun</title>
+<title>Kaplan-Meier plot function using ggplot2. — km_plot • slrplotfun</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Kaplan-Meier plot function — km_plot" />
-<meta property="og:description" content="Kaplan-Meier plot using ggplot2." />
+<meta property="og:title" content="Kaplan-Meier plot function using ggplot2. — km_plot" />
+<meta property="og:description" content="By default it plots 1-KM. Set cum_inc = FALSE to plot the survival function." />
 
 
 
@@ -108,18 +108,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Kaplan-Meier plot function</h1>
+    <h1>Kaplan-Meier plot function using ggplot2.</h1>
     <small class="dont-index">Source: <a href='https://github.com/swehip/slrplotfun/blob/master/R/km_plot.R'><code>R/km_plot.R</code></a></small>
     <div class="hidden name"><code>km_plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Kaplan-Meier plot using ggplot2.</p>
+    <p>By default it plots 1-KM. Set cum_inc = <code>FALSE</code> to plot the survival function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>km_plot</span><span class='op'>(</span>
   <span class='va'>survfit_obj</span>,
   make_step <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cum_inc <span class='op'>=</span> <span class='cn'>TRUE</span>,
   first_point <span class='op'>=</span> <span class='fl'>1</span>,
   one_level <span class='op'>=</span> <span class='cn'>FALSE</span>,
   y_lim <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -160,6 +161,10 @@ if several curves wanted.</p></td>
     <tr>
       <th>make_step</th>
       <td><p>If <code>TRUE</code>, step data will be created.</p></td>
+    </tr>
+    <tr>
+      <th>cum_inc</th>
+      <td><p>If <code>TRUE</code>, 1-KM is plotted.</p></td>
     </tr>
     <tr>
       <th>first_point</th>
