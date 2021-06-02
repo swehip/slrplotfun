@@ -15,6 +15,23 @@ slrsave(
   family = "Calibri Light"
 )
 }
+\arguments{
+\item{file}{File name to create on disk.}
+
+\item{plot}{Plot to save}
+
+\item{width}{Width in units ("in", "cm", or "mm").}
+
+\item{height}{Height in units ("in", "cm", or "mm").}
+
+\item{units}{Units ("in", "cm", or "mm")}
+
+\item{dpi}{Plot resolution.}
+
+\item{device}{Device to use. Can either be a device function (e.g. png()), or one of "eps", "ps", "tex" (pictex), "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).}
+
+\item{family}{Font family}
+}
 \description{
 ggsave function with default settings for SLR annual report
 }
