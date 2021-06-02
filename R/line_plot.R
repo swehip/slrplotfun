@@ -125,7 +125,9 @@ line_plot <-
     ggplot2::ylab(y_lab) +
     ggplot2::xlab(x_lab) +
     ggplot2::ggtitle(title, subtitle = subtitle) +
-    theme_slr(...)
+    theme_slr(subtitle = !is.null(subtitle),
+              x_lab_exists = !is.null(x_lab),
+              ...)
 
   if (y_percent) {
     y_breaks <- y_breaks / 100
