@@ -1,6 +1,8 @@
 #' ggsave function with default settings for SLR annual report
 #' 
+#'  @export
 #' @import ggplot2
+#' 
 slrsave <- function(
   file = NULL,
   plot = NULL,
@@ -11,7 +13,7 @@ slrsave <- function(
   device = "tiff",
   family = "Calibri Light"
 ) {
-  ggsave(
+  ggplot2::ggsave(
     file, 
     plot = plot, 
     width = width, 

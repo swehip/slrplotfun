@@ -16,5 +16,5 @@ slrsave(
 )
 }
 \description{
-ggsave function with default settings for SLR annual report
+@export
 }
