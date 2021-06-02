@@ -1,6 +1,6 @@
 #' ggsave function with default settings for SLR annual report
 #' 
-#'  @export
+#' @export
 #' @import ggplot2
 #' 
 slrsave <- function(
