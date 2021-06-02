@@ -43,7 +43,9 @@ theme_slr <- function(
     axis.ticks.x          = element_line(size = 0.2),
     axis.ticks.y          = element_blank(),
     axis.title.x          = if(x_lab_exists) {
-      element_text(size = rel(1))
+      element_text(size = rel(1),
+                   margin = margin(t = 10, r = 0, b = 0, l = 0))
+      
     } else {element_blank()},
 
 
