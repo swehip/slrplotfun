@@ -20,8 +20,10 @@
 #' @param y_lim              Limit on y axis.
 #' @param x_breaks,y_breaks  Length between each break on x/y axis.
 #' @param y_breaks_end       Break end, default for 100,000. Works for all count
-#'                           values below that.
+#'                             values below that.
 #' @param expand             If `TRUE`, the margins around the data are kept.
+#' @param flip               If `TRUE`, x and y axis changes positions making
+#'                             the bars go horizontally instead of vertically.
 #' @param title              Plot title, `NULL` if no title.
 #' @param subtitle           Small text under title, `NULL` if no subtitle.
 #' @param y_lab              Y-axis label, use `NULL` for no label.
@@ -59,6 +61,7 @@ bar_plot <-
            legend_row        = NULL,
            legend_col        = NULL,
            expand            = FALSE,
+           flip              = FALSE,
            ...
            ) {
 
@@ -278,5 +281,12 @@ bar_plot <-
                      by = x_breaks)
         )
   }
+
+  if(flip){
+    bars <-
+      bars +
+      ggplot2::coord_flip()
+  }
+
   bars
 }

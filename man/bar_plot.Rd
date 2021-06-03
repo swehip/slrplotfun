@@ -27,6 +27,7 @@ bar_plot(
   legend_row = NULL,
   legend_col = NULL,
   expand = FALSE,
+  flip = FALSE,
   ...
 )
 }
@@ -80,6 +81,9 @@ values below that.}
 \item{legend_col}{How many columns for the legends.}
 
 \item{expand}{If \code{TRUE}, the margins around the data are kept.}
+
+\item{flip}{If \code{TRUE}, x and y axis changes positions making
+the bars go horizontally instead of vertically.}
 
 \item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
 }
