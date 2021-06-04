@@ -6,7 +6,7 @@
 \usage{
 slrsave(
   file = NULL,
-  plot = NULL,
+  plot = ggplot2::last_plot(),
   width = 3.14961,
   height = 3.54331,
   units = "in",
