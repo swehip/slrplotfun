@@ -11,6 +11,13 @@ guide_axis_label_trans(label_trans = identity, ...)
 
 \item{df}{Data frame.}
 
+\item{x_var}{Variable for x axis, use string name.
+Recommended that \code{x_var} is in character in df.}
+
+\item{fill_var}{Variable for the different colors in bars,
+use string name.
+Use \code{NULL} if only one color for bars.}
+
 \item{title}{Plot title, \code{NULL} if no title.}
 
 \item{subtitle}{Small text under title, \code{NULL} if no subtitle.}
@@ -18,6 +25,10 @@ guide_axis_label_trans(label_trans = identity, ...)
 \item{y_lab}{Y-axis label, use \code{NULL} for no label.}
 
 \item{x_lab}{X-axis label, use \code{NULL} for no label.}
+
+\item{fill_colors}{Color of the different categories in \code{fill_var}.}
+
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
 }
 \value{
 \preformatted{              ggplot object containing bar plot.
