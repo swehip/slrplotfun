@@ -33,6 +33,8 @@ guide_train.guide_axis_trans <- function(x, ...){
 #' @export
 horisontal_bar_plot <-
   function(df,
+           x_var,
+           fill_var,
            title             = NULL,
            subtitle          = NULL,
            y_lab             = NULL,
@@ -40,22 +42,27 @@ horisontal_bar_plot <-
            ...
   )
   {
+    #vars <- c(x_var, fill_var)
     df <-
       df %>%
-      dplyr::group_by(lab, gen) %>%
+      dplyr::group_by_at(
+        c(x_var, fill_var)
+      ) %>%
       dplyr::summarise(y = dplyr::n()) %>%
-      dplyr::group_by(lab) %>%
-      dplyr::mutate(y2 = y/sum(y)) %>%
+      dplyr::group_by_at(x_var) %>%
+      dplyr::mutate(
+        n = sum(y),
+        y2 = y/n
+      ) %>%
       dplyr::ungroup()
 
-    df$lab <- forcats::fct_reorder2(df$lab, df$gen, df$y2)
+    df$lab <- forcats::fct_reorder2(df[[x_var]], df[[fill_var]], df$y2)
 
 
     labe <-
-      df %>%
-      filter(gen == "Kvinna") %>%
-      mutate(
-        rlab = paste0(y, " (", round(y2,2)*100, "%)")
+      df[df[[fill_var]] == levels(as.factor(df[[fill_var]]))[1], ] %>%
+      dplyr::mutate(
+          rlab = paste0(n, " (", round(y2,2)*100, "%)")
       ) %>%
       arrange(y2) %>%
       .$rlab
@@ -65,9 +72,9 @@ horisontal_bar_plot <-
     bars <-
       ggplot2::ggplot(
         df,
-        aes(x = lab,
+        aes(x = .data[[x_var]],
             y = y2,
-            fill = gen
+            fill = .data[[fill_var]]
         )
       ) +
       ggplot2::ggtitle(
