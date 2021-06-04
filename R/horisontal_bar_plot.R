@@ -39,9 +39,16 @@ horisontal_bar_plot <-
            subtitle          = NULL,
            y_lab             = NULL,
            x_lab             = NULL,
+           fill_colors       = NULL,
+           percent_accuracy  = 1,
            ...
   )
   {
+    # Fill colors ------------------------------------------------------------
+    if (is.null(fill_colors)) {
+      n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
+      fill_colors <- slr_colors(n)
+    }
     #vars <- c(x_var, fill_var)
     df <-
       df %>%
@@ -77,6 +84,9 @@ horisontal_bar_plot <-
             fill = .data[[fill_var]]
         )
       ) +
+      ggplot2::scale_fill_manual(
+        values = fill_colors
+      ) +
       ggplot2::ggtitle(
         title,
         subtitle = subtitle
@@ -96,6 +106,7 @@ horisontal_bar_plot <-
                                           reverse = TRUE)
       ) +
       ggplot2::scale_y_continuous(
+        labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
         expand = c(0,0)
       ) +
       ggplot2::guides(
