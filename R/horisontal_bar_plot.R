@@ -72,8 +72,7 @@ horisontal_bar_plot <-
           rlab = paste0(n, " (", round(y2,2)*100, "%)")
       ) %>%
       arrange(y2) %>%
-      .$rlab
-
+      select(rlab)
 
     #### create ggplot object ####
     bars <-
