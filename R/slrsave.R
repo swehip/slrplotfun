@@ -30,6 +30,7 @@ slrsave <- function(
     dpi = dpi,
     type = "cairo",
     device = device,
-    family = family
+    family = family,
+    compression = "lzw"
   )
 }
