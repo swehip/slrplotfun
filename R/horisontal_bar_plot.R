@@ -97,7 +97,7 @@ horisontal_bar_plot <-
         values = fill_colors
       ) +
       ggplot2::ggtitle(
-        title = title,
+        label = title,
         subtitle = subtitle
       ) +
       ggplot2::labs(
