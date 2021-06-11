@@ -77,7 +77,7 @@ horisontal_bar_plot <-
         y2 = y/n
       ) %>%
       dplyr::ungroup()
-    print(filter(df, lab == "aa"))
+
 
     # Sort left-hand labels by y2
     df[[x_var]] <- forcats::fct_reorder2(df[[x_var]], df[[fill_var]], df$y2)
