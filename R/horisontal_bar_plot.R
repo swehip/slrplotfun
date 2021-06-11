@@ -58,11 +58,17 @@ horisontal_bar_plot <-
       n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
       fill_colors <- slr_colors(n)
     }
+    if(!is.factor(df[[fill_var]])){
+      df[[fill_var]] <- as.factor(df[[fill_var]])
+    }
+    if(!is.factor(df[[x_var]])){
+      df[[x_var]] <- as.factor(df[[x_var]])
+    }
     # Calculations by group
     df <-
       df %>%
       dplyr::group_by_at(
-        c(x_var, fill_var)
+        c(x_var, fill_var), .drop = FALSE
       ) %>%
       dplyr::summarise(y = dplyr::n()) %>%
       dplyr::group_by_at(x_var) %>%
@@ -71,6 +77,7 @@ horisontal_bar_plot <-
         y2 = y/n
       ) %>%
       dplyr::ungroup()
+    print(filter(df, lab == "aa"))
 
     # Sort left-hand labels by y2
     df[[x_var]] <- forcats::fct_reorder2(df[[x_var]], df[[fill_var]], df$y2)
