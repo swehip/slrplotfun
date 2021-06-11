@@ -73,7 +73,7 @@ horisontal_bar_plot <-
       dplyr::ungroup()
 
     # Sort left-hand labels by y2
-    df$lab <- forcats::fct_reorder2(df[[x_var]], df[[fill_var]], df$y2)
+    df[[x_var]] <- forcats::fct_reorder2(df[[x_var]], df[[fill_var]], df$y2)
 
     # Construct right-hand labels sorted by y2
     rlab <-
@@ -97,7 +97,7 @@ horisontal_bar_plot <-
         values = fill_colors
       ) +
       ggplot2::ggtitle(
-        title,
+        title = title,
         subtitle = subtitle
       ) +
       ggplot2::labs(
@@ -106,8 +106,7 @@ horisontal_bar_plot <-
       ) +
       theme_slr(
         subtitle = !is.null(subtitle),
-        x_lab_exists = !is.null(x_lab),
-        ...
+        x_lab_exists = !is.null(x_lab)#, ...
       ) +
       ggplot2::geom_bar(
         stat = "identity",
@@ -115,7 +114,9 @@ horisontal_bar_plot <-
                                           reverse = TRUE)
       ) +
       ggplot2::scale_y_continuous(
-        labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
+        labels = scales::percent_format(
+          accuracy = percent_accuracy,
+          suffix = " %"),
         expand = c(0,0)
       ) +
       ggplot2::guides(
