@@ -146,7 +146,8 @@ bar_plot <-
     ggplot2::ggtitle(title, subtitle = subtitle) +
     ggplot2::labs(x = x_lab, y = y_lab) +
     theme_slr(subtitle = !is.null(subtitle),
-              x_lab_exists = !is.null(x_lab))
+              x_lab_exists = !is.null(x_lab),
+              ...)
 
   if (y_percent) {
     y_breaks <- y_breaks / 100
