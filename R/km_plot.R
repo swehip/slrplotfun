@@ -43,33 +43,33 @@
 #' @example                       man/examples/km_plot.R
 #' @export
 km_plot <- function(
-                   survfit_obj,
-                   make_step              = NULL,
-                   cum_inc                = TRUE, 
-                   first_point            = 1,
-                   one_level              = FALSE,
-                   y_lim                  = NULL,
-                   percent_accuracy       = 1,
-                   y_breaks               = 5,
-                   x_lim                  = NULL,
-                   x_breaks               = 1,
-                   n_points               = NULL,
-                   n_risk_break           = 50,
-                   title                  = NULL,
-                   subtitle               = NULL,
-                   y_lab                  = NULL,
-                   x_lab                  = NULL,
-                   line_size              = 0.5,
-                   show_ci                = TRUE,
-                   ribbon_ci              = TRUE,
-                   ribbon_alpha           = 0.5,
-                   ci_line_size           = 0.2,
-                   line_colors            = NULL,
-                   legend.position        = c(0, 1),
-                   legend_labels          = ggplot2::waiver(),
-                   label_breaks           = ggplot2::waiver(),
-                   ...
-                   ) {
+  survfit_obj,
+  make_step              = NULL,
+  cum_inc                = TRUE,
+  first_point            = 1,
+  one_level              = FALSE,
+  y_lim                  = NULL,
+  percent_accuracy       = 1,
+  y_breaks               = 5,
+  x_lim                  = NULL,
+  x_breaks               = 1,
+  n_points               = NULL,
+  n_risk_break           = 50,
+  title                  = NULL,
+  subtitle               = NULL,
+  y_lab                  = NULL,
+  x_lab                  = NULL,
+  line_size              = 0.5,
+  show_ci                = TRUE,
+  ribbon_ci              = TRUE,
+  ribbon_alpha           = 0.5,
+  ci_line_size           = 0.2,
+  line_colors            = NULL,
+  legend.position        = c(0, 1),
+  legend_labels          = ggplot2::waiver(),
+  label_breaks           = ggplot2::waiver(),
+  ...
+) {
 
   # Data suitable for ggplot ------------------------------------------------
 
@@ -152,8 +152,8 @@ km_plot <- function(
         dplyr::ungroup()
 
     }
-    
-    
+
+
 
 
     # make step function data by adding all points from data but
@@ -170,14 +170,16 @@ km_plot <- function(
 
     # remove ugly strata=level and only keep level in legend
 
-    strata <- strsplit(levels(df$strata), ", ") %>%
-      lapply(gsub, pattern = ".*=", replacement = "") %>%
-      lapply(paste0, collapse = ", ")
+    if(!is.null(levels(df$strata))){
+      strata <- strsplit(levels(df$strata), ", ") %>%
+        lapply(gsub, pattern = ".*=", replacement = "") %>%
+        lapply(paste0, collapse = ", ")
 
-    df$strata <-
-      factor(df$strata,
-             levels = levels(df$strata),
-             labels = strata)
+      df$strata <-
+        factor(df$strata,
+               levels = levels(df$strata),
+               labels = strata)
+    }
 
   } else{
     df <- survfit_obj
@@ -212,16 +214,16 @@ km_plot <- function(
     }
   }
 
-  
+
   # If cumulative incidence = TRUE: 1-KM
   if (cum_inc) {
-    
+
     dfxx <- df
-    
+
     df$surv <- 1 - dfxx$surv
     df$lower <- 1 - dfxx$upper
     df$upper <- 1 - dfxx$lower
-    
+
   }
   # Ggplot ------------------------------------------------------------------
 
