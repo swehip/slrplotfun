@@ -107,6 +107,8 @@ age_pyramid <-
   ggplot2::coord_flip() +
   theme_slr(
     legend.position = legend.position,
-    legend_title = TRUE
+    legend_title = TRUE,
+    subtitle     = !is.null(subtitle),
+    x_lab_exist  = !is.null(x_lab)
   )
 }
