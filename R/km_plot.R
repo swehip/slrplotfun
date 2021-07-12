@@ -259,7 +259,9 @@ km_plot <- function(
     ggplot2::ylab(y_lab) +
     theme_slr(
       legend.position       = legend.position,
-      legend.justification  = legend.position
+      legend.justification  = legend.position,
+      subtitle              = !is.null(subtitle),
+      x_lab_exist           = !is.null(x_lab)
     )
 
   if (show_ci) {
