@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • slrplotfun</title>
+<title>Bar plot function — horisontal_bar_plot • slrplotfun</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Bar plot function — horisontal_bar_plot" />
+<meta property="og:description" content="Plot a bar plot using ggplot2." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,126 +106,91 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Bar plot function</h1>
+    <small class="dont-index">Source: <a href='https://github.com/swehip/slrplotfun/blob/master/R/horisontal_bar_plot.R'><code>R/horisontal_bar_plot.R</code></a></small>
+    <div class="hidden name"><code>horisontal_bar_plot.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Plot a bar plot using ggplot2.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>horisontal_bar_plot</span><span class='op'>(</span>
+  <span class='va'>df</span>,
+  <span class='va'>x_var</span>,
+  <span class='va'>fill_var</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y_lab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x_lab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fill_colors <span class='op'>=</span> <span class='cn'>NULL</span>,
+  show_pct <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  percent_accuracy <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="add_attr.html">add_attr()</a></code> </p>
-        </td>
-        <td><p>Add attributes from one data frame to another</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="age_pyramid.html">age_pyramid()</a></code> </p>
-        </td>
-        <td><p>Age-pyramid plot function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="attr_to_factor.html">attr_to_factor()</a></code> </p>
-        </td>
-        <td><p>Convert object with attributes in "map" to factor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bar_plot.html">bar_plot()</a></code> </p>
-        </td>
-        <td><p>Bar plot function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="check_attr.html">check_attr()</a></code> </p>
-        </td>
-        <td><p>Check if object has attribute "map"</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="horisontal_bar_plot.html">horisontal_bar_plot()</a></code> </p>
-        </td>
-        <td><p>Bar plot function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="km_plot.html">km_plot()</a></code> </p>
-        </td>
-        <td><p>Kaplan-Meier plot function using ggplot2.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="line_plot.html">line_plot()</a></code> </p>
-        </td>
-        <td><p>Line plot function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pick_valid.html">pick_valid()</a></code> </p>
-        </td>
-        <td><p>Help function for add_prom</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prom_trends.html">prom_trends()</a></code> </p>
-        </td>
-        <td><p>PROM-trends plot function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="size_order.html">size_order()</a></code> </p>
-        </td>
-        <td><p>Make an ordered factor with most important level first</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slr_colors.html">slr_colors()</a></code> </p>
-        </td>
-        <td><p>Colors used by the SLR color pallette</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="slrsave.html">slrsave()</a></code> </p>
-        </td>
-        <td><p>ggsave function with default settings for SLR annual report</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_slr.html">theme_slr()</a></code> </p>
-        </td>
-        <td><p>The Swedish Arthroplasty Registert theme</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="trend_plot.html">trend_plot()</a></code> </p>
-        </td>
-        <td><p>Trend plot function</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>df</th>
+      <td><p>Data frame.</p></td>
+    </tr>
+    <tr>
+      <th>x_var</th>
+      <td><p>Variable for x axis, use string name.
+Recommended that <code>x_var</code> is in character in df.</p></td>
+    </tr>
+    <tr>
+      <th>fill_var</th>
+      <td><p>Variable for the different colors in bars,
+use string name.
+Use <code>NULL</code> if only one color for bars.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Plot title, <code>NULL</code> if no title.</p></td>
+    </tr>
+    <tr>
+      <th>subtitle</th>
+      <td><p>Small text under title, <code>NULL</code> if no subtitle.</p></td>
+    </tr>
+    <tr>
+      <th>y_lab</th>
+      <td><p>Y-axis label, use <code>NULL</code> for no label.</p></td>
+    </tr>
+    <tr>
+      <th>x_lab</th>
+      <td><p>X-axis label, use <code>NULL</code> for no label.</p></td>
+    </tr>
+    <tr>
+      <th>fill_colors</th>
+      <td><p>Color of the different categories in <code>fill_var</code>.</p></td>
+    </tr>
+    <tr>
+      <th>show_pct</th>
+      <td><p>If true, displays percentage on right side of figure</p></td>
+    </tr>
+    <tr>
+      <th>percent_accuracy</th>
+      <td><p>Set accuracy for <code><a href='https://scales.r-lib.org/reference/label_percent.html'>scales::percent_format()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments passed to <code><a href='theme_slr.html'>theme_slr()</a></code></p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+<pre>              ggplot object containing bar plot.
+</pre>
+
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
