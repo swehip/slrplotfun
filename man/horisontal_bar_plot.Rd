@@ -13,7 +13,6 @@ horisontal_bar_plot(
   y_lab = NULL,
   x_lab = NULL,
   fill_colors = NULL,
-  show_pct = TRUE,
   percent_accuracy = 1,
   ...
 )
@@ -37,8 +36,6 @@ Use \code{NULL} if only one color for bars.}
 \item{x_lab}{X-axis label, use \code{NULL} for no label.}
 
 \item{fill_colors}{Color of the different categories in \code{fill_var}.}
-
-\item{show_pct}{If true, displays percentage on right side of figure}
 
 \item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
 

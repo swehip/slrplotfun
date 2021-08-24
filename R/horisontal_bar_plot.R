@@ -2,14 +2,15 @@
 # This solution is presented in issue #3171 at
 # https://github.com/tidyverse/ggplot2/issues/3171
 # Credit to user paleolimbot for supplying this solution
-#' @export
+
+#' @export guide_axis_label_trans
 guide_axis_label_trans <- function(label_trans = identity, ...){
   axis_guide <- ggplot2::guide_axis(...)
   axis_guide$label_trans <- rlang::as_function(label_trans)
   class(axis_guide) <- c("guide_axis_trans", class(axis_guide))
   axis_guide
 }
-#' @export
+#' @export guide_train.guide_axis_trans
 guide_train.guide_axis_trans <- function(x, ...){
   trained <- NextMethod()
   trained$key$.label <- x$label_trans(trained$key$.label)
@@ -31,7 +32,6 @@ guide_train.guide_axis_trans <- function(x, ...){
 #' @param y_lab              Y-axis label, use `NULL` for no label.
 #' @param x_lab              X-axis label, use `NULL` for no label.
 #' @param fill_colors        Color of the different categories in `fill_var`.
-#' @param show_pct           If true, displays percentage on right side of figure
 #' @param percent_accuracy   Set accuracy for [scales::percent_format()].
 #' @param ...                arguments passed to [theme_slr()]
 #'
@@ -46,7 +46,6 @@ horisontal_bar_plot <-
            y_lab             = NULL,
            x_lab             = NULL,
            fill_colors       = NULL,
-           show_pct          = TRUE,
            percent_accuracy  = 1,
            ...
   )
@@ -85,10 +84,10 @@ horisontal_bar_plot <-
     df[[x_var]] <- forcats::fct_reorder2(df[[x_var]], df[[fill_var]], df$y2)
 
     # Construct right-hand labels sorted by y2
-    rlab <-
+    right_lab <-
       df[df[[fill_var]] == levels(as.factor(df[[fill_var]]))[1], ] %>%
       dplyr::mutate(
-          rlab = paste0(n, ifelse(show_pct, paste0(" (", round(y2,2)*100, "%)"), ""))
+          rlab = paste0(n, paste0(" (", round(y2,2)*100, "%)"), "")
       ) %>%
       dplyr::arrange(y2) %>%
       dplyr::select(rlab)
@@ -129,7 +128,7 @@ horisontal_bar_plot <-
         expand = c(0,0)
       ) +
       ggplot2::guides(
-        y.sec = guide_axis_label_trans(~rlab)
+        y.sec = guide_axis_label_trans(~right_lab)
       ) +
       ggplot2::coord_flip()
 
