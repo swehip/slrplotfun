@@ -1,4 +1,19 @@
-# Function to make stacked horisontal bar diagram
+# Helper functions for work-around with guides on discrete scale.
+# This solution is presented in issue #3171 at
+# https://github.com/tidyverse/ggplot2/issues/3171
+# Credit to user paleolimbot for supplying this solution
+guide_axis_label_trans <- function(label_trans = identity, ...){
+  axis_guide <- ggplot2::guide_axis(...)
+  axis_guide$label_trans <- rlang::as_function(label_trans)
+  class(axis_guide) <- c("guide_axis_trans", class(axis_guide))
+  axis_guide
+}
+
+guide_train.guide_axis_trans <- function(x, ...){
+  trained <- NextMethod()
+  trained$key$.label <- x$label_trans(trained$key$.label)
+  trained
+}
 
 #' Bar plot function
 #'
@@ -15,31 +30,12 @@
 #' @param y_lab              Y-axis label, use `NULL` for no label.
 #' @param x_lab              X-axis label, use `NULL` for no label.
 #' @param fill_colors        Color of the different categories in `fill_var`.
+#' @param show_pct           If true, displays percentage on right side of figure
 #' @param percent_accuracy   Set accuracy for [scales::percent_format()].
 #' @param ...                arguments passed to [theme_slr()]
 #'
 #' @return                   ggplot object containing bar plot.
-#'
-
-#' @export
-# Helper functions for work-around with guides on discrete scale.
-# This solution is presented in issue #3171 at
-# https://github.com/tidyverse/ggplot2/issues/3171
-# Credit to user paleolimbot for supplying this solution
-guide_axis_label_trans <- function(label_trans = identity, ...){
-  axis_guide <- ggplot2::guide_axis(...)
-  axis_guide$label_trans <- rlang::as_function(label_trans)
-  class(axis_guide) <- c("guide_axis_trans", class(axis_guide))
-  axis_guide
-}
-#' @export
-guide_train.guide_axis_trans <- function(x, ...){
-  trained <- NextMethod()
-  trained$key$.label <- x$label_trans(trained$key$.label)
-  trained
-}
-
-#' @export
+#' @export horisontal_bar_plot
 horisontal_bar_plot <-
   function(df,
            x_var,
@@ -49,10 +45,15 @@ horisontal_bar_plot <-
            y_lab             = NULL,
            x_lab             = NULL,
            fill_colors       = NULL,
+           show_pct          = TRUE,
            percent_accuracy  = 1,
            ...
   )
   {
+    requireNamespace("forcats")
+    requireNamespace("dplyr")
+    requireNamespace("ggplot2")
+
     # Fill colors ------------------------------------------------------------
     if (is.null(fill_colors)) {
       n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
@@ -86,7 +87,7 @@ horisontal_bar_plot <-
     rlab <-
       df[df[[fill_var]] == levels(as.factor(df[[fill_var]]))[1], ] %>%
       dplyr::mutate(
-          rlab = paste0(n, " (", round(y2,2)*100, "%)")
+          rlab = paste0(n, ifelse(show_pct, paste0(" (", round(y2,2)*100, "%)"), ""))
       ) %>%
       dplyr::arrange(y2) %>%
       dplyr::select(rlab)

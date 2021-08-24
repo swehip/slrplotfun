@@ -109,6 +109,6 @@ age_pyramid <-
     legend.position = legend.position,
     legend_title = TRUE,
     subtitle     = !is.null(subtitle),
-    x_lab_exist  = !is.null(x_lab)
+    x_lab_exists  = !is.null(x_lab)
   )
 }

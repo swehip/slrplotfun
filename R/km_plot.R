@@ -261,7 +261,7 @@ km_plot <- function(
       legend.position       = legend.position,
       legend.justification  = legend.position,
       subtitle              = !is.null(subtitle),
-      x_lab_exist           = !is.null(x_lab)
+      x_lab_exists           = !is.null(x_lab)
     )
 
   if (show_ci) {
