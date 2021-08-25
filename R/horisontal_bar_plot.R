@@ -1,21 +1,23 @@
-# Helper functions for work-around with guides on discrete scale.
-# This solution is presented in issue #3171 at
-# https://github.com/tidyverse/ggplot2/issues/3171
-# Credit to user paleolimbot for supplying this solution
-
-#' @export guide_axis_label_trans
+#' Helper functions for work-around with guides on discrete scale.
+#' This solution is presented in issue #3171 at
+#' https://github.com/tidyverse/ggplot2/issues/3171
+#' Credit to user paleolimbot for supplying this solution
+#' Helper for right-hand side label in figure
+#' @export
 guide_axis_label_trans <- function(label_trans = identity, ...){
   axis_guide <- ggplot2::guide_axis(...)
   axis_guide$label_trans <- rlang::as_function(label_trans)
   class(axis_guide) <- c("guide_axis_trans", class(axis_guide))
   axis_guide
 }
-#' @export guide_train.guide_axis_trans
+#' Helper for right-hand side label in figure
+#' @export
 guide_train.guide_axis_trans <- function(x, ...){
   trained <- NextMethod()
   trained$key$.label <- x$label_trans(trained$key$.label)
   trained
 }
+
 
 #' Bar plot function
 #'
@@ -37,6 +39,9 @@ guide_train.guide_axis_trans <- function(x, ...){
 #'
 #' @return                   ggplot object containing bar plot.
 #' @export horisontal_bar_plot
+#'
+#' @importFrom rlang .data
+
 horisontal_bar_plot <-
   function(df,
            x_var,
@@ -74,8 +79,8 @@ horisontal_bar_plot <-
       dplyr::summarise(y = dplyr::n()) %>%
       dplyr::group_by_at(x_var) %>%
       dplyr::mutate(
-        n = sum(y),
-        y2 = y/n
+        n = sum(.data$y),
+        y2 = .data$y/.data$n
       ) %>%
       dplyr::ungroup()
 
@@ -87,17 +92,17 @@ horisontal_bar_plot <-
     right_lab <-
       df[df[[fill_var]] == levels(as.factor(df[[fill_var]]))[1], ] %>%
       dplyr::mutate(
-          rlab = paste0(n, paste0(" (", round(y2,2)*100, "%)"), "")
+          rlab = paste0(n, " (", round(.data$y2*100,0), "%)")
       ) %>%
-      dplyr::arrange(y2) %>%
-      dplyr::select(rlab)
+      dplyr::arrange(.data$y2) %>%
+      dplyr::select(.data$rlab)
 
     #### create ggplot object ####
     bars <-
       ggplot2::ggplot(
         df,
         aes(x = .data[[x_var]],
-            y = y2,
+            y = .data$y2,
             fill = .data[[fill_var]]
         )
       ) +
