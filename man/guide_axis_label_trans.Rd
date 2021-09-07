@@ -10,6 +10,11 @@ Helper for right-hand side label in figure}
 \usage{
 guide_axis_label_trans(label_trans = identity, ...)
 }
+\arguments{
+\item{label_trans}{labels for axis_guide$label_trans}
+
+\item{...}{arguments passed to guide_axis}
+}
 \description{
 Helper functions for work-around with guides on discrete scale.
 This solution is presented in issue #3171 at

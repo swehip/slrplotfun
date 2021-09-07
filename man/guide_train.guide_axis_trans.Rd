@@ -6,6 +6,12 @@
 \usage{
 \method{guide_train}{guide_axis_trans}(x, ...)
 }
+\arguments{
+\item{x}{key$.label for NextMethod inherited
+from guide_train ... or something}
+
+\item{...}{arguments passed to NextMethod}
+}
 \description{
 Helper for right-hand side label in figure
 }

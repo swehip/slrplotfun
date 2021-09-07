@@ -3,6 +3,9 @@
 #' https://github.com/tidyverse/ggplot2/issues/3171
 #' Credit to user paleolimbot for supplying this solution
 #' Helper for right-hand side label in figure
+#' @param label_trans labels for axis_guide$label_trans
+#' @param ...         arguments passed to guide_axis
+#'
 #' @export
 guide_axis_label_trans <- function(label_trans = identity, ...){
   axis_guide <- ggplot2::guide_axis(...)
@@ -11,6 +14,10 @@ guide_axis_label_trans <- function(label_trans = identity, ...){
   axis_guide
 }
 #' Helper for right-hand side label in figure
+#' @param x key$.label for NextMethod inherited
+#'          from guide_train ... or something
+#' @param ... arguments passed to NextMethod
+#'
 #' @export
 guide_train.guide_axis_trans <- function(x, ...){
   trained <- NextMethod()
@@ -40,6 +47,9 @@ guide_train.guide_axis_trans <- function(x, ...){
 #' @return                   ggplot object containing bar plot.
 #' @export horisontal_bar_plot
 #'
+#' @import ggplot2
+#' @import forcats
+#' @import dplyr
 #' @importFrom rlang .data
 
 horisontal_bar_plot <-
@@ -55,9 +65,6 @@ horisontal_bar_plot <-
            ...
   )
   {
-    requireNamespace("forcats")
-    requireNamespace("dplyr")
-    requireNamespace("ggplot2")
 
     # Fill colors ------------------------------------------------------------
     if (is.null(fill_colors)) {
@@ -73,6 +80,7 @@ horisontal_bar_plot <-
     # Calculations by group
     df <-
       df %>%
+      # TODO: replace with across()
       dplyr::group_by_at(
         c(x_var, fill_var), .drop = FALSE
       ) %>%
