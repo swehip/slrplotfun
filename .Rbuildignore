@@ -1,6 +1,4 @@
-^renv$
-^renv\.lock$
-^rcplot\.Rproj$
+^slrplotfun\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^_pkgdown\.yml$

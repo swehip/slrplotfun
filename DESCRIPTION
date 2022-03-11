@@ -1,19 +1,18 @@
-Package: rcplot
-Title: Plot functions for Registercentrum
+Package: slrplotfun
+Title: Plot functions for the Swedish Arthroplasty Register
 Version: 0.1.1
 Authors@R: 
     person(given = "Jonatan",
            family = "Nåtman",
            role = c("aut", "cre"),
-           email = "jonatan.natman@vgregion.se")
-Description: Implementing the graphical design used by Registercentrum. Used for annual reports and more.
+           email = "first.last@example.com")
+Description: Implementing the graphical design used by the Swedish Arthroplasty 
+  Register since 2020. Used for annual reports and more.
 License: AGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-Depends: 
-  R (>= 3.5.0)
+RoxygenNote: 7.1.1
 Imports: 
     dplyr,
     ggplot2,
@@ -21,11 +20,11 @@ Imports:
     gridExtra,
     scales,
     magrittr,
-    rlang (>= 0.1.2),
-    mapproj
+    rlang (>= 0.1.2)
 Suggests:
     survival,
-    roxygen2
-Remotes: registercentrum/rcplot
-URL: https://github.com/registercentrum/rcplot
-BugReports: https://github.com/swehip/registercentrum/rcplot
+    roxygen2,
+    shprplotfun
+Remotes: swehip/shprplotfun
+URL: https://github.com/swehip/slrplotfun
+BugReports: https://github.com/swehip/slrplotfun/issues
