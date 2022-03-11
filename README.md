@@ -1,17 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rcplot
+# slrplotfun
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/registercentrum/rcplot/workflows/R-CMD-check/badge.svg)](https://github.com/registercentrum/rc/actions)
+[![R-CMD-check](https://github.com/swehip/slrplotfun/workflows/R-CMD-check/badge.svg)](https://github.com/swehip/slrplotfun/actions)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of rcplot is to implement the design used as default at 
-Registercentrum with figures produced by ggplot2. Functions are
+The goal of slrplotfun is to implement the design used by the Swedish
+Arthroplasty Register with figures produced by ggplot2. Functions are
 used for the annual report and more.
 
 ## Installation
@@ -21,7 +21,7 @@ You can install the development version from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("registercentrum/rcplot")
+devtools::install_github("swehip/slrplotfun")
 ```
 
 ## Example
@@ -30,7 +30,7 @@ Here are some example plots but please see the individual manual pages
 for a comprehensive list.
 
 ``` r
-library(rcplot)
+library(slrplotfun)
 set.seed(123)
 
 # Create some data
