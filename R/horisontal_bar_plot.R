@@ -100,7 +100,7 @@ horisontal_bar_plot <-
     right_lab <-
       df[df[[fill_var]] == levels(as.factor(df[[fill_var]]))[1], ] %>%
       dplyr::mutate(
-          rlab = paste0(y, " av ", n, " (", round(.data$y2*100,0), "%)")
+          rlab = paste0(y, "/", n, " (", round(.data$y2*100,0))
       ) %>%
       dplyr::arrange(.data$y2) %>%
       dplyr::select(.data$rlab)
