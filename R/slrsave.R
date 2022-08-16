@@ -8,6 +8,7 @@
 #' @param dpi Plot resolution.
 #' @param device Device to use. Can either be a device function (e.g. png()), or one of "eps", "ps", "tex" (pictex), "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).
 #' @param family Font family
+#' @param ... arguments passed to `ggplot2::ggsave()`
 #' @export
 #' @import ggplot2
 #' 
@@ -19,7 +20,8 @@ slrsave <- function(
   units = "in",
   dpi = 600,
   device = "tiff",
-  family = "Calibri Light"
+  family = "Calibri Light",
+  ...
 ) {
   ggplot2::ggsave(
     file, 
@@ -31,6 +33,7 @@ slrsave <- function(
     type = "cairo",
     device = device,
     family = family,
-    compression = "lzw"
+    compression = "lzw",
+    ...
   )
 }
