@@ -52,32 +52,37 @@ Also possible to remove uncommon levels and create new level called other.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">size_order</span><span class="op">(</span><span class="va">x</span>, other_count <span class="op">=</span> <span class="cn">NULL</span>, other_level <span class="op">=</span> <span class="st">"Övriga"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">size_order</span><span class="op">(</span><span class="va">x</span>, other_count <span class="op">=</span> <span class="cn">NULL</span>, other_level <span class="op">=</span> <span class="st">"Övriga"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>Vector</p></dd>
+
+
 <dt>other_count</dt>
 <dd><p>How many levels should be considered as other level</p></dd>
+
+
 <dt>other_level</dt>
 <dd><p>What the new level should be called</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span><span class="op">$</span><span class="va">cut</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span><span class="op">$</span><span class="va">cut</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Fair      Good Very Good   Premium     Ideal </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      1610      4906     12082     13791     21551 </span>
-<span class="r-in"><span class="va">in_size_order</span> <span class="op">&lt;-</span> <span class="fu">size_order</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span><span class="op">$</span><span class="va">cut</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">in_size_order</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">in_size_order</span> <span class="op">&lt;-</span> <span class="fu">size_order</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span><span class="op">$</span><span class="va">cut</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">in_size_order</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> in_size_order</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Ideal   Premium Very Good      Good      Fair </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     21551     13791     12082      4906      1610 </span>
-<span class="r-in"><span class="va">in_size_order</span> <span class="op">&lt;-</span> <span class="fu">size_order</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span><span class="op">$</span><span class="va">cut</span>, <span class="fl">2</span>, <span class="st">"Others"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">in_size_order</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">in_size_order</span> <span class="op">&lt;-</span> <span class="fu">size_order</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span><span class="op">$</span><span class="va">cut</span>, <span class="fl">2</span>, <span class="st">"Others"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">in_size_order</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> in_size_order</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Ideal   Premium Very Good    Others </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     21551     13791     12082      6516 </span>
@@ -95,7 +100,7 @@ Also possible to remove uncommon levels and create new level called other.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

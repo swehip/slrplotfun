@@ -50,114 +50,161 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">line_plot</span><span class="op">(</span>
-  <span class="va">df</span>,
-  <span class="va">x_var</span>,
-  color_var <span class="op">=</span> <span class="cn">NULL</span>,
-  y_var <span class="op">=</span> <span class="cn">NULL</span>,
-  group_by_x_var <span class="op">=</span> <span class="cn">TRUE</span>,
-  y_percent <span class="op">=</span> <span class="cn">TRUE</span>,
-  percent_accuracy <span class="op">=</span> <span class="fl">1</span>,
-  y_lim <span class="op">=</span> <span class="cn">NULL</span>,
-  y_breaks <span class="op">=</span> <span class="fl">2000</span>,
-  y_breaks_end <span class="op">=</span> <span class="fl">1e+05</span>,
-  line_size <span class="op">=</span> <span class="fl">1</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  subtitle <span class="op">=</span> <span class="cn">NULL</span>,
-  y_lab <span class="op">=</span> <span class="cn">NULL</span>,
-  x_lab <span class="op">=</span> <span class="cn">NULL</span>,
-  fill_colors <span class="op">=</span> <span class="cn">NULL</span>,
-  legend_labels <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,
-  label_breaks <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,
-  legend_row <span class="op">=</span> <span class="cn">NULL</span>,
-  legend_col <span class="op">=</span> <span class="cn">NULL</span>,
-  expand <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">line_plot</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  <span class="va">x_var</span>,</span>
+<span>  color_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  group_by_x_var <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  y_percent <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  percent_accuracy <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  y_lim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_breaks <span class="op">=</span> <span class="fl">2000</span>,</span>
+<span>  y_breaks_end <span class="op">=</span> <span class="fl">1e+05</span>,</span>
+<span>  line_size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_lab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  x_lab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fill_colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend_labels <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  label_breaks <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  legend_row <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  expand <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>Data frame.</p></dd>
+
+
 <dt>x_var</dt>
 <dd><p>Variable for x-axis, use string name.
 Recommended that x_var is
 in character in df (not necessary).</p></dd>
+
+
 <dt>color_var</dt>
 <dd><p>Variable for the different colors in lines, use string
 name. Use <code>NULL</code> if only one color for lines.</p></dd>
+
+
 <dt>y_var</dt>
 <dd><p>Variable for y axis, if <code>NULL</code>, count is used.</p></dd>
+
+
 <dt>group_by_x_var</dt>
 <dd><p>Boolean indicating if percentages should be for <code>x_var</code>
 or <code>color_var</code>.</p></dd>
+
+
 <dt>y_percent</dt>
 <dd><p>If <code>TRUE</code>, y-axis is in percent form. Otherwise in count
 form.</p></dd>
+
+
 <dt>percent_accuracy</dt>
 <dd><p>Set accuracy for <code><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">scales::percent_format()</a></code>.</p></dd>
+
+
 <dt>y_lim</dt>
 <dd><p>Limit on y-axis.</p></dd>
+
+
 <dt>y_breaks</dt>
 <dd><p>Length between each break on y-axis.</p></dd>
+
+
 <dt>y_breaks_end</dt>
 <dd><p>Break end, default for 100,000. Works for all count
 values below that.</p></dd>
+
+
 <dt>line_size</dt>
 <dd><p>Size of the lines.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Plot title, <code>NULL</code> if no title.</p></dd>
+
+
 <dt>subtitle</dt>
 <dd><p>Small text under title, <code>NULL</code> if no subtitle.</p></dd>
+
+
 <dt>y_lab</dt>
 <dd><p>Y-axis label, use <code>NULL</code> for no label.</p></dd>
+
+
 <dt>x_lab</dt>
 <dd><p>X-axis label, use <code>NULL</code> for no label.</p></dd>
+
+
 <dt>fill_colors</dt>
 <dd><p>Colors of the different categories in color_var.</p></dd>
+
+
 <dt>legend_labels</dt>
 <dd><p>Label for each legend key.</p></dd>
+
+
 <dt>label_breaks</dt>
 <dd><p>Order of the legend keys.</p></dd>
+
+
 <dt>legend_row</dt>
 <dd><p>How many rows for the legends.</p></dd>
+
+
 <dt>legend_col</dt>
 <dd><p>How many columns for the legends.</p></dd>
+
+
 <dt>expand</dt>
 <dd><p>If <code>TRUE</code>, the margins around the data are kept.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Arguments passed to <code><a href="theme_slr.html">theme_slr()</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <div class="sourceCode"><pre><code>            Ggplot object containing line-plot.
+    
+
+<div class="sourceCode"><pre><code>            Ggplot object containing line-plot.
 </code></pre></div>
+
+
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Example data</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># y_percent = TRUE</span></span>
-<span class="r-in"><span class="fu">line_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, y_breaks <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example data</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># y_percent = TRUE</span></span></span>
+<span class="r-in"><span><span class="fu">line_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, y_breaks <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="line_plot-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">line_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, group_by_x_var <span class="op">=</span> <span class="cn">FALSE</span>, y_breaks <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">line_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, group_by_x_var <span class="op">=</span> <span class="cn">FALSE</span>, y_breaks <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="line_plot-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># y_percent = FALSE</span></span>
-<span class="r-in"><span class="fu">line_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, y_percent <span class="op">=</span> <span class="cn">FALSE</span>, y_breaks <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># y_percent = FALSE</span></span></span>
+<span class="r-in"><span><span class="fu">line_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, y_percent <span class="op">=</span> <span class="cn">FALSE</span>, y_breaks <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="line_plot-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># y variable included</span></span>
-<span class="r-in"><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">color</span>, <span class="va">cut</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop_last"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">line_plot</span><span class="op">(</span><span class="va">df2</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, y_var <span class="op">=</span> <span class="st">'y'</span>, y_percent <span class="op">=</span> <span class="cn">FALSE</span>, y_breaks <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># y variable included</span></span></span>
+<span class="r-in"><span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">color</span>, <span class="va">cut</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop_last"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">line_plot</span><span class="op">(</span><span class="va">df2</span>, <span class="st">'cut'</span>, <span class="st">'color'</span>, y_var <span class="op">=</span> <span class="st">'y'</span>, y_percent <span class="op">=</span> <span class="cn">FALSE</span>, y_breaks <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="line_plot-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">line_plot</span><span class="op">(</span><span class="va">df2</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">color</span> <span class="op">==</span> <span class="st">'D'</span>, <span class="op">]</span>, <span class="st">'cut'</span>, y_var <span class="op">=</span> <span class="st">'y'</span>, y_percent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">          y_breaks <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">line_plot</span><span class="op">(</span><span class="va">df2</span><span class="op">[</span><span class="va">df2</span><span class="op">$</span><span class="va">color</span> <span class="op">==</span> <span class="st">'D'</span>, <span class="op">]</span>, <span class="st">'cut'</span>, y_var <span class="op">=</span> <span class="st">'y'</span>, y_percent <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>          y_breaks <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="line_plot-5.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -173,7 +220,7 @@ values below that.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

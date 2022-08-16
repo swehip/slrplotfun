@@ -52,68 +52,97 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">trend_plot</span><span class="op">(</span>
-  <span class="va">df</span>,
-  <span class="va">x_var</span>,
-  <span class="va">y_var</span>,
-  y_breaks <span class="op">=</span> <span class="fl">5</span>,
-  y_lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">54.9</span>, <span class="fl">65.1</span><span class="op">)</span>,
-  x_breaks <span class="op">=</span> <span class="fl">5</span>,
-  y_lab <span class="op">=</span> <span class="st">"Procent kvinnor"</span>,
-  x_lab <span class="op">=</span> <span class="st">"år"</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  subtitle <span class="op">=</span> <span class="cn">NULL</span>,
-  line_color <span class="op">=</span> <span class="fu"><a href="slr_colors.html">slr_colors</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
-  fill_color <span class="op">=</span> <span class="st">"#CADBD5"</span>,
-  line_size <span class="op">=</span> <span class="fl">1</span>,
-  point_size <span class="op">=</span> <span class="fl">1</span>,
-  percent_accuracy <span class="op">=</span> <span class="fl">1</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">trend_plot</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  <span class="va">x_var</span>,</span>
+<span>  <span class="va">y_var</span>,</span>
+<span>  y_breaks <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  y_lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">54.9</span>, <span class="fl">65.1</span><span class="op">)</span>,</span>
+<span>  x_breaks <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  y_lab <span class="op">=</span> <span class="st">"Procent kvinnor"</span>,</span>
+<span>  x_lab <span class="op">=</span> <span class="st">"år"</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  line_color <span class="op">=</span> <span class="fu"><a href="slr_colors.html">slr_colors</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>  fill_color <span class="op">=</span> <span class="st">"#CADBD5"</span>,</span>
+<span>  line_size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  point_size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  percent_accuracy <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>Data frame.</p></dd>
+
+
 <dt>x_var, y_var</dt>
 <dd><p>X and Y variable.</p></dd>
+
+
 <dt>y_breaks</dt>
 <dd><p>Length between each break on y-axis.</p></dd>
+
+
 <dt>y_lim</dt>
 <dd><p>Limit on y-axis.</p></dd>
+
+
 <dt>x_breaks</dt>
 <dd><p>Length between each break on x-axis.</p></dd>
+
+
 <dt>x_lab, y_lab</dt>
 <dd><p>X and Y-axis labels, use <code>NULL</code> for no label.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Plot title, <code>NULL</code> for no title.</p></dd>
+
+
 <dt>subtitle</dt>
 <dd><p>Small text under title, <code>NULL</code> for no subtitle.</p></dd>
+
+
 <dt>line_color</dt>
 <dd><p>Color of the line.</p></dd>
+
+
 <dt>fill_color</dt>
 <dd><p>Fill color</p></dd>
+
+
 <dt>line_size</dt>
 <dd><p>Size of the line.</p></dd>
+
+
 <dt>point_size</dt>
 <dd><p>Size of the points.</p></dd>
+
+
 <dt>percent_accuracy</dt>
 <dd><p>Set accuracy for <code><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">scales::percent_format()</a></code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <div class="sourceCode"><pre><code>            ggplot object containing trend plot.
+    
+
+<div class="sourceCode"><pre><code>            ggplot object containing trend plot.
 </code></pre></div>
+
+
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Creating data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2000</span><span class="op">:</span><span class="fl">2017</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">0.5</span>, <span class="fl">0.02</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Trend</span></span>
-<span class="r-in"><span class="fu">trend_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'year'</span>, <span class="st">'prob'</span>, y_breaks <span class="op">=</span> <span class="fl">2</span>, y_lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">prob</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Creating data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2000</span><span class="op">:</span><span class="fl">2017</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">0.5</span>, <span class="fl">0.02</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Trend</span></span></span>
+<span class="r-in"><span><span class="fu">trend_plot</span><span class="op">(</span><span class="va">df</span>, <span class="st">'year'</span>, <span class="st">'prob'</span>, y_breaks <span class="op">=</span> <span class="fl">2</span>, y_lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">prob</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using formula 'y ~ x'</span>
 <span class="r-plt img"><img src="trend_plot-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
@@ -130,7 +159,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

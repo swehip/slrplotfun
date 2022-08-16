@@ -50,110 +50,153 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">prom_trends</span><span class="op">(</span>
-  <span class="va">eq_vas_exp</span>,
-  <span class="va">eq_vas_obs</span>,
-  <span class="va">eq_vas_riket</span>,
-  <span class="va">pain_exp</span>,
-  <span class="va">pain_obs</span>,
-  <span class="va">pain_riket</span>,
-  <span class="va">satis_exp</span>,
-  <span class="va">satis_obs</span>,
-  <span class="va">satis_riket</span>,
-  riket_name <span class="op">=</span> <span class="st">"Riket"</span>,
-  y_labs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EQ VAS"</span>, <span class="st">"Smärt VAS"</span>, <span class="st">"Tillfredställelse"</span><span class="op">)</span>,
-  y_breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,
-  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2008/09"</span>, <span class="st">"2010/11"</span>, <span class="st">"2012/13"</span>, <span class="st">"2014/15"</span><span class="op">)</span>,
-  subset <span class="op">=</span> <span class="fl">1</span>,
-  legend_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Förväntat"</span>, <span class="st">"Observerat"</span>, <span class="st">"Riket"</span><span class="op">)</span>,
-  line_colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#3E92AA"</span>, <span class="st">"#C90327"</span>, <span class="st">"black"</span><span class="op">)</span>,
-  line_size <span class="op">=</span> <span class="fl">0.5</span>,
-  point_size <span class="op">=</span> <span class="fl">1.5</span>,
-  legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
-  n_row <span class="op">=</span> <span class="fl">1</span>,
-  n_col <span class="op">=</span> <span class="fl">3</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">prom_trends</span><span class="op">(</span></span>
+<span>  <span class="va">eq_vas_exp</span>,</span>
+<span>  <span class="va">eq_vas_obs</span>,</span>
+<span>  <span class="va">eq_vas_riket</span>,</span>
+<span>  <span class="va">pain_exp</span>,</span>
+<span>  <span class="va">pain_obs</span>,</span>
+<span>  <span class="va">pain_riket</span>,</span>
+<span>  <span class="va">satis_exp</span>,</span>
+<span>  <span class="va">satis_obs</span>,</span>
+<span>  <span class="va">satis_riket</span>,</span>
+<span>  riket_name <span class="op">=</span> <span class="st">"Riket"</span>,</span>
+<span>  y_labs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EQ VAS"</span>, <span class="st">"Smärt VAS"</span>, <span class="st">"Tillfredställelse"</span><span class="op">)</span>,</span>
+<span>  y_breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2008/09"</span>, <span class="st">"2010/11"</span>, <span class="st">"2012/13"</span>, <span class="st">"2014/15"</span><span class="op">)</span>,</span>
+<span>  subset <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  legend_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Förväntat"</span>, <span class="st">"Observerat"</span>, <span class="st">"Riket"</span><span class="op">)</span>,</span>
+<span>  line_colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#3E92AA"</span>, <span class="st">"#C90327"</span>, <span class="st">"black"</span><span class="op">)</span>,</span>
+<span>  line_size <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  point_size <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  n_row <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  n_col <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>eq_vas_exp</dt>
 <dd><p>Data frame with expected EQ VAS data.</p></dd>
+
+
 <dt>eq_vas_obs</dt>
 <dd><p>Data frame with observed EQ VAS data.</p></dd>
+
+
 <dt>eq_vas_riket</dt>
 <dd><p>Data frame with Swedish average EQ VAS data.</p></dd>
+
+
 <dt>pain_exp</dt>
 <dd><p>Data frame with expected pain VAS data.</p></dd>
+
+
 <dt>pain_obs</dt>
 <dd><p>Data frame with observed pain VAS data.</p></dd>
+
+
 <dt>pain_riket</dt>
 <dd><p>Data frame with Swedish average pain VAS data.</p></dd>
+
+
 <dt>satis_exp</dt>
 <dd><p>Data frame with expected satisfaction VAS data.</p></dd>
+
+
 <dt>satis_obs</dt>
 <dd><p>Data frame with observed satisfaction VAS data.</p></dd>
+
+
 <dt>satis_riket</dt>
 <dd><p>Data frame with Swedish average satisfaction VAS data.</p></dd>
+
+
 <dt>riket_name</dt>
 <dd><p>Character to find what row is Swedish average,
 usually named "Riket".</p></dd>
+
+
 <dt>y_labs</dt>
 <dd><p>Labels for y-axis</p></dd>
+
+
 <dt>y_breaks</dt>
 <dd><p>Y breaks in the three plots.</p></dd>
+
+
 <dt>year</dt>
 <dd><p>X-axis years, character vector works.
 The year variables will be renamed as they appear
 in the data set.</p></dd>
+
+
 <dt>subset</dt>
 <dd><p>Which plots should be generated, <code>subset = 1</code>
 corresponds to the first plot in alphabetical order.</p></dd>
+
+
 <dt>legend_labels</dt>
 <dd><p>Labels for the legends in the plot.</p></dd>
+
+
 <dt>line_colors</dt>
 <dd><p>Colors of the lines.</p></dd>
+
+
 <dt>line_size</dt>
 <dd><p>Line thickness of the lines in plot.</p></dd>
+
+
 <dt>point_size</dt>
 <dd><p>Point sizes in plot.</p></dd>
+
+
 <dt>legend.position</dt>
 <dd><p>Position of the legend in plot, matrix where each row
 corresponds to a legend position is recommended,
 if <code>length(subset) &gt; 1</code>.</p></dd>
+
+
 <dt>n_row, n_col</dt>
 <dd><p>Number of rows/columns for the three plots.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>arguments passed to <code><a href="theme_slr.html">theme_slr()</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>List of several gtable objects where each gtable object is one clinic</p>
+    
+
+<p>List of several gtable objects where each gtable object is one clinic</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Create trend plot for SU/MÃ¶lndal</span></span>
-<span class="r-in"><span class="co"># Look at 9 data sets to see the required structure.</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span></span>
-<span class="r-in">  <span class="fu">prom_trends</span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/eq_vas_exp.html" class="external-link">eq_vas_exp</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/eq_vas_obs.html" class="external-link">eq_vas_obs</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/eq_vas_riket.html" class="external-link">eq_vas_riket</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/pain_exp.html" class="external-link">pain_exp</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/pain_obs.html" class="external-link">pain_obs</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/pain_riket.html" class="external-link">pain_riket</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/satis_exp.html" class="external-link">satis_exp</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/satis_obs.html" class="external-link">satis_obs</a></span>,</span>
-<span class="r-in">  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/satis_riket.html" class="external-link">satis_riket</a></span>,</span>
-<span class="r-in">  y_breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span><span class="op">)</span>,</span>
-<span class="r-in">  subset <span class="op">=</span> <span class="fl">49</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create trend plot for SU/MÃ¶lndal</span></span></span>
+<span class="r-in"><span><span class="co"># Look at 9 data sets to see the required structure.</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="fu">prom_trends</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/eq_vas_exp.html" class="external-link">eq_vas_exp</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/eq_vas_obs.html" class="external-link">eq_vas_obs</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/eq_vas_riket.html" class="external-link">eq_vas_riket</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/pain_exp.html" class="external-link">pain_exp</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/pain_obs.html" class="external-link">pain_obs</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/pain_riket.html" class="external-link">pain_riket</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/satis_exp.html" class="external-link">satis_exp</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/satis_obs.html" class="external-link">satis_obs</a></span>,</span></span>
+<span class="r-in"><span>  <span class="fu">shprplotfun</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shprplotfun/man/satis_riket.html" class="external-link">satis_riket</a></span>,</span></span>
+<span class="r-in"><span>  y_breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  subset <span class="op">=</span> <span class="fl">49</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Package 'extrafont' not installed!</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>             This might cause problems with fonts if you export figures to PNG!</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="prom_trends-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -169,7 +212,7 @@ if <code>length(subset) &gt; 1</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -50,93 +50,130 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">age_pyramid</span><span class="op">(</span>
-  <span class="va">df</span>,
-  age_var <span class="op">=</span> <span class="st">"Alder"</span>,
-  gender_var <span class="op">=</span> <span class="st">"Kon"</span>,
-  man_level <span class="op">=</span> <span class="st">"Man"</span>,
-  age_breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">39</span>, <span class="fl">44</span>, <span class="fl">49</span>, <span class="fl">54</span>, <span class="fl">59</span>, <span class="fl">64</span>, <span class="fl">69</span>, <span class="fl">74</span>, <span class="fl">79</span>, <span class="fl">84</span>, <span class="cn">Inf</span><span class="op">)</span>,
-  age_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0-39"</span>, <span class="st">"40-44"</span>, <span class="st">"45-49"</span>, <span class="st">"50-54"</span>, <span class="st">"55-59"</span>, <span class="st">"60-64"</span>, <span class="st">"65-69"</span>, <span class="st">"70-74"</span>,
-    <span class="st">"75-79"</span>, <span class="st">"80-84"</span>, <span class="st">"85+"</span><span class="op">)</span>,
-  percent <span class="op">=</span> <span class="cn">TRUE</span>,
-  x_breaks <span class="op">=</span> <span class="fl">5</span>,
-  x_breaks_end <span class="op">=</span> <span class="va">x_breaks</span> <span class="op">*</span> <span class="fl">1e+05</span>,
-  title <span class="op">=</span> <span class="st">""</span>,
-  subtitle <span class="op">=</span> <span class="cn">NULL</span>,
-  y_lab <span class="op">=</span> <span class="cn">NULL</span>,
-  x_lab <span class="op">=</span> <span class="cn">NULL</span>,
-  fill_colors <span class="op">=</span> <span class="fu"><a href="slr_colors.html">slr_colors</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>,
-  legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
-  legend_labels <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,
-  label_breaks <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,
-  legend_row <span class="op">=</span> <span class="cn">NULL</span>,
-  legend_col <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">age_pyramid</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  age_var <span class="op">=</span> <span class="st">"Alder"</span>,</span>
+<span>  gender_var <span class="op">=</span> <span class="st">"Kon"</span>,</span>
+<span>  man_level <span class="op">=</span> <span class="st">"Man"</span>,</span>
+<span>  age_breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">39</span>, <span class="fl">44</span>, <span class="fl">49</span>, <span class="fl">54</span>, <span class="fl">59</span>, <span class="fl">64</span>, <span class="fl">69</span>, <span class="fl">74</span>, <span class="fl">79</span>, <span class="fl">84</span>, <span class="cn">Inf</span><span class="op">)</span>,</span>
+<span>  age_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0-39"</span>, <span class="st">"40-44"</span>, <span class="st">"45-49"</span>, <span class="st">"50-54"</span>, <span class="st">"55-59"</span>, <span class="st">"60-64"</span>, <span class="st">"65-69"</span>, <span class="st">"70-74"</span>,</span>
+<span>    <span class="st">"75-79"</span>, <span class="st">"80-84"</span>, <span class="st">"85+"</span><span class="op">)</span>,</span>
+<span>  percent <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  x_breaks <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  x_breaks_end <span class="op">=</span> <span class="va">x_breaks</span> <span class="op">*</span> <span class="fl">1e+05</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  y_lab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  x_lab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fill_colors <span class="op">=</span> <span class="fu"><a href="slr_colors.html">slr_colors</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>,</span>
+<span>  legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  legend_labels <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  label_breaks <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  legend_row <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>Data frame.</p></dd>
+
+
 <dt>age_var</dt>
 <dd><p>Name of age variable.</p></dd>
+
+
 <dt>gender_var</dt>
 <dd><p>Name of gender variable.</p></dd>
+
+
 <dt>man_level</dt>
 <dd><p>Name of man level, probably "Man" or "Män".</p></dd>
+
+
 <dt>age_breaks</dt>
 <dd><p>Each age observation in an interval.</p></dd>
+
+
 <dt>age_labels</dt>
 <dd><p>Label of the interval.</p></dd>
+
+
 <dt>percent</dt>
 <dd><p>If <code>TRUE</code>, x-axis is in percent form.
 Otherwise in count form.</p></dd>
+
+
 <dt>x_breaks</dt>
 <dd><p>Length between each break on x-axis.</p></dd>
+
+
 <dt>x_breaks_end</dt>
 <dd><p>Break end, default for 100,000. Works for all count
 values below that.</p></dd>
+
+
 <dt>title, subtitle</dt>
 <dd><p>Plot title/subtitle, <code>NULL</code> for no title.</p></dd>
+
+
 <dt>x_lab, y_lab</dt>
 <dd><p>X/Y-axis labels, use <code>NULL</code> for no label.</p></dd>
+
+
 <dt>fill_colors</dt>
 <dd><p>Colors of the genders.</p></dd>
+
+
 <dt>legend.position</dt>
 <dd><p>Position of the legend in plot,
 if <code>c(1,1)</code>, <code>c(1,0)</code> etc, legend inside plot.</p></dd>
+
+
 <dt>legend_labels</dt>
 <dd><p>Label for each legend key.</p></dd>
+
+
 <dt>label_breaks</dt>
 <dd><p>Order of the legend keys.</p></dd>
+
+
 <dt>legend_row, legend_col</dt>
 <dd><p>How many rows/columns for the legends.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>arguments passed to <code><a href="theme_slr.html">theme_slr()</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <div class="sourceCode"><pre><code>           ggplot object containing age pyramid plot.
+    
+
+<div class="sourceCode"><pre><code>           ggplot object containing age pyramid plot.
 </code></pre></div>
+
+
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Creating data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">65</span><span class="op">)</span>,</span>
-<span class="r-in">  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Woman'</span>, <span class="st">'Woman'</span>, <span class="st">'Man'</span><span class="op">)</span>, <span class="fl">100000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Age pyramid</span></span>
-<span class="r-in"><span class="fu">age_pyramid</span><span class="op">(</span><span class="va">df</span>, age_var <span class="op">=</span> <span class="st">'age'</span>, gender_var <span class="op">=</span> <span class="st">'gender'</span>,</span>
-<span class="r-in">  man_level <span class="op">=</span> <span class="st">'Man'</span>, title <span class="op">=</span> <span class="st">"This is an age pyramid"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Creating data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">65</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Woman'</span>, <span class="st">'Woman'</span>, <span class="st">'Man'</span><span class="op">)</span>, <span class="fl">100000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Age pyramid</span></span></span>
+<span class="r-in"><span><span class="fu">age_pyramid</span><span class="op">(</span><span class="va">df</span>, age_var <span class="op">=</span> <span class="st">'age'</span>, gender_var <span class="op">=</span> <span class="st">'gender'</span>,</span></span>
+<span class="r-in"><span>  man_level <span class="op">=</span> <span class="st">'Man'</span>, title <span class="op">=</span> <span class="st">"This is an age pyramid"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="age_pyramid-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Age pyramid with percent = FALSE</span></span>
-<span class="r-in"><span class="fu">age_pyramid</span><span class="op">(</span><span class="va">df</span>, age_var <span class="op">=</span> <span class="st">'age'</span>, gender_var <span class="op">=</span> <span class="st">'gender'</span>,</span>
-<span class="r-in">  man_level <span class="op">=</span> <span class="st">'Man'</span>, percent <span class="op">=</span> <span class="cn">FALSE</span>, x_breaks <span class="op">=</span> <span class="fl">5000</span>,</span>
-<span class="r-in">  title <span class="op">=</span> <span class="st">"This is an age pyramid"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Age pyramid with percent = FALSE</span></span></span>
+<span class="r-in"><span><span class="fu">age_pyramid</span><span class="op">(</span><span class="va">df</span>, age_var <span class="op">=</span> <span class="st">'age'</span>, gender_var <span class="op">=</span> <span class="st">'gender'</span>,</span></span>
+<span class="r-in"><span>  man_level <span class="op">=</span> <span class="st">'Man'</span>, percent <span class="op">=</span> <span class="cn">FALSE</span>, x_breaks <span class="op">=</span> <span class="fl">5000</span>,</span></span>
+<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"This is an age pyramid"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="age_pyramid-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -152,7 +189,7 @@ if <code>c(1,1)</code>, <code>c(1,0)</code> etc, legend inside plot.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
